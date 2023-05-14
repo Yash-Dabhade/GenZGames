@@ -1,0 +1,6 @@
+#Container{
+    overflow-x: hidden;
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(315deg, #101217 20%, #181a21 100%)
+}
