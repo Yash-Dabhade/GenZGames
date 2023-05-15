@@ -29,7 +29,7 @@
     font-family: 'Roboto Slab', serif;
     display: flex;
    
-    gap:20px;
+    gap:40px;
    
 }
 
@@ -46,16 +46,27 @@
 #userUtil{
     display: flex;
     height: fit-content;
-    gap:20px;
+    gap:30px;
     align-items: center;
     justify-content: center;
     margin: 0px 20px;
+   
 }
 #user{
+    cursor: pointer;
     width: 44px;
     height: 44px;
     border:0px solid rgba(84, 78, 78, 0.669);
     box-shadow:1px 1px 1px white;
     border-radius: 50%;
     margin-right: 12px;
+
+}
+
+#cart{
+    cursor: pointer;
+}
+
+#heart{
+    cursor: pointer;
 }

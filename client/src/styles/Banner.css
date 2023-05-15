@@ -1,0 +1,20 @@
+#BannerContainer{
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    background: url("../gamesMedia/ascreed_bg.jpg") center center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#logo{
+    height: 200px;
+    width: auto;
+}
+
+#model{
+    margin-top: -100px;
+    height: 284px;
+    width: auto;
+}
