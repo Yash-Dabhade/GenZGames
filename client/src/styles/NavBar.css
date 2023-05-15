@@ -3,10 +3,11 @@
 #NavContainer{
     width: 100vw;
     height: auto;
+    position: sticky;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border:1px solid white;
+    /* border:1px solid white; */
     overflow-x: hidden;
 }
 
@@ -20,15 +21,26 @@
 }
 
 #logoImg{
-    height: 62px;
-    width: 172px;
+    height: 58px;
+    width: 148px;
     padding:10px;
 }
 #Menu{
     font-family: 'Roboto Slab', serif;
     display: flex;
-    color: whitesmoke;
+   
     gap:20px;
+   
+}
+
+#Menu li{
+    list-style-type: none;
+}
+
+#Menu li a{
+    text-decoration: none;
+    color: whitesmoke;
+   
 }
 
 #userUtil{
@@ -38,4 +50,12 @@
     align-items: center;
     justify-content: center;
     margin: 0px 20px;
+}
+#user{
+    width: 44px;
+    height: 44px;
+    border:0px solid rgba(84, 78, 78, 0.669);
+    box-shadow:1px 1px 1px white;
+    border-radius: 50%;
+    margin-right: 12px;
 }

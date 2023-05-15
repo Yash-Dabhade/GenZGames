@@ -8,16 +8,27 @@ function NavBar() {
         <div>
           <img src="/res/logo.png" alt="" id="logoImg" />
         </div>
-        <div id="Menu">
-          <p>Home</p>
-          <p>Shop</p>
-          <p>Streams</p>
-          <p>News</p>
-        </div>
+        <nav>
+          <ul id="Menu">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/">Shop</a>
+            </li>
+            <li>
+              <a href="/">Stream</a>
+            </li>
+            <li>
+              <a href="/">News</a>
+            </li>
+          </ul>
+        </nav>
       </div>
       <div id="userUtil">
-        <img src="/res/cart.png" alt="" id="cart" />
-        <img src="/res/heart.png" alt="" id="heart" />
+        <img src="/res/cart.png" alt="cart" id="cart" />
+        <img src="/res/heart.png" alt="favourite" id="heart" />
+        <img src="/res/user.jpg" alt="user" id="user" />
       </div>
     </div>
   );
