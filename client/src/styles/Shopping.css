@@ -1,3 +1,4 @@
+
 #Container{
     overflow-x: hidden;
     width: 100vw;
@@ -8,7 +9,7 @@
 #leftContainer{
     /* border:1px solid whitesmoke; */
     border-radius: 25px;
-    height: 82vh;
+    height: 85vh;
     width: 25%;
     margin-left: 20px;
     background: rgba( 255, 255, 255, 0.15 );
@@ -17,28 +18,29 @@
     -webkit-backdrop-filter: blur( 18px );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 1rem;
-    padding: 1.5rem;
+    padding: 3.5rem;
     z-index: 10;
     color: whitesmoke;
 }
 
 #innerContainer{
     display: flex;
-    height: 100vh;
+    height: fit-content;
     align-items: center;
     /* border:2px solid white; */
 }
 
 #rightContainer{
     width: 100vw;
-    margin-top: -24px;
-    padding:0px 20px;
+    height: fit-content;
+    margin-top: 0px;
+    padding:38px 20px;
     /* border:2px solid white; */
     display: flex;
-    height: 100vh;
+    height: auto;
     align-items: center;
     justify-content: center;
-    gap:20px;
+   
     flex-direction: column;
 }
 
@@ -65,12 +67,14 @@
     align-items: center;
     justify-content: center;
     gap:10px;
-    margin-top: 10px;
+    padding-top: 120px;
+    margin-top: 25px;
 }
 
 .game{
+    
     width: 300px;
-    height: 230px;
+    height: 430px;
     /* margin: 10px 10px; */
     background: rgba( 255, 255, 255, 0.15 );
     /* border: 1px solid violet; */

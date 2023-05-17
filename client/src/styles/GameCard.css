@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+#GameContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    font-family: 'Play', sans-serif;
+    /* overflow: hidden; */
+}
+#title{
+    height: fit-content;
+    font-size:20px;
+}
+#cover{
+    height: 100%;
+    width: 100%;
+}
+
+#platforms{
+ 
+    height: 30px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#buyContainer{
+    width: 100%;
+    font-family: 'Play', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap:5px;
+}
+
+#price{
+    width: 100px
+}
+
+#buy{
+    cursor: pointer;
+    font-weight: 700;
+    font-family: 'Play', sans-serif;
+    height: 40px;
+    width: 100%;
+    background-color: goldenrod;
+    color: black;
+    border-radius: 1px;
+}
+
+#platforms{
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:12px;
+}
+
+.icon{
+    width: 34px;
+    height: 34px;
+    
+}
