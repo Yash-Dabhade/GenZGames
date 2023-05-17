@@ -5,7 +5,6 @@ const cookieToken = require("../utils/cookieToken");
 const mailHelper = require("../utils/mailHelper");
 const cloudinary = require("cloudinary").v2;
 const crypto = require("crypto");
-const user = require("../models/user");
 
 //sign up controller
 exports.signup = BigPromise(async (req, res, next) => {
@@ -69,7 +68,6 @@ exports.login = BigPromise(async (req, res, next) => {
       )
     );
   }
-
   //check password
   const isPasswordCorrect = await user.isValidatedPassword(password);
 
@@ -80,6 +78,87 @@ exports.login = BigPromise(async (req, res, next) => {
 
   //send cookie token
   cookieToken(user, res);
+});
+
+//add to cart
+exports.addToCart = BigPromise(async (req, res, next) => {
+  //extract data
+  const { userId, productId, quantity } = req.body;
+
+  // data validation
+  if (!userId || !productId || !quantity) {
+    return next(new customError("All values are are mandatory !"));
+  }
+
+  const user = await User.findById({ userId });
+
+  if (!user) {
+    return res.json({ code: 400, message: "Invalid User" });
+  }
+
+  user.cart.push({ productId, quantity });
+  await user.save();
+
+  //generate and send cookieToken of cart
+  cookieToken(user.cart, res);
+});
+
+//updateCart
+exports.updateCart = BigPromise(async (req, res, next) => {
+  //extract data
+  const { userId, productId, quantity } = req.body;
+
+  // data validation
+  if (!userId || !productId || !quantity) {
+    return next(new customError("All values are are mandatory !"));
+  }
+
+  const user = await User.findById({ userId });
+
+  if (!user) {
+    return res.json({ code: 400, message: "Invalid User" });
+  }
+
+  user.cart.forEach((ele) => {
+    if (ele.productId === productId) {
+      ele.quantity = quantity;
+    }
+  });
+
+  await user.save();
+
+  //generate and send cookieToken of cart
+  cookieToken(user.cart, res);
+});
+
+//deleteFromCart
+exports.deleteFromCart = BigPromise(async (req, res, next) => {
+  //extract data
+  const { userId, productId, quantity, all } = req.body;
+
+  // data validation
+  if (!userId || !productId || !quantity) {
+    return next(new customError("All values are are mandatory !"));
+  }
+
+  const user = await User.findById({ userId });
+
+  if (!user) {
+    return res.json({ code: 400, message: "Invalid User" });
+  }
+
+  if (all == 1) {
+    user.cart = null;
+  } else {
+    user.cart.filter((ele) => {
+      ele.productId != productId;
+    });
+  }
+
+  await user.save();
+
+  //generate and send cookieToken of cart
+  cookieToken(user.cart, res);
 });
 
 //logout controller

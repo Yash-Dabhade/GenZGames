@@ -32,7 +32,14 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please select category from - given list"],
     enum: {
-      values: ["shortsleeves", "longsleeves", "sweatshirt", "hoodies"],
+      values: [
+        "action",
+        "adventure",
+        "simulation",
+        "acrade",
+        "open world",
+        "strategy",
+      ],
       message: "please select category only from given list",
     },
   },
@@ -42,7 +49,7 @@ const productSchema = new mongoose.Schema({
   },
   brand: {
     type: String,
-    required: [true, "Please add a brand for clothing"],
+    required: [true, "Please add a brand of Game"],
   },
   ratings: {
     type: Number,

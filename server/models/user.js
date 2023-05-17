@@ -36,6 +36,16 @@ const userSchema = new mongoose.Schema({
   },
   forgotPasswordToken: String,
   forgotPasswordExpiry: Date,
+  cart: [
+    {
+      productId: {
+        type: String,
+      },
+      quantity: {
+        type: Number,
+      },
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now, // don't write with paranthesis to make it execute when instance is created
