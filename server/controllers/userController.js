@@ -90,17 +90,20 @@ exports.addToCart = BigPromise(async (req, res, next) => {
     return next(new customError("All values are are mandatory !"));
   }
 
-  const user = await User.findById({ userId });
+  const user = await User.findById(userId);
 
   if (!user) {
     return res.json({ code: 400, message: "Invalid User" });
   }
 
-  user.cart.push({ productId, quantity });
-  await user.save();
+  if (user.cart.findIndex((ele) => ele.productId == productId) == -1) {
+    user.cart.push({ productId, quantity });
+    await user.save();
+  }
 
   //generate and send cookieToken of cart
-  cookieToken(user.cart, res);
+  cookieToken(user, res);
+  // res.status(200).json({ success: "true", user });
 });
 
 //updateCart
@@ -113,35 +116,37 @@ exports.updateCart = BigPromise(async (req, res, next) => {
     return next(new customError("All values are are mandatory !"));
   }
 
-  const user = await User.findById({ userId });
+  const user = await User.findById(userId);
 
   if (!user) {
     return res.json({ code: 400, message: "Invalid User" });
   }
 
+  let found = false;
   user.cart.forEach((ele) => {
-    if (ele.productId === productId) {
+    if (ele.productId == productId) {
       ele.quantity = quantity;
+      found = true;
     }
   });
 
   await user.save();
 
   //generate and send cookieToken of cart
-  cookieToken(user.cart, res);
+  cookieToken(user, res);
 });
 
 //deleteFromCart
 exports.deleteFromCart = BigPromise(async (req, res, next) => {
   //extract data
-  const { userId, productId, quantity, all } = req.body;
+  const { userId, productId, all } = req.body;
 
   // data validation
-  if (!userId || !productId || !quantity) {
+  if (!userId || !productId) {
     return next(new customError("All values are are mandatory !"));
   }
 
-  const user = await User.findById({ userId });
+  const user = await User.findById(userId);
 
   if (!user) {
     return res.json({ code: 400, message: "Invalid User" });
@@ -150,7 +155,7 @@ exports.deleteFromCart = BigPromise(async (req, res, next) => {
   if (all == 1) {
     user.cart = null;
   } else {
-    user.cart.filter((ele) => {
+    user.cart = user.cart.filter((ele) => {
       ele.productId != productId;
     });
   }
@@ -158,7 +163,7 @@ exports.deleteFromCart = BigPromise(async (req, res, next) => {
   await user.save();
 
   //generate and send cookieToken of cart
-  cookieToken(user.cart, res);
+  cookieToken(user, res);
 });
 
 //logout controller

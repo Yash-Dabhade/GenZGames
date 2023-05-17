@@ -34,14 +34,14 @@ const product = require("./routes/product");
 const payment = require("./routes/payment");
 const order = require("./routes/order");
 
-//testing routes
-// app.get("/api/v1/signuptest", (req, res) => {
-//   res.render("signuptest");
-// });
+// testing routes
+app.get("/api/v1/signuptest", (req, res) => {
+  res.render("signuptest");
+});
 
 //router middlewares
 app.use("/api/v1", home);
-// app.use("/api/v1", user);
+app.use("/api/v1", user);
 app.use("/api/v1", product);
 app.use("/api/v1", payment);
 app.use("/api/v1", order);
