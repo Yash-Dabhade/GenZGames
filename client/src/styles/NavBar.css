@@ -4,6 +4,7 @@
     width: 100vw;
     height: auto;
     position: sticky;
+    z-index: 190;
     display: flex;
     align-items: center;
     justify-content: space-between;

@@ -17,10 +17,10 @@ function Shopping() {
       <div class="blob2"></div>
       <div id="innerContainer">
         <div
-          style={{
-            backgroundImage:
-              "url('https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg')",
-          }}
+          // style={{
+          //   backgroundImage:
+          //     "url('https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg')",
+          // }}
           id="leftContainer"
         >
           Filter
@@ -30,6 +30,78 @@ function Shopping() {
             <Banner logo={game1Logo} model={game1Model} />
           </div>
           <div id="gamesContainer">
+            <div className="game">
+              <GameCard
+                cover={game1Cover}
+                title={"Call Of Duty 4"}
+                price={"Rs. 2500"}
+                platforms={"111"}
+              />
+            </div>
+            <div className="game">
+              <GameCard
+                cover={game2Cover}
+                title={"Dragon Ball Z Kai"}
+                price={"Rs. 1750"}
+                platforms={"111"}
+              />
+            </div>
+            <div className="game">
+              <GameCard
+                cover={game3Cover}
+                title={"Watch Dogs: Legion"}
+                price={"Rs. 3750"}
+                platforms={"111"}
+              />
+            </div>
+            <div className="game">
+              <GameCard
+                cover={game1Cover}
+                title={"Call Of Duty 4"}
+                price={"Rs. 2500"}
+                platforms={"111"}
+              />
+            </div>
+            <div className="game">
+              <GameCard
+                cover={game2Cover}
+                title={"Dragon Ball Z Kai"}
+                price={"Rs. 1750"}
+                platforms={"111"}
+              />
+            </div>
+            <div className="game">
+              <GameCard
+                cover={game3Cover}
+                title={"Watch Dogs: Legion"}
+                price={"Rs. 3750"}
+                platforms={"111"}
+              />
+            </div>
+            <div className="game">
+              <GameCard
+                cover={game1Cover}
+                title={"Call Of Duty 4"}
+                price={"Rs. 2500"}
+                platforms={"111"}
+              />
+            </div>
+            <div className="game">
+              <GameCard
+                cover={game2Cover}
+                title={"Dragon Ball Z Kai"}
+                price={"Rs. 1750"}
+                platforms={"111"}
+              />
+            </div>
+            <div className="game">
+              <GameCard
+                cover={game3Cover}
+                title={"Watch Dogs: Legion"}
+                price={"Rs. 3750"}
+                platforms={"111"}
+              />
+            </div>
             <div className="game">
               <GameCard
                 cover={game1Cover}

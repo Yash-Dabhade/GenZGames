@@ -12,6 +12,7 @@
 #title{
     height: fit-content;
     font-size:20px;
+    padding:0px;
 }
 #cover{
     height: 100%;
@@ -19,9 +20,8 @@
 }
 
 #platforms{
- 
     height: 30px;
-    padding: 10px;
+    padding-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,6 +49,7 @@
     background-color: goldenrod;
     color: black;
     border-radius: 1px;
+    
 }
 
 #platforms{
@@ -60,7 +61,13 @@
 }
 
 .icon{
-    width: 34px;
-    height: 34px;
+    width: 28px;
+    height: 29px;
+    padding: 5px 5px;
     
 }
+
+
+
+
+
