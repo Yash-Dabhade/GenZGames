@@ -16,6 +16,16 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, "please provide product description"],
   },
+  cover: {
+    id: {
+      type: String,
+      required: true,
+    },
+    secure_url: {
+      type: String,
+      required: true,
+    },
+  },
   photos: [
     {
       id: {
@@ -51,6 +61,9 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please add a brand of Game"],
   },
+
+  gameKeys: [{ type: String }],
+
   ratings: {
     type: Number,
     default: 0,

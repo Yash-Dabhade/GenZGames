@@ -4,21 +4,12 @@ const BigPromise = require("../middlewares/bigPromise");
 const customError = require("../utils/customError");
 
 exports.createOrder = BigPromise(async (req, res, next) => {
-  const {
-    shippingInfo,
-    orderItems,
-    paymentInfo,
-    taxAmount,
-    shippingAmount,
-    totalAmount,
-  } = req.body;
+  const { orderItems, paymentInfo, taxAmount, totalAmount } = req.body;
 
   const order = await Order.create({
-    shippingInfo,
     orderItems,
     paymentInfo,
     taxAmount,
-    shippingAmount,
     totalAmount,
     user: req.user._id,
   });
@@ -38,6 +29,34 @@ exports.getOneOrder = BigPromise(async (req, res, next) => {
   if (!order) {
     return next(new customError("please check the order id", 401));
   }
+
+  res.status(200).json({
+    success: true,
+    order,
+  });
+});
+
+exports.updateOrder = BigPromise(async (req, res, next) => {
+  const order = await Order.findById(req.params.id);
+  if (order.orderStatus === "Delivered") {
+    return next(new customError("Order is already marked for devlivered"));
+  }
+
+  order.orderStatus = "Delivered";
+
+  order.orderItems.map(async (prod) => {
+    let product = await Product.findById(prod.product);
+    key = product.gameKeys.pop();
+
+    console.log(prod);
+    product.stock = product.stock - prod.quantity;
+    await product.save({ validateBeforeSave: false });
+
+    prod.gameKey = key;
+    await order.save();
+  });
+
+  await order.save();
 
   res.status(200).json({
     success: true,
@@ -73,7 +92,7 @@ exports.adminUpdateOrder = BigPromise(async (req, res, next) => {
     return next(new customError("Order is already marked for devlivered"));
   }
 
-  order.orderStatus = req.body.orderStatus;
+  order.orderStatus = "Delivered";
 
   order.orderItems.forEach(async (prod) => {
     await updateProductStock(prod.product, prod.quantity);
@@ -89,6 +108,8 @@ exports.adminUpdateOrder = BigPromise(async (req, res, next) => {
 
 async function updateProductStock(productId, quantity) {
   const product = await Product.findById(productId);
+
+  let key = product.gameKeys.pop();
 
   product.stock = product.stock - quantity;
 

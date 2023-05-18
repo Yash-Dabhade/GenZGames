@@ -14,6 +14,17 @@ exports.addProduct = BigPromise(async (req, res, next) => {
   }
   //upload all images
   if (req.files) {
+    const resultCover = await cloudinary.uploader.upload(
+      req.files.cover.tempFilePath,
+      {
+        folder: "covers",
+      }
+    );
+    req.body.cover = {
+      id: resultCover.public_id,
+      secure_url: resultCover.secure_url,
+    };
+
     for (let index = 0; index < req.files.photos.length; index++) {
       const result = await cloudinary.uploader.upload(
         req.files.photos[index].tempFilePath,
@@ -31,6 +42,7 @@ exports.addProduct = BigPromise(async (req, res, next) => {
   //add photos and user to body
   req.body.photos = imageArray;
   req.body.user = req.user.id;
+  req.body.gameKeys = req.body.gameKeys.split(",");
 
   //create product instance
   const product = await Product.create(req.body);
