@@ -1,10 +1,13 @@
 const User = require("../models/user");
+const user = require("../models/user");
+
 const BigPromise = require("../middlewares/bigPromise.js");
 const customError = require("../utils/customError");
 const cookieToken = require("../utils/cookieToken");
 const mailHelper = require("../utils/mailHelper");
 const cloudinary = require("cloudinary").v2;
 const crypto = require("crypto");
+const passport = require("passport");
 
 //sign up controller
 exports.signup = BigPromise(async (req, res, next) => {
@@ -78,6 +81,42 @@ exports.login = BigPromise(async (req, res, next) => {
 
   //send cookie token
   cookieToken(user, res);
+});
+
+// sigin with gooogle
+exports.sendProcessingSignal = BigPromise(async (req, res, next) => {
+  //sendng signal
+  res.sendStatus(200);
+});
+
+exports.signInWithGoogleSuccess = BigPromise(async (req, res, next) => {
+  //sending user object to frontend
+  // get token from custom built method
+  let myUser = req.user;
+  const token = myUser.getJwtToken();
+
+  //set options for the cookie
+  const options = {
+    expires: new Date(
+      Date.now() + new Number(process.env.COOKIE_TIME) * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true,
+  };
+
+  //set password undefined for security
+  user.password = undefined;
+
+  //send response
+  res
+    .status(200)
+    .cookie("token", token, options)
+    .json({
+      success: true,
+      token,
+      myUser,
+    })
+    .redirect(process.env.REDIRECT_URL);
+  // cookieToken(req.user, res);
 });
 
 //add to cart

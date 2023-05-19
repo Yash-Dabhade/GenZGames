@@ -4,9 +4,14 @@ require("dotenv").config();
 const fileUpload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
+const passport = require("passport");
+const passportConfig = require("./passport/passport");
+const session = require("express-session");
 
 //create app from express
 const app = express();
+
+app.use(session({ resave: false, saveUninitialized: true, secret: "SECRET" }));
 
 //morgan middleware
 app.use(morgan("tiny"));
@@ -45,6 +50,10 @@ app.use("/api/v1", user);
 app.use("/api/v1", product);
 app.use("/api/v1", payment);
 app.use("/api/v1", order);
+
+//passport middlwares
+app.use(passport.initialize());
+app.use(passport.session());
 
 //exporting app into index.js
 module.exports = app;
