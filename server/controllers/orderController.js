@@ -37,7 +37,10 @@ exports.getOneOrder = BigPromise(async (req, res, next) => {
 });
 
 exports.updateOrder = BigPromise(async (req, res, next) => {
-  const order = await Order.findById(req.params.id);
+  const order = await Order.findById(req.params.id).populate(
+    "orderItems.product"
+  );
+
   if (order.orderStatus === "Delivered") {
     return next(new customError("Order is already marked for devlivered"));
   }
@@ -45,18 +48,24 @@ exports.updateOrder = BigPromise(async (req, res, next) => {
   order.orderStatus = "Delivered";
 
   order.orderItems.map(async (prod) => {
-    let product = await Product.findById(prod.product);
+    // let product = await Product.findById(prod.product);
+    let product = prod.product;
+
     key = product.gameKeys.pop();
 
-    console.log(prod);
     product.stock = product.stock - prod.quantity;
     await product.save({ validateBeforeSave: false });
 
     prod.gameKey = key;
-    await order.save();
+
+    // await order.save();
   });
 
   await order.save();
+
+  order.orderItems.map((ele) => {
+    ele.product = ele.product._id;
+  });
 
   res.status(200).json({
     success: true,
