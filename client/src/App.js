@@ -1,13 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Shopping from "./pages/Shopping";
+import AppRouter from "./router/AppRouter.js";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
-  return (
-    <div>
-      <Shopping />
-    </div>
-  );
+  return <AppRouter />;
 }
 
 export default App;
