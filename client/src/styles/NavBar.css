@@ -64,9 +64,13 @@
 }
 
 #cart{
+    height: 34px;
+    width: 34px;
     cursor: pointer;
 }
 
 #heart{
+    width: 34px;
+    height: 34px;
     cursor: pointer;
 }
