@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport");
 
 //calling controllers
 const {
@@ -19,6 +20,8 @@ const {
   addToCart,
   updateCart,
   deleteFromCart,
+  signInWithGoogleSuccess,
+  sendProcessingSignal,
 } = require("../controllers/userController");
 
 //importing all the middlewares
@@ -30,6 +33,21 @@ router.route("/login").post(login);
 router.route("/logout").get(logout);
 router.route("/forgotpassword").post(forgotpassword);
 router.route("/password/reset/:token").post(passwordReset);
+
+// signin with google
+router.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+  }),
+  (req, res) => {
+    res.send("login with google");
+  }
+);
+router
+  .route("/auth/google/callback")
+  .get(passport.authenticate("google"), signInWithGoogleSuccess);
+
 //injecting first middleware and then user controller function
 router.route("/userdashboard").get(isLoggedIn, getLoggedInUserDetails);
 router.route("/password/update").post(isLoggedIn, changePassword);
