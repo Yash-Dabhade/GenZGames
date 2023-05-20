@@ -1,0 +1,142 @@
+/* Customize the label (the container) */
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+#mainContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    font-family: 'Play', sans-serif;
+    padding: 12px 20px;
+    gap:30px;
+}
+
+.title{
+    font-size: 25px;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    color: rgb(176, 172, 172);
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+.input {
+    display: block;
+    margin-bottom: 2px;
+    margin-top: 11px;
+}
+.input label {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 13px;
+    color: white;
+    cursor: pointer;
+}
+.input input {
+    width: 100%;
+    padding:13px 10px;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    border-radius: 4px;
+    background: #0000002b;
+    color: white;
+    transition: all 0.2s ease;
+}
+.input input:hover {
+    background: #3d434c;
+}
+.input input:focus {
+    box-shadow: 0px 2px 2px #0000002b, 0px 5px 10px #00000036;
+    background: #434343;
+}
+
+#price{
+    width: 90%;
+}
+
+#innerPriceContainer{
+    display: flex;
+    flex-direction: column;
+    gap:2px;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+    
+}
+
+#apply{
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 18px;
+    font-family: 'Play', sans-serif;
+    height: 40px;
+    width: 80%;
+    background-color: goldenrod;
+    color: black;
+    border-radius: 12px;
+}

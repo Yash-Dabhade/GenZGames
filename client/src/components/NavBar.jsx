@@ -8,22 +8,14 @@ function NavBar() {
         <div>
           <img src="/res/logo.png" alt="" id="logoImg" />
         </div>
-        <nav>
-          <ul id="Menu">
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/">Shop</a>
-            </li>
-            <li>
-              <a href="/">Stream</a>
-            </li>
-            <li>
-              <a href="/">News</a>
-            </li>
-          </ul>
-        </nav>
+        <div className="input">
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="search games"
+          />
+        </div>
       </div>
       <div id="userUtil">
         <img src="/res/cart.png" alt="cart" id="cart" />

@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@800&display=swap');
 
 #NavContainer{
+    position: sticky;
+    top: 0px;
     width: 100vw;
     height: auto;
+    background-color:#15171D;
     position: sticky;
     z-index: 190;
     display: flex;
@@ -73,4 +76,21 @@
     width: 34px;
     height: 34px;
     cursor: pointer;
+}
+
+#search{
+    width: 100%;
+    padding:13px 90px;
+    text-align: left;
+    outline: none;
+    border: 1px solid whitesmoke;
+    font-size: 15px;
+    border-radius: 4px;
+    background: #fcfbfbcf;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+#search:hover {
+    background: whitesmoke;
 }

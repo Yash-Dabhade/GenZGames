@@ -46,7 +46,7 @@ const productSchema = new mongoose.Schema({
         "action",
         "adventure",
         "simulation",
-        "acrade",
+        "arcade",
         "open world",
         "strategy",
       ],

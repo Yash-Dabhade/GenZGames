@@ -8,6 +8,7 @@ import GameCard from "../components/GameCard";
 import game1Cover from "../gamesMedia/codcover.png";
 import game2Cover from "../gamesMedia/dbzcover.png";
 import game3Cover from "../gamesMedia/watchdogscover.png";
+import FilterOptions from "../components/FilterOptions";
 
 function Shopping() {
   return (
@@ -16,14 +17,8 @@ function Shopping() {
       <div class="blob1"></div>
       <div class="blob2"></div>
       <div id="innerContainer">
-        <div
-          // style={{
-          //   backgroundImage:
-          //     "url('https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg')",
-          // }}
-          id="leftContainer"
-        >
-          Filter
+        <div id="leftContainer">
+          <FilterOptions />
         </div>
         <div id="rightContainer">
           <div id="bannerContainer">

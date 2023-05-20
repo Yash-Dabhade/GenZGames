@@ -1,14 +1,15 @@
 
 #Container{
-    overflow-x: hidden;
+    /* overflow: hidden; */
     width: 100vw;
-    min-height: 100vh;
     background: linear-gradient(315deg, #101217 20%, #181a21 100%);
 }
 
 #leftContainer{
     /* border:1px solid whitesmoke; */
     border-radius: 25px;
+    position: sticky;
+
     /* height: 85vh; */
     width: 94%;
     margin-left: 20px;
@@ -16,10 +17,11 @@
     background: rgba( 255, 255, 255, 0.15 );
    
     backdrop-filter: blur( 18px );
-    -webkit-backdrop-filter: blur( 18px );
+   
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 1rem;
     z-index: 10;
+    height: fit-content;
     color: whitesmoke;
 }
 
@@ -36,15 +38,12 @@
 #rightContainer{
     grid-column: 2 / span 3;
     width: fit-content;
-    height: fit-content;
     margin-top: 0px;
-    padding:38px 20px;
+    padding:38px 30px;
     /* border:2px solid white; */
     display: flex;
-    height: auto;
     align-items: center;
     justify-content: center;
-   
     flex-direction: column;
 }
 
@@ -54,7 +53,7 @@
     background: rgba( 255, 255, 255, 0.15 );
    /* border: 1px solid violet; */
     backdrop-filter: blur( 18px );
-    -webkit-backdrop-filter: blur( 18px );
+   
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 1rem;
     padding: 1.5rem;
@@ -66,15 +65,19 @@
 #gamesContainer{
     /* width: 950px;
     height: 250px; */
+
     color: whitesmoke;
     display: grid;
     width: auto;
+    overflow-y: scroll;
+    height: 900px;
     /* grid-template-rows: repeat(3,1fr); */
     grid-template-columns: repeat(3,1fr);
     column-gap: 25px;
     row-gap:20px;
     align-content: baseline;
     justify-content: center;
+
     /* display: flex;
     align-items: center;
     justify-content: center;
@@ -83,6 +86,8 @@
     margin-top: 25px;
 }
 
+
+
 .game{
     width: fit-content;
     height: fit-content;
@@ -90,7 +95,7 @@
     background: rgba( 255, 255, 255, 0.15 );
     /* border: 1px solid violet; */
      backdrop-filter: blur( 18px );
-     -webkit-backdrop-filter: blur( 18px );
+     
      border: 1px solid rgba( 255, 255, 255, 0.18 );
      border-radius: 1rem;
      padding: 1.5rem;
