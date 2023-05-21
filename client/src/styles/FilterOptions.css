@@ -44,8 +44,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
     background-color: #eee;
   }
   
@@ -73,10 +73,10 @@
   
   /* Style the checkmark/indicator */
   .container .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
+    left: 7px;
+    top: 3px;
+    width: 3px;
+    height: 7px;
     border: solid white;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
@@ -115,7 +115,7 @@
     background: #434343;
 }
 
-#price{
+#priceTitle{
     width: 90%;
 }
 

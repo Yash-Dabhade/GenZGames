@@ -50,7 +50,7 @@ function FilterOptions() {
         </label>
       </div>
 
-      <div id="price">
+      <div id="priceTitle">
         <h3 class="title">Price Range</h3>
         <div id="innerPriceContainer">
           <div class="input">

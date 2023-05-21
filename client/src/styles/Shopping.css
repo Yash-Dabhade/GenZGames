@@ -2,8 +2,10 @@
 #Container{
     /* overflow: hidden; */
     width: 100vw;
+    height: fit-content;
     background: linear-gradient(315deg, #101217 20%, #181a21 100%);
 }
+
 
 #leftContainer{
     /* border:1px solid whitesmoke; */
@@ -15,15 +17,15 @@
     margin-left: 20px;
     margin-top: 38px;
     background: rgba( 255, 255, 255, 0.15 );
-   
+    
     backdrop-filter: blur( 18px );
-   
+    
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 1rem;
     z-index: 10;
     height: fit-content;
     color: whitesmoke;
-}
+  }
 
 #innerContainer{
   display: grid;
@@ -36,12 +38,12 @@
 }
 
 #rightContainer{
-    grid-column: 2 / span 3;
-    width: fit-content;
-    margin-top: 0px;
-    padding:38px 30px;
-    /* border:2px solid white; */
-    display: flex;
+  grid-column: 2 / span 3;
+  width: fit-content;
+  margin-top: 0px;
+  padding:38px 30px;
+  /* border:2px solid white; */
+  display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -52,20 +54,20 @@
     height:280px;
     background: rgba( 255, 255, 255, 0.15 );
    /* border: 1px solid violet; */
-    backdrop-filter: blur( 18px );
+   backdrop-filter: blur( 18px );
    
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 1rem;
     padding: 1.5rem;
     z-index: 10;
     color: whitesmoke;
-
-}
-
-#gamesContainer{
+    
+  }
+  
+  #gamesContainer{
     /* width: 950px;
     height: 250px; */
-
+    
     color: whitesmoke;
     display: grid;
     width: auto;
@@ -77,7 +79,8 @@
     row-gap:20px;
     align-content: baseline;
     justify-content: center;
-
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+     scrollbar-width: none;  /* Firefox */
     /* display: flex;
     align-items: center;
     justify-content: center;
@@ -85,6 +88,7 @@
     padding-top: 120px; */
     margin-top: 25px;
 }
+
 
 
 

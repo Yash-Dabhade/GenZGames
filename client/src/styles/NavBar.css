@@ -4,8 +4,8 @@
     position: sticky;
     top: 0px;
     width: 100vw;
-    height: auto;
-    background-color:#15171D;
+    height: fit-content;
+    background-color:#15171db7 ;
     position: sticky;
     z-index: 190;
     display: flex;
@@ -52,7 +52,8 @@
     gap:30px;
     align-items: center;
     justify-content: center;
-    margin: 0px 20px;
+    margin-right:  20px;
+    margin-top: -8px;
    
 }
 #user{
@@ -78,13 +79,21 @@
     cursor: pointer;
 }
 
-#search{
+#searchbox{
+    display: flex;
     width: 100%;
-    padding:13px 90px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#search{
+    width: 300px;
     text-align: left;
     outline: none;
+    margin-top: -10px;
     border: 1px solid whitesmoke;
-    font-size: 15px;
+    font-size: 11px;
     border-radius: 4px;
     background: #fcfbfbcf;
     color: white;

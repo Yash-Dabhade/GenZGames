@@ -8,7 +8,7 @@ function NavBar() {
         <div>
           <img src="/res/logo.png" alt="" id="logoImg" />
         </div>
-        <div className="input">
+        <div id="searchbox" className="input">
           <input
             type="text"
             name="search"
