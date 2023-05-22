@@ -4,6 +4,8 @@ import logo from "../gamesMedia/cod_logo.png";
 import "../styles/GameDetail.css";
 import NavBar from "../components/NavBar";
 import cover from "../gamesMedia/codcover.png";
+import BasicSlider from "../components/BasicSlider";
+import Reviews from "../components/Reviews";
 
 function GameDetail() {
   return (
@@ -56,6 +58,14 @@ function GameDetail() {
             <div id="cartButtonDetails">Add to Cart </div>
           </div>
         </div>
+      </div>
+      <div id="screenshotsContainer">
+        <h2 id="titleScreenshotsDetail">GamePlay Screenshots</h2>
+        <BasicSlider />
+      </div>
+      <div id="reviewsContainer">
+        <h2 id="titleReviewsDetail">Game Reviews</h2>
+        <Reviews />
       </div>
     </div>
   );
