@@ -18,11 +18,11 @@ function Reviews() {
           </div>
 
           <div class="reviews">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
           </div>
         </div>
 
@@ -50,11 +50,9 @@ function Reviews() {
           </div>
 
           <div class="reviews">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
           </div>
         </div>
 
@@ -81,11 +79,11 @@ function Reviews() {
           </div>
 
           <div class="reviews">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
           </div>
         </div>
 
@@ -112,11 +110,9 @@ function Reviews() {
           </div>
 
           <div class="reviews">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
           </div>
         </div>
 
@@ -143,11 +139,10 @@ function Reviews() {
           </div>
 
           <div class="reviews">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
           </div>
         </div>
 
@@ -174,11 +169,11 @@ function Reviews() {
           </div>
 
           <div class="reviews">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
+            <img height={"24px"} width={"24px"} src="/res/review.png" />
           </div>
         </div>
 

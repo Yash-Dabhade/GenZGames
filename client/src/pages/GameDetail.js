@@ -6,6 +6,7 @@ import NavBar from "../components/NavBar";
 import cover from "../gamesMedia/codcover.png";
 import BasicSlider from "../components/BasicSlider";
 import Reviews from "../components/Reviews";
+import Footer from "../components/Footer";
 
 function GameDetail() {
   return (
@@ -67,6 +68,7 @@ function GameDetail() {
         <h2 id="titleReviewsDetail">Game Reviews</h2>
         <Reviews />
       </div>
+      <Footer />
     </div>
   );
 }

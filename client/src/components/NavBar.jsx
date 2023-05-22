@@ -1,19 +1,22 @@
 import React from "react";
 import "../styles/NavBar.css";
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
     <div id="NavContainer">
       <div id="logoContainer">
         <div>
-          <img src="/res/logo.png" alt="" id="logoImg" />
+          <NavLink to="/">
+            <img src="/res/logo.png" alt="" id="logoImg" />
+          </NavLink>
         </div>
         <div id="searchbox" className="input">
           <input
             type="text"
             name="search"
             id="search"
-            placeholder="search games"
+            placeholder="Search Games"
           />
         </div>
       </div>

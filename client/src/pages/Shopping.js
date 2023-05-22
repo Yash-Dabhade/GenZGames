@@ -9,6 +9,7 @@ import game1Cover from "../gamesMedia/codcover.png";
 import game2Cover from "../gamesMedia/dbzcover.png";
 import game3Cover from "../gamesMedia/watchdogscover.png";
 import FilterOptions from "../components/FilterOptions";
+import Footer from "../components/Footer";
 
 function Shopping() {
   return (
@@ -124,6 +125,7 @@ function Shopping() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
