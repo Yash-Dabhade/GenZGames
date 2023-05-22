@@ -22,7 +22,7 @@ export default function Footer() {
             <div className="footer__self_bio__container__text">
               <h4 className="footer__self_bio__container__title">GenZGames</h4>
               <p className="footer__self_bio__container__description">
-                E/D/17, VN Purav Rd, cheetachamp, <br />
+                E/D/17, Sector 15, New Panvel <br />
                 <br />
                 Mumbai, Maharashtra 400088 <br />
                 <br />

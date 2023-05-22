@@ -1,0 +1,79 @@
+import React from "react";
+import "../styles/Login.css";
+import bg from "../gamesMedia/loginBG.jpg";
+import { NavLink } from "react-router-dom";
+
+function Login() {
+  return (
+    <div id="mainAuthContainer">
+      <div className="authContainer" id="container">
+        <div className="form-container sign-up-container">
+          <form className="authForm" action="#">
+            <h1 id="title1">Create Account</h1>
+            <div className="social-container">
+              <button className="signInWithGoogle">Sign In With Google</button>
+            </div>
+            <span id="authSpan">or use your email for registration</span>
+            <input className="authInput" type="text" placeholder="Name" />
+            <input className="authInput" type="email" placeholder="Email" />
+            <input
+              className="authInput"
+              type="password"
+              placeholder="Password"
+            />
+            <button className="authButton">Sign Up</button>
+          </form>
+        </div>
+        <div className="form-container sign-in-container">
+          <form className="authForm" action="#">
+            <h1 id="title1">Sign in</h1>
+            <div className="social-container">
+              <div className="social-container">
+                <button className="signInWithGoogle">
+                  Sign In With Google
+                </button>
+              </div>
+            </div>
+            <span id="authSpan">or use your account</span>
+            <input className="authInput" type="email" placeholder="Email" />
+            <input
+              className="authInput"
+              type="password"
+              placeholder="Password"
+            />
+            <a id="autha" href="#">
+              Forgot your password?
+            </a>
+            <button className="authButton">Sign In</button>
+          </form>
+        </div>
+        <div className="overlay-container">
+          <div className="overlay">
+            <div className="overlay-panel overlay-left">
+              <h1 id="title1">Welcome Back!</h1>
+              <p id="authPara">
+                To keep connected with us please login with your personal info
+              </p>
+              <button className="authButtonGhost" id="signIn">
+                Sign In
+              </button>
+            </div>
+            <div className="overlay-panel overlay-right">
+              <h1 id="title1">GenZGames</h1>
+              <p id="authPara">Start Exloring with us</p>
+              <button
+                className="authButton"
+                style={{ backgroundColor: "transparent", borderColor: "white" }}
+                id="signUp"
+              >
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Login;
