@@ -4,7 +4,9 @@
     width: 100vw;
     height: fit-content;
     background: linear-gradient(315deg, #101217 20%, #181a21 100%);
-}
+    /* background: linear-gradient(315deg, #173279 20%, #181a21 100%); */
+
+  }
 
 
 #leftContainer{
@@ -72,7 +74,7 @@
     display: grid;
     width: auto;
     overflow-y: scroll;
-    height: 900px;
+    height: 1200px;
     /* grid-template-rows: repeat(3,1fr); */
     grid-template-columns: repeat(3,1fr);
     column-gap: 25px;

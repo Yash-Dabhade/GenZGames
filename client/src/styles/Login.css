@@ -3,8 +3,13 @@
 
 
 #mainAuthContainer {
+	background-position: left;
+	background-repeat: no-repeat;
+	background-size: contain;
     box-sizing: border-box;
     background: linear-gradient(315deg, #173279 20%, #181a21 100%);
+    /* background: linear-gradient(315deg, #101217 20%, #181a21 100%); */
+	
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -161,8 +166,8 @@
 }
 
 .overlay {
-	background-image: url("https://e0.pxfuel.com/wallpapers/627/846/desktop-wallpaper-fondo-de-pantalla-game-iphone-retro-games-best-gaming-play-games.jpg");
-    background-color: gray;
+	background-image: url("https://e0.pxfuel.com/wallpapers/627/846/desktop-wallpaper-fondo-de-pantalla-game-iphone-retro-games-best-gaming-play-games.jpg"); 
+	    background-color: gray;
     background-blend-mode: multiply;
 	background-repeat: no-repeat;
     background-size: cover;
@@ -218,9 +223,9 @@
 
 .signInWithGoogle{
     border-radius: 20px;
-	border: 1px solid dodgerblue;
+	border: 1px solid rgb(7, 85, 164);
 	background-color: #f1f6f0;
-	color: dodgerblue;
+	color: rgb(0, 91, 182);
 	font-size: 12px;
 	font-weight: bold;
 	padding: 12px 45px;
