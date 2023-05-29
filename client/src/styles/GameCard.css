@@ -13,6 +13,13 @@
     height: fit-content;
     font-size:20px;
     padding:0px;
+    color:white;
+    text-align: center;
+    transition: 140ms all ease-in-out;
+}
+
+#title:hover{
+    color: rgb(217, 165, 10);
 }
 #cover{
     height: 100%;
@@ -46,9 +53,11 @@
     font-family: 'Play', sans-serif;
     height: 40px;
     width: 100%;
-    background-color: goldenrod;
+    border: 1px solid white;
+    background-color: #fdb44b;
     color: black;
-    border-radius: 1px;
+
+    border-radius: 35px;
     
 }
 

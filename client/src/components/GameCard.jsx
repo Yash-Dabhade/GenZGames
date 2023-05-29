@@ -7,8 +7,8 @@ function GameCard({ cover, title, price, platforms }) {
     <div id="GameContainer">
       <NavLink to="/details">
         <img src={cover} alt="Cover" id="cover" />
+        <h3 id="title">{title}</h3>
       </NavLink>
-      <h3 id="title">{title}</h3>
       <div id="platforms">
         <img src="/res/playstation.png" alt="" className="icon" />
         <img src="/res/monitor.png" alt="" className="icon" />

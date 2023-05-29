@@ -94,10 +94,11 @@
     outline: none;
     margin-top: -10px;
     border: 1px solid whitesmoke;
-    font-size: 11px;
+    font-size: 13px;
     border-radius: 4px;
     background: #fcfbfbcf;
-    color: white;
+    font-family: "Play";
+    color: black;
     transition: all 0.2s ease;
 }
 

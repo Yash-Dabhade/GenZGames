@@ -10,7 +10,10 @@ function Register() {
           <form className="authForm" action="#">
             <h1 id="title1">Create Account</h1>
             <div className="social-container">
-              <button className="signInWithGoogle">Sign In With Google</button>
+              <button className="signInWithGoogle">
+                <img src="./res/google.png" height={"25px"} />
+                Sign In With Google
+              </button>
             </div>
             <span id="authSpan">or use your email for registration</span>
             <input className="authInput" type="text" placeholder="Name" />

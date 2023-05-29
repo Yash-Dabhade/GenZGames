@@ -34,7 +34,7 @@ function NavBar() {
             type="text"
             name="search"
             id="search"
-            placeholder="Search Games"
+            placeholder={"Search Games "}
           />
         </div>
       </div>
@@ -62,9 +62,9 @@ function NavBar() {
                 fontSize={"20px"}
                 fontWeight={"300"}
                 textAlign={"center"}
-                padding={"2px 10px"}
+                padding={"12px 10px"}
               >
-                Shopping Cart
+                SHOPPING CART
               </PopoverHeader>
               <PopoverBody>
                 <div id="cartBody">
@@ -90,7 +90,7 @@ function NavBar() {
                   width="100%"
                   height={"40px"}
                   borderRadius="12px"
-                  backgroundColor={"rgb(255, 188, 20)"}
+                  backgroundColor={"#fdb44b"}
                   fontFamily={"Play"}
                   textAlign={"center"}
                   fontWeight={700}

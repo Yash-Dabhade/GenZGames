@@ -12,7 +12,8 @@ function Login() {
             <div className="social-container">
               <div className="social-container">
                 <button className="signInWithGoogle">
-                  Sign In With Google
+                  <img src="./res/google.png" height={"25px"}></img> Sign In
+                  With Google
                 </button>
               </div>
             </div>
