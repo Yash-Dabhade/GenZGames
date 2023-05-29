@@ -8,8 +8,14 @@ function FilterOptions() {
       <div id="categories">
         <h3 class="title">Categories</h3>
         <label class="container">
+          All
+          <input value="all" type="checkbox" checked="checked" />
+          <span class="checkmark"></span>
+        </label>
+
+        <label class="container">
           Action
-          <input value="action" type="checkbox" checked="checked" />
+          <input value="action" type="checkbox" />
           <span class="checkmark"></span>
         </label>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/NavBar.css";
 import { NavLink } from "react-router-dom";
 import {
@@ -15,8 +15,12 @@ import {
   Button,
 } from "@chakra-ui/react";
 import CartItems from "./CartItems";
+import game1Cover from "../gamesMedia/codcover.png";
+import game2Cover from "../gamesMedia/dbzcover.png";
+import game3Cover from "../gamesMedia/watchdogscover.png";
 
 function NavBar() {
+  const [user, setUser] = useState(null);
   return (
     <div id="NavContainer">
       <div id="logoContainer">
@@ -64,9 +68,21 @@ function NavBar() {
               </PopoverHeader>
               <PopoverBody>
                 <div id="cartBody">
-                  <CartItems />
-                  <CartItems />
-                  <CartItems />
+                  <CartItems
+                    coverURL={game1Cover}
+                    title={"Call Of Duty: Cold War"}
+                    price={"2500"}
+                  />
+                  <CartItems
+                    coverURL={game2Cover}
+                    title={"Dragon Ball Z: kakarot"}
+                    price={"1750"}
+                  />
+                  <CartItems
+                    coverURL={game3Cover}
+                    title={"Watch Dogs: Legion"}
+                    price={"3750"}
+                  />
                 </div>
               </PopoverBody>
               <PopoverFooter marginTop={"12px"}>
@@ -88,7 +104,24 @@ function NavBar() {
         </Popover>
 
         <img src="/res/heart.png" alt="favourite" id="heart" />
-        <img src="/res/user.jpg" alt="user" id="user" />
+        {user ? (
+          <img src="/res/user.jpg" alt="user" id="user" />
+        ) : (
+          <NavLink to="/login">
+            <Button
+              padding="10px 25px"
+              borderRadius={"5px"}
+              fontFamily={"Play"}
+              backgroundColor={"#47abff"}
+              color="white"
+              fontSize={"15px"}
+              border={"none"}
+              cursor={"pointer"}
+            >
+              Sign In
+            </Button>
+          </NavLink>
+        )}
       </div>
     </div>
   );
