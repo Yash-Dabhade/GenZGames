@@ -102,16 +102,14 @@ export default function Footer() {
         </div>
         <div>
           <h3 className="footer__contact__title">
-            <p>Get in touch</p>
+            <p>Contact Us</p>
             <span
               style={{
                 marginBottom: "10px",
                 color: "purple",
                 marginLeft: "6px",
               }}
-            >
-              📨
-            </span>
+            ></span>
           </h3>
           <div
             style={{
@@ -120,7 +118,7 @@ export default function Footer() {
             className="d-flex footer__contact__links"
           >
             <div>
-              <h4>Mail Me</h4>
+              <h4>Mail Us</h4>
               <a
                 style={{
                   color: "#fff",
@@ -132,11 +130,11 @@ export default function Footer() {
                 }}
                 href="https://mail.google.com/mail/u/0/?fs=1&to=dabhadeyash1111@gmail.com&subjectbox=test&body=helloworld&tf=cm"
               >
-                dabhadeyash1111@gmail.com
+                genzgames283@gmail.com
               </a>
             </div>
             <div>
-              <h4>Contact Me</h4>
+              <h4>Call Us</h4>
               <a
                 style={{
                   color: "#fff",
@@ -148,7 +146,7 @@ export default function Footer() {
                 }}
                 href="tel:7558421764"
               >
-                (+91) 7558421764
+                (+91) 123456789
               </a>
             </div>
           </div>
