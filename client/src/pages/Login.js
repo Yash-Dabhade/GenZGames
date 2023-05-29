@@ -6,23 +6,6 @@ function Login() {
   return (
     <div id="mainAuthContainer">
       <div className="authContainer" id="container">
-        <div className="form-container sign-up-container">
-          <form className="authForm" action="#">
-            <h1 id="title1">Create Account</h1>
-            <div className="social-container">
-              <button className="signInWithGoogle">Sign In With Google</button>
-            </div>
-            <span id="authSpan">or use your email for registration</span>
-            <input className="authInput" type="text" placeholder="Name" />
-            <input className="authInput" type="email" placeholder="Email" />
-            <input
-              className="authInput"
-              type="password"
-              placeholder="Password"
-            />
-            <button className="authButton">Sign Up</button>
-          </form>
-        </div>
         <div className="form-container sign-in-container">
           <form className="authForm" action="#">
             <h1 id="title1">Sign in</h1>
@@ -59,14 +42,19 @@ function Login() {
             </div>
             <div className="overlay-panel overlay-right">
               <h1 id="title1">GenZGames</h1>
-              <p id="authPara">Start Exloring with us</p>
-              <button
-                className="authButton"
-                style={{ backgroundColor: "transparent", borderColor: "white" }}
-                id="signUp"
-              >
-                Sign Up
-              </button>
+              <p id="authPara">Start Exploring with us</p>
+              <NavLink to="/register">
+                <button
+                  className="authButton"
+                  style={{
+                    backgroundColor: "transparent",
+                    borderColor: "white",
+                  }}
+                  id="signUp"
+                >
+                  Sign Up
+                </button>
+              </NavLink>
             </div>
           </div>
         </div>

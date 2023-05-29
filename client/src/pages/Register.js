@@ -37,13 +37,18 @@ function Register() {
             <div className="overlay-panel overlay-right">
               <h1 id="title1">GenZGames</h1>
               <p id="authPara">Already a user ? </p>
-              <button
-                className="authButton"
-                style={{ backgroundColor: "transparent", borderColor: "white" }}
-                id="signIn"
-              >
-                Sign In
-              </button>
+              <NavLink to="/login">
+                <button
+                  className="authButton"
+                  style={{
+                    backgroundColor: "transparent",
+                    borderColor: "white",
+                  }}
+                  id="signIn"
+                >
+                  Sign In
+                </button>
+              </NavLink>
             </div>
           </div>
         </div>
