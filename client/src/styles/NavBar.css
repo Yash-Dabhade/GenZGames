@@ -7,7 +7,7 @@
     height: fit-content;
     background-color:#15171db7 ;
     position: sticky;
-    z-index: 190;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,6 +20,7 @@
     gap:40px;
     height: fit-content;
     width: auto;
+    z-index: inherit;
     align-items: center;
     justify-content: center;
 }
@@ -102,4 +103,12 @@
 
 #search:hover {
     background: whitesmoke;
+}
+
+#cartBody{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap:10px;
 }

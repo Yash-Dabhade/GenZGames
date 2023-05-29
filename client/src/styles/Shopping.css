@@ -2,6 +2,7 @@
 #Container{
     /* overflow: hidden; */
     width: 100vw;
+    z-index: 100;
     height: fit-content;
     background: linear-gradient(315deg, #101217 20%, #181a21 100%);
     /* background: linear-gradient(315deg, #173279 20%, #181a21 100%); */
@@ -24,7 +25,7 @@
     
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 1rem;
-    z-index: 10;
+    z-index: 0;
     height: fit-content;
     color: whitesmoke;
   }
@@ -61,7 +62,7 @@
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 1rem;
     padding: 1.5rem;
-    z-index: 10;
+    z-index: 0;
     color: whitesmoke;
     
   }
@@ -105,7 +106,7 @@
      border: 1px solid rgba( 255, 255, 255, 0.18 );
      border-radius: 1rem;
      padding: 1.5rem;
-     z-index: 10;
+     z-index: 0;
 }
 
 .blob1 {

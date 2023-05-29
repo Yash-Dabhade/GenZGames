@@ -1,0 +1,24 @@
+#cartItemBody{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: fit-content;
+    width: 400px;
+    gap:40px;
+    font-family: "Play";
+    font-size: 14px;
+    padding:"5px 5px";
+}
+
+.cartItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+}
+
+#cartImg{
+    border-radius: 12px;
+    width: 80px;
+    height: 80px;
+}
