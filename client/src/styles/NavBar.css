@@ -109,7 +109,9 @@
 #cartBody{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+    max-height: 400px;
+    overflow-y: scroll;
     gap:10px;
 }

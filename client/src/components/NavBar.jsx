@@ -85,6 +85,36 @@ function NavBar() {
                     title={"Watch Dogs: Legion"}
                     price={"3750"}
                   />
+                  <CartItems
+                    coverURL={game1Cover}
+                    title={"Call Of Duty: Cold War"}
+                    price={"2500"}
+                  />
+                  <CartItems
+                    coverURL={game2Cover}
+                    title={"Dragon Ball Z: kakarot"}
+                    price={"1750"}
+                  />
+                  <CartItems
+                    coverURL={game3Cover}
+                    title={"Watch Dogs: Legion"}
+                    price={"3750"}
+                  />
+                  <CartItems
+                    coverURL={game1Cover}
+                    title={"Call Of Duty: Cold War"}
+                    price={"2500"}
+                  />
+                  <CartItems
+                    coverURL={game2Cover}
+                    title={"Dragon Ball Z: kakarot"}
+                    price={"1750"}
+                  />
+                  <CartItems
+                    coverURL={game3Cover}
+                    title={"Watch Dogs: Legion"}
+                    price={"3750"}
+                  />
                 </div>
               </PopoverBody>
               <PopoverFooter marginTop={"12px"}>
@@ -178,7 +208,7 @@ function NavBar() {
                       </div>
                     </Container>
                   </NavLink>
-                  <NavLink to="/logout">
+                  <NavLink to="/login">
                     <Container
                       width={"100%"}
                       display={"flex"}

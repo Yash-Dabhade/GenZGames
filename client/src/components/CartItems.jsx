@@ -11,7 +11,7 @@ function CartItems({ coverURL, title, price }) {
       </div>
       <div className="cartItem">
         <h4>Rs. {price}</h4>
-        <img height="24px" src="/res/trash.png" />
+        <img style={{ cursor: "pointer" }} height="24px" src="/res/trash.png" />
       </div>
     </div>
   );
