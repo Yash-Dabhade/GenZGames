@@ -1,0 +1,126 @@
+#profileContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 100vh;
+    overflow: hidden;
+    width: 100vw;
+    gap:30px;
+    background: linear-gradient(315deg, #101217 20%, #181a21 100%);
+}
+
+#profileInnerContainer{
+    border: 1px solid gray;
+    width: 99%;
+    min-height:80vh;
+    color:white;
+    font-family: Play;
+    font-size:25px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    column-gap: 12px;
+    padding:5px;
+    border-radius: 20px;
+}
+
+#profileLeftMenuContainer{
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid gray;
+}
+
+#profileRightContentContainer{
+    grid-column: 2 / span 3;
+  
+}
+
+.profileMenuItems{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: fit-content;
+    padding:10px 20px;
+    gap:35px;
+    font-size: 18px;
+    color:white;
+    border-bottom:1px solid gray;
+}
+
+.profileMenuItems > img{
+    filter: invert(100%);
+}
+
+.profileTitle{
+    margin-left: 50px;
+    color:whitesmoke;
+}
+
+#profileFormContainer{
+    margin-top: 50px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+#profileFormContainer > form{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+
+
+#profileLeftGrid{
+    grid-column: 1 / span 1;
+    display: flex;
+    flex-direction: column;
+    gap:45px;
+}
+
+#profileLeftGrid > input::file-selector-button{
+    cursor: pointer;
+    font-weight: 700;
+    font-family: 'Play', sans-serif;
+    height: 40px;
+    width: 40%;
+    background-color: rgb(242, 125, 41);
+    color: black;
+    border-radius: 5px;
+}
+
+#profileRightGrid{
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+}
+
+#profileRightGrid>label{
+    font-size: 18px;
+    font-weight: lighter;
+}
+
+#profileRightGrid > input{
+    padding:8px 80px;
+    /* width: 90px; */
+    border-radius: 5px;
+    border:1px solid rgb(81, 81, 81);
+}
+
+#profilePic{
+    border: 3px solid whitesmoke;
+    height: 194px;
+    width: 188px;
+    border-radius: 50%;
+}
+
+#submitProfile{
+    margin-top: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: 'Play', sans-serif;
+    height: 40px;
+    width: 100%;
+    border: 1px solid white;
+    background-color: #fdb44b;
+    color: black;
+    border-radius: 35px;
+}

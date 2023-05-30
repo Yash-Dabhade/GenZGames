@@ -13,6 +13,7 @@ import {
   PopoverAnchor,
   Portal,
   Button,
+  Container,
 } from "@chakra-ui/react";
 import CartItems from "./CartItems";
 import game1Cover from "../gamesMedia/codcover.png";
@@ -20,7 +21,7 @@ import game2Cover from "../gamesMedia/dbzcover.png";
 import game3Cover from "../gamesMedia/watchdogscover.png";
 
 function NavBar() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(1);
   return (
     <div id="NavContainer">
       <div id="logoContainer">
@@ -49,6 +50,7 @@ function NavBar() {
             <PopoverContent
               height="fit-content"
               width="fit-content"
+              marginRight="10px"
               marginTop="20px"
               backgroundColor={"#ffffff"}
               border="1px solid white"
@@ -105,7 +107,106 @@ function NavBar() {
 
         <img src="/res/heart.png" alt="favourite" id="heart" />
         {user ? (
-          <img src="/res/user.jpg" alt="user" id="user" />
+          <Popover>
+            <PopoverTrigger>
+              <Button backgroundColor={"transparent"} border={"none"}>
+                <img src="/res/user.jpg" alt="user" id="user" />
+              </Button>
+            </PopoverTrigger>
+            <Portal>
+              <PopoverContent
+                height="fit-content"
+                width="130px"
+                marginTop="20px"
+                marginRight="10px"
+                backgroundColor={"#ffffff"}
+                border="1px solid white"
+                borderRadius={"12px"}
+                padding="10px 10px"
+                position="relative"
+              >
+                <PopoverArrow />
+                <PopoverBody fontSize={"14px"} width="100%">
+                  <NavLink to="/profile">
+                    <Container
+                      width={"100%"}
+                      display={"flex"}
+                      alignItems={"center"}
+                      justifyContent={"space-between"}
+                      gap={"8px"}
+                      height={"20%"}
+                      marginBottom={"10px"}
+                    >
+                      <img src="./res/user.png" height={"34px"} />
+                      <div
+                        style={{
+                          color: "black",
+                          textAlign: "center",
+                          padding: "10px 10px",
+                          fontFamily: "Play",
+                          fontWeight: "400",
+                          fontSize: "18px",
+                        }}
+                      >
+                        Profile
+                      </div>
+                    </Container>
+                  </NavLink>
+
+                  <NavLink to="/orders">
+                    <Container
+                      width={"100%"}
+                      display={"flex"}
+                      alignItems={"center"}
+                      justifyContent={"space-between"}
+                      gap={"8px"}
+                      marginBottom={"10px"}
+                      height={"20%"}
+                    >
+                      <img src="./res/orders.png" height={"34px"} />
+                      <div
+                        style={{
+                          color: "black",
+                          textAlign: "center",
+                          padding: "10px 10px",
+                          fontFamily: "Play",
+                          fontWeight: "400",
+                          fontSize: "18px",
+                        }}
+                      >
+                        Orders
+                      </div>
+                    </Container>
+                  </NavLink>
+                  <NavLink to="/logout">
+                    <Container
+                      width={"100%"}
+                      display={"flex"}
+                      alignItems={"center"}
+                      justifyContent={"space-between"}
+                      gap={"8px"}
+                      height={"20%"}
+                    >
+                      <img src="./res/logout.png" height={"30px"} />
+                      <div
+                        style={{
+                          color: "black",
+                          textAlign: "center",
+                          padding: "10px 10px",
+                          fontFamily: "Play",
+                          fontWeight: "400",
+                          fontSize: "18px",
+                        }}
+                      >
+                        Logout
+                      </div>
+                    </Container>
+                  </NavLink>
+                </PopoverBody>
+                <PopoverFooter marginTop={"12px"}></PopoverFooter>
+              </PopoverContent>
+            </Portal>
+          </Popover>
         ) : (
           <NavLink to="/login">
             <Button

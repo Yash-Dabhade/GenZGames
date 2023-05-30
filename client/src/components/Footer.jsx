@@ -168,7 +168,7 @@ export default function Footer() {
             display: "block",
           }}
         >
-          Made with ❤️ By Yash Dabhade 2023
+          Made with ❤️ By Yash Dabhade in 2023
         </p>
       </div>
     </footer>
