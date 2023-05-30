@@ -1,0 +1,113 @@
+#orderItemsContainer{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    height: fit-content;
+    padding:20px;
+    /* border: 1px solid gainsboro; */
+    border-radius: 12px;
+    
+    /* box-shadow: rgba(143, 138, 138, 0.26) 2.4px 2.4px 3.2px; */
+}
+
+#orderCover{
+    width: 250px;
+    border: 1px solid green;
+}
+
+#orderDetailsContainer{
+    grid-column: 2 / span 2;
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    row-gap: 20px;
+ 
+    border-left: transparent;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px
+}
+
+#orderDetailsTopContainer{
+    /* border: 1px solid rgb(255, 255, 255); */
+    font-size: 16px;
+    font-weight: lighter;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding:12px;
+    height: fit-content;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-left-color: transparent;
+}
+
+#orderDetailsMiddleContainer{
+    /* border: 2px solid rgb(255, 255, 255); */
+    font-size: 16px;
+    font-weight: normal;
+    display: flex;
+    border-left-color: transparent;
+    align-items: center;
+    justify-content: space-around;
+    padding:12px;
+    height: fit-content;
+    color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#orderDetailsBottomContainer{
+    /* border: 2px solid rgb(255, 255, 255); */
+    font-size: 16px;
+    font-weight: lighter;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding:12px;
+    height: fit-content;
+    color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-left-color: transparent;
+}
+
+#orderRateButton{
+    cursor: pointer;
+    font-weight: 700;
+    font-family: 'Play', sans-serif;
+    height: 40px;
+    padding:2px 38px;
+    width: fit-content;
+    border: 1px solid white;
+    background-color: #f49404;
+    color: black;
+    border-radius: 5px;
+}
+
+.box {
+    --border-size: 3px;
+    --border-angle: 0turn;
+    background-image: conic-gradient(
+        from var(--border-angle),
+        #213,
+        #112 50%,
+        #213
+      ),
+      conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+    background-size: calc(100% - (var(--border-size) * 2))
+        calc(100% - (var(--border-size) * 2)),
+      cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  
+    animation: bg-spin 3s linear infinite;
+    @keyframes bg-spin {
+      to {
+        --border-angle: 1turn;
+      }
+    }
+  
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+  
+  
