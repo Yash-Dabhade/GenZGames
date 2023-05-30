@@ -10,7 +10,6 @@
 }
 
 #profileInnerContainer{
-    border: 1px solid gray;
     width: 99%;
     min-height:80vh;
     color:white;
@@ -19,18 +18,30 @@
     display: grid;
     grid-template-columns: repeat(4,1fr);
     column-gap: 12px;
-    padding:5px;
+    padding:0px 15px;
     border-radius: 20px;
 }
 
 #profileLeftMenuContainer{
     display: flex;
     flex-direction: column;
+    width: 300px;
     border-right: 1px solid gray;
+    background: rgba( 255, 255, 255, 0.15 );
+    backdrop-filter: blur( 18px );
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 1rem;
+    box-shadow: rgba(30, 24, 24, 0.25) 0px 50px 100px -20px, rgba(132, 127, 127, 0.3) 0px 30px 60px -30px, rgba(247, 238, 238, 0.35) 0px -2px 6px 0px inset;
 }
 
 #profileRightContentContainer{
     grid-column: 2 / span 3;
+    border-right: 1px solid gray;
+    background: rgba( 255, 255, 255, 0.15 );
+    backdrop-filter: blur( 18px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 1rem;
+    box-shadow: rgba(30, 24, 24, 0.25) 0px 50px 100px -20px, rgba(132, 127, 127, 0.3) 0px 30px 60px -30px, rgba(247, 238, 238, 0.35) 0px -2px 6px 0px inset;
   
 }
 
