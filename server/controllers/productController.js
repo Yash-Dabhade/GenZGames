@@ -57,7 +57,7 @@ exports.addProduct = BigPromise(async (req, res, next) => {
 //get all products
 exports.getAllProduct = BigPromise(async (req, res, next) => {
   TODO: "Take data from the frontend developer for resultPerPage";
-  const resultPerPage = 6;
+  const resultPerPage = 9;
   const totalCountProduct = await Product.countDocuments();
 
   const productsObj = new WhereClause(Product.find(), req.query)
@@ -69,6 +69,10 @@ exports.getAllProduct = BigPromise(async (req, res, next) => {
 
   productsObj.pager(resultPerPage);
   products = await productsObj.base.clone();
+
+  products.forEach((ele) => {
+    ele.gameKeys = null;
+  });
 
   res.status(200).json({
     success: true,

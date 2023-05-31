@@ -26,20 +26,23 @@ function NavBar() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (sessionStorage.getItem("user")) {
-      setUser(JSON.parse(sessionStorage.getItem("user")));
-    }
-  });
+    setTimeout(() => {
+      if (sessionStorage.getItem("user")) {
+        setUser(JSON.parse(sessionStorage.getItem("user")));
+      }
+    }, 500);
+  }, []);
 
-  const handleLogOut = () => {
-    axios
+  const handleLogOut = async () => {
+    await axios
       .get(baseURL + "/logout", { withCredentials: true })
       .then((res) => {
         sessionStorage.removeItem("user");
         window.location.href = "/login";
       })
-      .error((err) => {
-        window.location.href = "/login";
+      .catch((err) => {
+        // window.location.href = "/login";
+        console.log(err);
       });
   };
 
@@ -246,6 +249,7 @@ function NavBar() {
                     justifyContent={"space-between"}
                     gap={"8px"}
                     height={"20%"}
+                    cursor={"pointer"}
                     onClick={handleLogOut}
                   >
                     <img src="./res/logout.png" height={"30px"} />

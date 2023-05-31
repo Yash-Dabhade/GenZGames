@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/GameCard.css";
 import { NavLink } from "react-router-dom";
 
-function GameCard({ cover, title, price, platforms }) {
+function GameCard({ cover, title, price }) {
   return (
     <div id="GameContainer">
       <NavLink to="/details">
@@ -15,7 +15,7 @@ function GameCard({ cover, title, price, platforms }) {
         <img src="/res/xbox.png" alt="" className="icon" />
       </div>
       <div id="buyContainer">
-        <div id="price">{price}</div>
+        <div id="price">Rs. {price}</div>
         <button id="buy">Add to Cart</button>
       </div>
     </div>

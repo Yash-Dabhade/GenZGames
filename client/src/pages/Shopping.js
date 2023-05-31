@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import "../styles/Shopping.css";
 import Banner from "../components/Banner";
@@ -13,18 +13,40 @@ import Footer from "../components/Footer";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { baseURL } from "../utils/constants";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function Shopping() {
-  useEffect(() => {
-    axios
+  const [banner, setBanner] = useState("To be done");
+  const [games, setGames] = useState([]);
+
+  const fetchLoggedInUserDetails = async () => {
+    //user details
+    await axios
       .get(baseURL + "/userdashboard", { withCredentials: true })
       .then((res) => {
-        sessionStorage.setItem("user", JSON.stringify(res.data));
-        console.log(res.data.user);
+        sessionStorage.setItem("user", JSON.stringify(res.data.user));
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const fetchAllGames = async () => {
+    await axios
+      .get(baseURL + "/products", { withCredentials: true })
+      .then((res) => {
+        setGames(res.data.products);
+        console.log(res.data.products);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    fetchLoggedInUserDetails();
+    fetchAllGames();
   }, []);
 
   return (
@@ -38,105 +60,44 @@ function Shopping() {
         </div>
         <div id="rightContainer">
           <div id="bannerContainer">
-            <Banner logo={game1Logo} model={game1Model} />
+            {banner ? (
+              <Banner logo={game1Logo} model={game1Model} />
+            ) : (
+              <Skeleton
+                baseColor="transparent"
+                highlightColor="gray"
+                width={"100%"}
+                height={"100%"}
+                duration={1.3}
+                enableAnimation={true}
+              />
+            )}
           </div>
           <div id="gamesContainer">
-            <div className="game">
-              <GameCard
-                cover={game1Cover}
-                title={"Call Of Duty 4"}
-                price={"Rs. 2500"}
-                platforms={"111"}
-              />
-            </div>
-            <div className="game">
-              <GameCard
-                cover={game2Cover}
-                title={"Dragon Ball Z Kai"}
-                price={"Rs. 1750"}
-                platforms={"111"}
-              />
-            </div>
-            <div className="game">
-              <GameCard
-                cover={game3Cover}
-                title={"Watch Dogs: Legion"}
-                price={"Rs. 3750"}
-                platforms={"111"}
-              />
-            </div>
-            <div className="game">
-              <GameCard
-                cover={game1Cover}
-                title={"Call Of Duty 4"}
-                price={"Rs. 2500"}
-                platforms={"111"}
-              />
-            </div>
-            <div className="game">
-              <GameCard
-                cover={game2Cover}
-                title={"Dragon Ball Z Kai"}
-                price={"Rs. 1750"}
-                platforms={"111"}
-              />
-            </div>
-            <div className="game">
-              <GameCard
-                cover={game3Cover}
-                title={"Watch Dogs: Legion"}
-                price={"Rs. 3750"}
-                platforms={"111"}
-              />
-            </div>
-            <div className="game">
-              <GameCard
-                cover={game1Cover}
-                title={"Call Of Duty 4"}
-                price={"Rs. 2500"}
-                platforms={"111"}
-              />
-            </div>
-            <div className="game">
-              <GameCard
-                cover={game2Cover}
-                title={"Dragon Ball Z Kai"}
-                price={"Rs. 1750"}
-                platforms={"111"}
-              />
-            </div>
-            <div className="game">
-              <GameCard
-                cover={game3Cover}
-                title={"Watch Dogs: Legion"}
-                price={"Rs. 3750"}
-                platforms={"111"}
-              />
-            </div>
-            <div className="game">
-              <GameCard
-                cover={game1Cover}
-                title={"Call Of Duty 4"}
-                price={"Rs. 2500"}
-                platforms={"111"}
-              />
-            </div>
-            <div className="game">
-              <GameCard
-                cover={game2Cover}
-                title={"Dragon Ball Z Kai"}
-                price={"Rs. 1750"}
-                platforms={"111"}
-              />
-            </div>
-            <div className="game">
-              <GameCard
-                cover={game3Cover}
-                title={"Watch Dogs: Legion"}
-                price={"Rs. 3750"}
-                platforms={"111"}
-              />
-            </div>
+            {games ? (
+              games.map((game) => {
+                return (
+                  <div key={game._id} className="game">
+                    <GameCard
+                      cover={game.cover.secure_url}
+                      title={game.name}
+                      price={game.price}
+                    />
+                  </div>
+                );
+              })
+            ) : (
+              <div style={{ width: "100%", height: "100%" }}>
+                <Skeleton
+                  baseColor="transparent"
+                  highlightColor="gray"
+                  width={"100%"}
+                  height={"100%"}
+                  duration={1.3}
+                  enableAnimation={true}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
