@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBar from "../components/NavBar";
 import "../styles/Shopping.css";
 import Banner from "../components/Banner";
@@ -10,8 +10,23 @@ import game2Cover from "../gamesMedia/dbzcover.png";
 import game3Cover from "../gamesMedia/watchdogscover.png";
 import FilterOptions from "../components/FilterOptions";
 import Footer from "../components/Footer";
+import Cookies from "js-cookie";
+import axios from "axios";
+import { baseURL } from "../utils/constants";
 
 function Shopping() {
+  useEffect(() => {
+    axios
+      .get(baseURL + "/userdashboard", { withCredentials: true })
+      .then((res) => {
+        sessionStorage.setItem("user", JSON.stringify(res.data));
+        console.log(res.data.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div id="Container">
       <NavBar />

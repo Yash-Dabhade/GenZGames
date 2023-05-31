@@ -7,9 +7,13 @@ const morgan = require("morgan");
 const passport = require("passport");
 const passportConfig = require("./passport/passport");
 const session = require("express-session");
+const cors = require("cors");
 
 //create app from express
 const app = express();
+
+//setting up cors
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 app.use(session({ resave: false, saveUninitialized: true, secret: "SECRET" }));
 

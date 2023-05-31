@@ -7,6 +7,7 @@ const mailHelper = require("../utils/mailHelper");
 const cloudinary = require("cloudinary").v2;
 const crypto = require("crypto");
 const passport = require("passport");
+require("dotenv").config();
 
 //sign up controller
 exports.signup = BigPromise(async (req, res, next) => {
@@ -19,34 +20,39 @@ exports.signup = BigPromise(async (req, res, next) => {
   }
 
   //extract photo
-  let photoResult = {
-    public_id: process.env.DEFAULT_USER_PROFILE_ID,
-    secure_url: process.env.DEFAULT_USER_PROFILE_SECURE_URL,
-  };
-  if (req.files) {
-    //TODO: "FRONTEND FIELD SHOULD BE NAMED AS photo";
-    let photo = req.files.photo;
-    //upload to cloudinary
-    photoResult = await cloudinary.uploader.upload(photo.tempFilePath, {
-      folder: "users",
-      width: 150,
-      crop: "scale",
-    });
-  }
+  // let photoResult = {
+  //   public_id: process.env.DEFAULT_USER_PROFILE_ID,
+  //   secure_url: process.env.DEFAULT_USER_PROFILE_SECURE_URL,
+  // };
+  // if (req.files) {
+  //   //TODO: "FRONTEND FIELD SHOULD BE NAMED AS photo";
+  //   let photo = req.files.photo;
+  //   //upload to cloudinary
+  //   photoResult = await cloudinary.uploader.upload(photo.tempFilePath, {
+  //     folder: "users",
+  //     width: 150,
+  //     crop: "scale",
+  //   });
+  // }
 
   //saving document to db
-  const user = await User.create({
+  User.create({
     name,
     email,
     password,
-    photo: {
-      id: photoResult.public_id,
-      secure_url: photoResult.secure_url,
-    },
-  });
+    // photo: {
+    //   id: photoResult.public_id,
+    //   secure_url: photoResult.secure_url,
+    // },
+  })
+    .then((user) => {
+      cookieToken(user, res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   //generate and send cookieToken
-  cookieToken(user, res);
 });
 
 //login controller
@@ -109,11 +115,6 @@ exports.signInWithGoogleSuccess = BigPromise(async (req, res, next) => {
   res
     .status(200)
     .cookie("token", token, options)
-    .json({
-      success: true,
-      token,
-      myUser,
-    })
     .redirect(process.env.REDIRECT_URL);
   // cookieToken(req.user, res);
 });

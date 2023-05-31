@@ -44,6 +44,7 @@ router.get(
     res.send("login with google");
   }
 );
+
 router
   .route("/auth/google/callback")
   .get(passport.authenticate("google"), signInWithGoogleSuccess);

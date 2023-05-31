@@ -1,30 +1,122 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "../styles/Login.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, redirect } from "react-router-dom";
+import { baseURL } from "../utils/constants";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Register() {
+  const [user, setUser] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignInWithGoogle = () => {
+    window.open(baseURL + "/auth/google", "_self");
+  };
+
+  const handleSignUp = () => {
+    // alert("sing");
+    if (!email.length == 0 && !name.length == 0 && password.length >= 6) {
+      axios
+        .post(
+          baseURL + "/signup",
+          {
+            name,
+            email,
+            password,
+          },
+          {
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          window.location.href = "/";
+        })
+        .catch((err) => {
+          toast.error("Unable to register, Please try again later !", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        });
+    } else {
+      toast.error(
+        "All fields are mandatory and password must of atleast 6 char !",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }
+      );
+    }
+  };
+
   return (
     <div id="mainAuthContainer">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div className="authContainer" id="container">
         <div className="form-container sign-in-container">
-          <form className="authForm" action="#">
+          <div className="authForm">
             <h1 id="title1">Create Account</h1>
             <div className="social-container">
-              <button className="signInWithGoogle">
+              <button
+                className="signInWithGoogle"
+                onClick={handleSignInWithGoogle}
+              >
                 <img src="./res/google.png" height={"25px"} />
                 Sign In With Google
               </button>
             </div>
             <span id="authSpan">or use your email for registration</span>
-            <input className="authInput" type="text" placeholder="Name" />
-            <input className="authInput" type="email" placeholder="Email" />
+            <input
+              className="authInput"
+              type="text"
+              placeholder="Name"
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+            <input
+              className="authInput"
+              type="email"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
             <input
               className="authInput"
               type="password"
               placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
-            <button className="authButton">Sign Up</button>
-          </form>
+            <button className="authButton" onClick={handleSignUp}>
+              Sign Up
+            </button>
+          </div>
         </div>
         <div className="overlay-container">
           <div className="overlay">
