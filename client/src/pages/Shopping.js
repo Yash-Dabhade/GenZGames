@@ -79,6 +79,7 @@ function Shopping() {
                 return (
                   <div key={game._id} className="game">
                     <GameCard
+                      gameId={game._id}
                       cover={game.cover.secure_url}
                       title={game.name}
                       price={game.price}

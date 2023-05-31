@@ -7,7 +7,7 @@ import two from "../gamesMedia/cod_ss_2.jpg";
 import three from "../gamesMedia/cod_ss_3.jpg";
 import four from "../gamesMedia/cod_ss_4.jpg";
 
-function BasicSlider() {
+function BasicSlider({ photos }) {
   return (
     <HeroSlider
       slidingAnimation="left_to_right"
@@ -32,36 +32,21 @@ function BasicSlider() {
         height: "100%",
       }}
     >
-      <Slide
-        background={{
-          backgroundImage: "url(" + one + ")",
-          backgroundAttachment: "fixed",
-        }}
-      />
-      <Slide
-        background={{
-          backgroundImage: "url(" + two + ")",
-          backgroundAttachment: "fixed",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-        }}
-      />
-      <Slide
-        background={{
-          backgroundImage: "url(" + three + ")",
-          backgroundAttachment: "fixed",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-        }}
-      />
-      <Slide
-        background={{
-          backgroundImage: "url(" + four + ")",
-          backgroundAttachment: "fixed",
-        }}
-      />
+      {photos &&
+        photos.map((photo, index) => {
+          return (
+            <Slide
+              key={photo.id}
+              background={{
+                backgroundImage: "url(" + photo.secure_url + ")",
+                backgroundAttachment: "fixed",
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+              }}
+            />
+          );
+        })}
     </HeroSlider>
   );
 }

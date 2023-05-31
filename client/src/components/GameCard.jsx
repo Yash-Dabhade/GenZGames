@@ -2,10 +2,15 @@ import React from "react";
 import "../styles/GameCard.css";
 import { NavLink } from "react-router-dom";
 
-function GameCard({ cover, title, price }) {
+function GameCard({ gameId, cover, title, price }) {
   return (
     <div id="GameContainer">
-      <NavLink to="/details">
+      <NavLink
+        to="/details"
+        onClick={() => {
+          sessionStorage.setItem("selectedGame", gameId);
+        }}
+      >
         <img src={cover} alt="Cover" id="cover" />
         <h3 id="title">{title}</h3>
       </NavLink>
