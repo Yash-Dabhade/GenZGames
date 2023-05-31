@@ -22,14 +22,7 @@ function Orders() {
             <img src="./res/orders.png" height={"34px"} />
             <h3>Orders</h3>
           </NavLink>
-          <NavLink to="/wishlist" className="profileMenuItems">
-            <img
-              src="./res/heart.png"
-              style={{ filter: "invert(0%)" }}
-              height={"34px"}
-            />
-            <h3>Wishlist</h3>
-          </NavLink>
+
           <NavLink to="/login" className="profileMenuItems">
             <img src="./res/logout.png" height={"34px"} />
             <h3>Logout</h3>

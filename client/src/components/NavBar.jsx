@@ -21,7 +21,7 @@ import game2Cover from "../gamesMedia/dbzcover.png";
 import game3Cover from "../gamesMedia/watchdogscover.png";
 
 function NavBar() {
-  const [user, setUser] = useState(1);
+  const [user, setUser] = useState(null);
   return (
     <div id="NavContainer">
       <div id="logoContainer">
@@ -41,11 +41,13 @@ function NavBar() {
       </div>
       <div id="userUtil">
         <Popover>
-          <PopoverTrigger>
-            <Button backgroundColor={"transparent"} border={"none"}>
-              <img src="/res/cart.png" alt="cart" id="cart" />
-            </Button>
-          </PopoverTrigger>
+          {user && (
+            <PopoverTrigger>
+              <Button backgroundColor={"transparent"} border={"none"}>
+                <img src="/res/cart.png" alt="cart" id="cart" />
+              </Button>
+            </PopoverTrigger>
+          )}
           <Portal>
             <PopoverContent
               height="fit-content"
@@ -135,7 +137,6 @@ function NavBar() {
           </Portal>
         </Popover>
 
-        <img src="/res/heart.png" alt="favourite" id="heart" />
         {user ? (
           <Popover>
             <PopoverTrigger>

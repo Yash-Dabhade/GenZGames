@@ -34,6 +34,8 @@
     justify-content: space-around;
     padding:12px;
     height: fit-content;
+    border-bottom: 1px solid gray;
+
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-left-color: transparent;
@@ -50,6 +52,7 @@
     padding:12px;
     height: fit-content;
     color: white;
+    border-bottom: 1px solid gray;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
@@ -91,7 +94,7 @@
         #112 50%,
         #213
       ),
-      conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+      conic-gradient(from var(--border-angle), transparent 20%, #08f, rgb(255, 247, 0));
     background-size: calc(100% - (var(--border-size) * 2))
         calc(100% - (var(--border-size) * 2)),
       cover;
@@ -99,6 +102,7 @@
     background-repeat: no-repeat;
   
     animation: bg-spin 3s linear infinite;
+   
     @keyframes bg-spin {
       to {
         --border-angle: 1turn;
