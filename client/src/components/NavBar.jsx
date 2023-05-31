@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/NavBar.css";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 import {
   Popover,
   PopoverTrigger,
@@ -19,9 +20,29 @@ import CartItems from "./CartItems";
 import game1Cover from "../gamesMedia/codcover.png";
 import game2Cover from "../gamesMedia/dbzcover.png";
 import game3Cover from "../gamesMedia/watchdogscover.png";
+import { baseURL } from "../utils/constants";
 
 function NavBar() {
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("user")) {
+      setUser(JSON.parse(sessionStorage.getItem("user")));
+    }
+  });
+
+  const handleLogOut = () => {
+    axios
+      .get(baseURL + "/logout", { withCredentials: true })
+      .then((res) => {
+        sessionStorage.removeItem("user");
+        window.location.href = "/login";
+      })
+      .error((err) => {
+        window.location.href = "/login";
+      });
+  };
+
   return (
     <div id="NavContainer">
       <div id="logoContainer">
@@ -141,7 +162,15 @@ function NavBar() {
           <Popover>
             <PopoverTrigger>
               <Button backgroundColor={"transparent"} border={"none"}>
-                <img src="/res/user.jpg" alt="user" id="user" />
+                <img
+                  src={
+                    user.photo && user.photo.secure_url
+                      ? user.photo.secure_url
+                      : "https://res.cloudinary.com/dtrq1phi9/image/upload/v1666959517/users/hitudfvisk1fkvx9boj7.jpg"
+                  }
+                  alt="user"
+                  id="user"
+                />
               </Button>
             </PopoverTrigger>
             <Portal>
@@ -209,30 +238,30 @@ function NavBar() {
                       </div>
                     </Container>
                   </NavLink>
-                  <NavLink to="/login">
-                    <Container
-                      width={"100%"}
-                      display={"flex"}
-                      alignItems={"center"}
-                      justifyContent={"space-between"}
-                      gap={"8px"}
-                      height={"20%"}
+
+                  <Container
+                    width={"100%"}
+                    display={"flex"}
+                    alignItems={"center"}
+                    justifyContent={"space-between"}
+                    gap={"8px"}
+                    height={"20%"}
+                    onClick={handleLogOut}
+                  >
+                    <img src="./res/logout.png" height={"30px"} />
+                    <div
+                      style={{
+                        color: "black",
+                        textAlign: "center",
+                        padding: "10px 10px",
+                        fontFamily: "Play",
+                        fontWeight: "400",
+                        fontSize: "18px",
+                      }}
                     >
-                      <img src="./res/logout.png" height={"30px"} />
-                      <div
-                        style={{
-                          color: "black",
-                          textAlign: "center",
-                          padding: "10px 10px",
-                          fontFamily: "Play",
-                          fontWeight: "400",
-                          fontSize: "18px",
-                        }}
-                      >
-                        Logout
-                      </div>
-                    </Container>
-                  </NavLink>
+                      Logout
+                    </div>
+                  </Container>
                 </PopoverBody>
                 <PopoverFooter marginTop={"12px"}></PopoverFooter>
               </PopoverContent>
