@@ -26,6 +26,16 @@ const productSchema = new mongoose.Schema({
       required: true,
     },
   },
+  background: {
+    id: {
+      type: String,
+      required: true,
+    },
+    secure_url: {
+      type: String,
+      required: true,
+    },
+  },
   photos: [
     {
       id: {
