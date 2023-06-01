@@ -34,10 +34,16 @@ function GameDetail() {
   return (
     <div id="containerDetail">
       <NavBar />
-      <div
-        id="bannerDetail"
-        style={{ backgroundImage: "url(" + codbanner + ")" }}
-      ></div>
+      {selectedGame && selectedGame.background && (
+        <div
+          id="bannerDetail"
+          style={{
+            backgroundImage: "url(" + selectedGame.background.secure_url + ")",
+          }}
+        >
+          .
+        </div>
+      )}
       <div id="overlayDetailContainer">
         <div id="coverDetail">
           <img

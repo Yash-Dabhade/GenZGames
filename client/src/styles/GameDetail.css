@@ -5,6 +5,7 @@
     color: white;
     min-height: 100vh;
     width: 100%;
+    overflow-x: hidden;
     background: linear-gradient(315deg, #101217 20%, #181a21 100%);
     /* height: 110vh; */
     display: flex;

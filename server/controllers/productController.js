@@ -20,9 +20,22 @@ exports.addProduct = BigPromise(async (req, res, next) => {
         folder: "covers",
       }
     );
+
     req.body.cover = {
       id: resultCover.public_id,
       secure_url: resultCover.secure_url,
+    };
+
+    const resultBackground = await cloudinary.uploader.upload(
+      req.files.background.tempFilePath,
+      {
+        folder: "background",
+      }
+    );
+
+    req.body.background = {
+      id: resultBackground.public_id,
+      secure_url: resultBackground.secure_url,
     };
 
     for (let index = 0; index < req.files.photos.length; index++) {

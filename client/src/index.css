@@ -9,7 +9,8 @@ body {
   overflow: overlay;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
-  
+  background-color:rgba(25, 25, 25, 0.877);
+
 }
 
 ::-webkit-scrollbar {
@@ -19,7 +20,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(211, 211, 211, 0.573);
+  background: rgba(211, 211, 211, 0.502);
   border-radius: 10px;
   cursor: pointer;
 }
