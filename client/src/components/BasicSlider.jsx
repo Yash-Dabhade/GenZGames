@@ -1,12 +1,6 @@
 import React from "react";
 import HeroSlider, { Slide } from "hero-slider";
 
-//data
-import one from "../gamesMedia/cod_ss_1.jpg";
-import two from "../gamesMedia/cod_ss_2.jpg";
-import three from "../gamesMedia/cod_ss_3.jpg";
-import four from "../gamesMedia/cod_ss_4.jpg";
-
 function BasicSlider({ photos }) {
   return (
     <HeroSlider

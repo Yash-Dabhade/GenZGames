@@ -3,9 +3,6 @@ import "../styles/Order.css";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { NavLink } from "react-router-dom";
-import game1Cover from "../gamesMedia/codcover.png";
-import game2Cover from "../gamesMedia/dbzcover.png";
-import game3Cover from "../gamesMedia/watchdogscover.png";
 import OrderItems from "../components/OrderItems";
 
 function Orders() {
@@ -30,31 +27,19 @@ function Orders() {
         </div>
         <div id="orderRightContentContainer">
           <OrderItems
-            coverURL={game1Cover}
-            title={"Call of Duty: Cold War"}
-            productId={10839182102}
-            date={"29/05/23"}
-            price={"12500"}
-            gameKey={"91F3-2398-FJ30"}
-          />
-          <OrderItems
-            coverURL={game2Cover}
-            title={"Call of Duty: Cold War"}
+            coverURL={
+              "https://res.cloudinary.com/dspk9w7mc/image/upload/v1685630149/covers/g6fmkoja7uurdznyj9nq.png"
+            }
+            title={"Assassinc Creed Odyssey"}
             productId={10839182102}
             date={"29/05/23"}
             price={"2500"}
             gameKey={"91F3-2398-FJ30"}
           />
           <OrderItems
-            coverURL={game3Cover}
-            title={"Call of Duty: Cold War"}
-            productId={10839182102}
-            date={"29/05/23"}
-            price={"2500"}
-            gameKey={"91F3-2398-FJ30"}
-          />
-          <OrderItems
-            coverURL={game1Cover}
+            coverURL={
+              "https://res.cloudinary.com/dspk9w7mc/image/upload/v1685629517/covers/cvf8jfrwnm6sj6gvvzzb.jpg"
+            }
             title={"Call of Duty: Cold War"}
             productId={10839182102}
             date={"29/05/23"}

@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
-import codbanner from "../gamesMedia/cod_bg.jpg";
-import logo from "../gamesMedia/cod_logo.png";
 import "../styles/GameDetail.css";
 import NavBar from "../components/NavBar";
-import cover from "../gamesMedia/codcover.png";
 import BasicSlider from "../components/BasicSlider";
 import Reviews from "../components/Reviews";
 import Footer from "../components/Footer";

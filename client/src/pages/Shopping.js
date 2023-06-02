@@ -5,12 +5,9 @@ import Banner from "../components/Banner";
 import game1Logo from "../gamesMedia/asscreed_logo.png";
 import game1Model from "../gamesMedia/asscree2.png";
 import GameCard from "../components/GameCard";
-import game1Cover from "../gamesMedia/codcover.png";
-import game2Cover from "../gamesMedia/dbzcover.png";
-import game3Cover from "../gamesMedia/watchdogscover.png";
 import FilterOptions from "../components/FilterOptions";
 import Footer from "../components/Footer";
-import Cookies from "js-cookie";
+
 import axios from "axios";
 import { baseURL } from "../utils/constants";
 import Skeleton from "react-loading-skeleton";

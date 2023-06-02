@@ -17,9 +17,6 @@ import {
   Container,
 } from "@chakra-ui/react";
 import CartItems from "./CartItems";
-import game1Cover from "../gamesMedia/codcover.png";
-import game2Cover from "../gamesMedia/dbzcover.png";
-import game3Cover from "../gamesMedia/watchdogscover.png";
 import { baseURL } from "../utils/constants";
 
 function NavBar() {

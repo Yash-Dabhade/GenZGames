@@ -1,5 +1,4 @@
 import React from "react";
-import game1Cover from "../gamesMedia/codcover.png";
 import "../styles/CartItems.css";
 import { deleteFromCart } from "../utils/cartHandler";
 
