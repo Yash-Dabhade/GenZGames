@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@800&display=swap');
 
 #NavContainer{
-    position: sticky;
     top: 0px;
     width: 100vw;
     height: fit-content;

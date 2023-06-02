@@ -15,10 +15,14 @@ import axios from "axios";
 import { baseURL } from "../utils/constants";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { addToCart } from "../utils/cartHandler";
 
 function Shopping() {
   const [banner, setBanner] = useState("To be done");
   const [games, setGames] = useState([]);
+
+  //fetch cart
+  const fetchCartItems = async () => {};
 
   const fetchLoggedInUserDetails = async () => {
     //user details
@@ -26,6 +30,7 @@ function Shopping() {
       .get(baseURL + "/userdashboard", { withCredentials: true })
       .then((res) => {
         sessionStorage.setItem("user", JSON.stringify(res.data.user));
+        sessionStorage.setItem("cart", res.data.user.cart);
       })
       .catch((err) => {
         console.log(err);
@@ -37,7 +42,6 @@ function Shopping() {
       .get(baseURL + "/products", { withCredentials: true })
       .then((res) => {
         setGames(res.data.products);
-        console.log(res.data.products);
       })
       .catch((error) => {
         console.log(error);
@@ -47,6 +51,7 @@ function Shopping() {
   useEffect(() => {
     fetchLoggedInUserDetails();
     fetchAllGames();
+    fetchCartItems();
   }, []);
 
   return (

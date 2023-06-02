@@ -24,12 +24,49 @@ import { baseURL } from "../utils/constants";
 
 function NavBar() {
   const [user, setUser] = useState(null);
+  const [cart, setCart] = useState([]);
+  const [totalBill, setTotalBill] = useState(0);
+
+  const initializieCart = async () => {
+    await axios
+      .get(baseURL + "/cart/get", { withCredentials: true })
+      .then((res) => {
+        console.log(res.data.data.cart);
+        let total = 0;
+        if (res.data.data.cart)
+          res.data.data.cart.forEach((ele) => (total += ele.productId.price));
+        setTotalBill(total);
+        setCart(res.data.data.cart);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const refreshCart = () => {
+    let newCart = JSON.parse(sessionStorage.getItem("userCart"));
+    if (newCart && sessionStorage.getItem("isCartUpdated") == "Yes") {
+      setCart(newCart);
+      sessionStorage.removeItem("isCartUpdated");
+      sessionStorage.setItem("isCartUpdated", "No");
+
+      let total = 0;
+      newCart.forEach((ele) => (total += ele.productId.price));
+      setTotalBill(total);
+    }
+  };
 
   useEffect(() => {
     setTimeout(() => {
       if (sessionStorage.getItem("user")) {
-        setUser(JSON.parse(sessionStorage.getItem("user")));
+        let userObj = JSON.parse(sessionStorage.getItem("user"));
+        setUser(userObj);
+        setCart(userObj.cart);
+        initializieCart();
       }
+      setInterval(() => {
+        refreshCart();
+      }, 1000);
     }, 500);
   }, []);
 
@@ -37,7 +74,7 @@ function NavBar() {
     await axios
       .get(baseURL + "/logout", { withCredentials: true })
       .then((res) => {
-        sessionStorage.removeItem("user");
+        sessionStorage.clear();
         window.location.href = "/login";
       })
       .catch((err) => {
@@ -96,66 +133,39 @@ function NavBar() {
               </PopoverHeader>
               <PopoverBody>
                 <div id="cartBody">
-                  <CartItems
-                    coverURL={game1Cover}
-                    title={"Call Of Duty: Cold War"}
-                    price={"2500"}
-                  />
-                  <CartItems
-                    coverURL={game2Cover}
-                    title={"Dragon Ball Z: kakarot"}
-                    price={"1750"}
-                  />
-                  <CartItems
-                    coverURL={game3Cover}
-                    title={"Watch Dogs: Legion"}
-                    price={"3750"}
-                  />
-                  <CartItems
-                    coverURL={game1Cover}
-                    title={"Call Of Duty: Cold War"}
-                    price={"2500"}
-                  />
-                  <CartItems
-                    coverURL={game2Cover}
-                    title={"Dragon Ball Z: kakarot"}
-                    price={"1750"}
-                  />
-                  <CartItems
-                    coverURL={game3Cover}
-                    title={"Watch Dogs: Legion"}
-                    price={"3750"}
-                  />
-                  <CartItems
-                    coverURL={game1Cover}
-                    title={"Call Of Duty: Cold War"}
-                    price={"2500"}
-                  />
-                  <CartItems
-                    coverURL={game2Cover}
-                    title={"Dragon Ball Z: kakarot"}
-                    price={"1750"}
-                  />
-                  <CartItems
-                    coverURL={game3Cover}
-                    title={"Watch Dogs: Legion"}
-                    price={"3750"}
-                  />
+                  {cart &&
+                    cart.map((item, index) => {
+                      return (
+                        item.productId.cover && (
+                          <CartItems
+                            key={index}
+                            gameId={item.productId._id}
+                            coverURL={item.productId.cover.secure_url}
+                            title={item.productId.name}
+                            price={item.productId.price}
+                          />
+                        )
+                      );
+                    })}
                 </div>
               </PopoverBody>
               <PopoverFooter marginTop={"12px"}>
-                <Button
-                  width="100%"
-                  height={"40px"}
-                  borderRadius="12px"
-                  backgroundColor={"#fdb44b"}
-                  fontFamily={"Play"}
-                  textAlign={"center"}
-                  fontWeight={700}
-                  cursor={"pointer"}
-                >
-                  Checkout Rs. 4800
-                </Button>
+                {totalBill > 0 ? (
+                  <Button
+                    width="100%"
+                    height={"40px"}
+                    borderRadius="12px"
+                    backgroundColor={"#fdb44b"}
+                    fontFamily={"Play"}
+                    textAlign={"center"}
+                    fontWeight={700}
+                    cursor={"pointer"}
+                  >
+                    Checkout Rs. {totalBill}
+                  </Button>
+                ) : (
+                  <h3 style={{ textAlign: "center" }}>Cart is Empty</h3>
+                )}
               </PopoverFooter>
             </PopoverContent>
           </Portal>

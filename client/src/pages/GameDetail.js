@@ -9,6 +9,7 @@ import Reviews from "../components/Reviews";
 import Footer from "../components/Footer";
 import axios from "axios";
 import { baseURL } from "../utils/constants";
+import { addToCart } from "../utils/cartHandler";
 
 function GameDetail() {
   const [selectedGame, setSelectedGame] = useState(null);
@@ -84,7 +85,14 @@ function GameDetail() {
           </div>
           <div id="buyContainerDetails">
             <div id="buyButtonDetails">Buy Now</div>
-            <div id="cartButtonDetails">Add to Cart </div>
+            <div
+              id="cartButtonDetails"
+              onClick={() => {
+                addToCart(selectedGame._id, 1);
+              }}
+            >
+              Add to Cart
+            </div>
           </div>
         </div>
       </div>

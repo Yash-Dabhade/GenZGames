@@ -58,8 +58,16 @@
     color: black;
 
     border-radius: 35px;
+    transition: 250ms all ease-in;
     
 }
+
+#buy:hover{
+    border: 1px solid white;
+    color: white;
+    background-color: #f57c30;
+}
+
 
 #platforms{
     height: fit-content;

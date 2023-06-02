@@ -1,8 +1,9 @@
 import React from "react";
 import "../styles/GameCard.css";
 import { NavLink } from "react-router-dom";
+import { addToCart } from "../utils/cartHandler";
 
-function GameCard({ gameId, cover, title, price }) {
+function GameCard({ gameId, cover, title, price, refreshCart }) {
   return (
     <div id="GameContainer">
       <NavLink
@@ -21,7 +22,14 @@ function GameCard({ gameId, cover, title, price }) {
       </div>
       <div id="buyContainer">
         <div id="price">Rs. {price}</div>
-        <button id="buy">Add to Cart</button>
+        <button
+          id="buy"
+          onClick={() => {
+            addToCart(gameId, 1);
+          }}
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );

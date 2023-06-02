@@ -22,6 +22,7 @@ const {
   deleteFromCart,
   signInWithGoogleSuccess,
   sendProcessingSignal,
+  getAllFromCart,
 } = require("../controllers/userController");
 
 //importing all the middlewares
@@ -54,8 +55,9 @@ router.route("/userdashboard").get(isLoggedIn, getLoggedInUserDetails);
 router.route("/password/update").post(isLoggedIn, changePassword);
 router.route("/userdashboard/update").post(isLoggedIn, updateUserDetails);
 router.route("/cart/add").post(isLoggedIn, addToCart);
+router.route("/cart/get").get(isLoggedIn, getAllFromCart);
 router.route("/cart/update").put(isLoggedIn, updateCart);
-router.route("/cart/remove").delete(isLoggedIn, deleteFromCart);
+router.route("/cart/remove").post(isLoggedIn, deleteFromCart);
 
 //admin only routes
 router

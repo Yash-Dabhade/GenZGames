@@ -126,6 +126,9 @@ exports.addToCart = BigPromise(async (req, res, next) => {
 
   // data validation
   if (!userId || !productId || !quantity) {
+    console.log(userId);
+    console.log(productId);
+    console.log(quantity);
     return next(new customError("All values are are mandatory !"));
   }
 
@@ -135,7 +138,10 @@ exports.addToCart = BigPromise(async (req, res, next) => {
     return res.json({ code: 400, message: "Invalid User" });
   }
 
-  if (user.cart.findIndex((ele) => ele.productId == productId) == -1) {
+  if (!user.cart) {
+    user.cart.push({ productId, quantity });
+    await user.save();
+  } else if (user.cart.findIndex((ele) => ele.productId == productId) == -1) {
     user.cart.push({ productId, quantity });
     await user.save();
   }
@@ -175,34 +181,46 @@ exports.updateCart = BigPromise(async (req, res, next) => {
   cookieToken(user, res);
 });
 
-//deleteFromCart
-exports.deleteFromCart = BigPromise(async (req, res, next) => {
-  //extract data
-  const { userId, productId, all } = req.body;
-
-  // data validation
-  if (!userId || !productId) {
-    return next(new customError("All values are are mandatory !"));
-  }
-
-  const user = await User.findById(userId);
+//get items from the cart
+exports.getAllFromCart = BigPromise(async (req, res, next) => {
+  const user = req.user;
 
   if (!user) {
     return res.json({ code: 400, message: "Invalid User" });
   }
 
-  if (all == 1) {
-    user.cart = null;
-  } else {
-    user.cart = user.cart.filter((ele) => {
-      ele.productId != productId;
-    });
+  const data = await User.findById(user.id).populate("cart.productId");
+
+  res.status(200).json({ success: true, data });
+});
+
+//deleteFromCart
+exports.deleteFromCart = BigPromise(async (req, res, next) => {
+  //extract data
+  const { productId } = req.body;
+
+  // data validation
+  if (!productId) {
+    return next(new customError("All values are are mandatory !"));
   }
+
+  const user = req.user;
+
+  if (!user) {
+    return res.json({ code: 400, message: "Invalid User" });
+  }
+
+  console.log(user.cart);
+
+  user.cart = user.cart.filter((ele) => {
+    return ele.productId != productId;
+  });
+
+  // user.cart = newCart;
 
   await user.save();
 
-  //generate and send cookieToken of cart
-  cookieToken(user, res);
+  res.status(200).json({ success: true, data: user.cart });
 });
 
 //logout controller

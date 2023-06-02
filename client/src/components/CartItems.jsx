@@ -1,8 +1,9 @@
 import React from "react";
 import game1Cover from "../gamesMedia/codcover.png";
 import "../styles/CartItems.css";
+import { deleteFromCart } from "../utils/cartHandler";
 
-function CartItems({ coverURL, title, price }) {
+function CartItems({ gameId, coverURL, title, price, deleteItem }) {
   return (
     <div id="cartItemBody">
       <div className="cartItem">
@@ -11,7 +12,14 @@ function CartItems({ coverURL, title, price }) {
       </div>
       <div className="cartItem">
         <h4>Rs. {price}</h4>
-        <img style={{ cursor: "pointer" }} height="24px" src="/res/trash.png" />
+        <img
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            deleteFromCart(gameId);
+          }}
+          height="24px"
+          src="/res/trash.png"
+        />
       </div>
     </div>
   );
