@@ -1,29 +1,7 @@
 const BigPromise = require("../middlewares/bigPromise");
-// const stripe = require("stripe")(process.env.STRIPE_SECRET);
+const Payment = require("../models/payment.js");
 const Razorpay = require("razorpay");
-
-// exports.sendStripeKey = BigPromise(async (req, res, next) => {
-//   res.status(200).json({
-//     stripekey: process.env.STRIPE_API_KEY,
-//   });
-// });
-
-// exports.captureStripePayment = BigPromise(async (req, res, next) => {
-//   const paymentIntent = await stripe.paymentIntents.create({
-//     amount: req.body.amount,
-//     currency: "inr",
-
-//     //optional
-//     metadata: { integration_check: "accept_a_payment" },
-//   });
-
-//   res.status(200).json({
-//     success: true,
-//     amount: req.body.amount,
-//     client_secret: paymentIntent.client_secret,
-//     //you can optionally send id as well
-//   });
-// });
+const crypto = require("crypto");
 
 exports.sendRazorpayKey = BigPromise(async (req, res, next) => {
   res.status(200).json({
@@ -32,14 +10,15 @@ exports.sendRazorpayKey = BigPromise(async (req, res, next) => {
 });
 
 exports.captureRazorpayPayment = BigPromise(async (req, res, next) => {
-  var instance = new Razorpay({
+  let instance = new Razorpay({
     key_id: process.env.RAZORPAY_API_KEY,
     key_secret: process.env.RAZORPAY_SECRET,
   });
 
-  var options = {
-    amount: req.body.amount, // amount in the smallest currency unit
+  let options = {
+    amount: Number(req.body.amount * 100), // amount conversion from paise to rupees
     currency: "INR",
+    receipt: crypto.randomBytes(20).toString("hex"),
   };
   const myOrder = await instance.orders.create(options);
 
@@ -48,4 +27,36 @@ exports.captureRazorpayPayment = BigPromise(async (req, res, next) => {
     amount: req.body.amount,
     order: myOrder,
   });
+});
+
+exports.paymentVerification = BigPromise(async (req, res) => {
+  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
+    req.body;
+
+  const body = razorpay_order_id + "|" + razorpay_payment_id;
+
+  const expectedSignature = crypto
+    .createHmac("sha256", process.env.RAZORPAY_APT_SECRET)
+    .update(body.toString())
+    .digest("hex");
+
+  const isAuthentic = expectedSignature === razorpay_signature;
+
+  if (isAuthentic) {
+    // Database comes here
+
+    await Payment.create({
+      razorpay_order_id,
+      razorpay_payment_id,
+      razorpay_signature,
+    });
+
+    res.redirect(
+      `http://localhost:3000/paymentsuccess?reference=${razorpay_payment_id}`
+    );
+  } else {
+    res.status(400).json({
+      success: false,
+    });
+  }
 });
