@@ -83,9 +83,9 @@ exports.getAllProduct = BigPromise(async (req, res, next) => {
   productsObj.pager(resultPerPage);
   products = await productsObj.base.clone();
 
-  products.forEach((ele) => {
-    ele.gameKeys = null;
-  });
+  // products.forEach((ele) => {
+  //   ele.gameKeys = null;
+  // });
 
   res.status(200).json({
     success: true,

@@ -1,9 +1,8 @@
 import { baseURL } from "./constants";
 import axios from "axios";
 
-const checkoutHandler = async (amount, products) => {
+const checkoutHandler = async (amount, orderItems) => {
   //get razorpay key
-  console.log(products);
   let key, order;
   axios
     .get(baseURL + "/razorpaykey", { withCredentials: true })
@@ -20,9 +19,7 @@ const checkoutHandler = async (amount, products) => {
         )
         .then((res) => {
           order = res.data.order;
-          console.log(res.data.order);
-          console.log(key);
-          console.log(order);
+
           let user = JSON.parse(sessionStorage.getItem("user"));
 
           const options = {
@@ -44,17 +41,18 @@ const checkoutHandler = async (amount, products) => {
 
               axios
                 .post(
-                  baseURL + "/paymentverification",
+                  baseURL + "/order/create",
                   {
-                    razorpay_payment_id,
-                    razorpay_order_id,
-                    razorpay_signature,
-                    order,
-                    products,
+                    orderItems,
+                    paymentInfo: razorpay_payment_id,
+                    taxAmount: 0,
+                    totalAmount: order.amount,
                   },
                   { withCredentials: true }
                 )
-                .then((res) => {})
+                .then((res) => {
+                  window.location.href = "/orders";
+                })
                 .catch((err) => {
                   console.log(err);
                 });

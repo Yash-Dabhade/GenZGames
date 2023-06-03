@@ -42,8 +42,8 @@ function NavBar() {
 
   const refreshCart = () => {
     let newCart = JSON.parse(sessionStorage.getItem("userCart"));
-    console.log(newCart);
-    if (newCart && sessionStorage.getItem("isCartUpdated") == "Yes") {
+    if (sessionStorage.getItem("isCartUpdated") == "Yes") {
+      console.log("Cart Refresh");
       setCart(newCart);
       sessionStorage.removeItem("isCartUpdated");
       sessionStorage.setItem("isCartUpdated", "No");
@@ -58,9 +58,7 @@ function NavBar() {
       if (sessionStorage.getItem("user")) {
         let userObj = JSON.parse(sessionStorage.getItem("user"));
         setUser(userObj);
-        // setCart(userObj.cart);
         initializieCart();
-        console.log(userObj.cart);
       }
       setInterval(() => {
         refreshCart();

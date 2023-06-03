@@ -6,12 +6,51 @@ const customError = require("../utils/customError");
 exports.createOrder = BigPromise(async (req, res, next) => {
   const { orderItems, paymentInfo, taxAmount, totalAmount } = req.body;
 
-  const order = await Order.create({
-    orderItems,
+  let updateOrderItems = new Array();
+
+  console.log(orderItems);
+
+  orderItems.forEach((ele) =>
+    updateOrderItems.push({
+      name: ele.name,
+      price: ele.price,
+      image: ele.cover.secure_url,
+      product: ele._id,
+      gameKey: ele.gameKeys[0],
+    })
+  );
+
+  const orderObj = await Order.create({
+    orderItems: updateOrderItems,
     paymentInfo,
     taxAmount,
     totalAmount,
     user: req.user._id,
+  });
+
+  const order = await Order.findById(orderObj._id).populate(
+    "orderItems.product"
+  );
+
+  order.orderStatus = "Delivered";
+
+  order.orderItems.map(async (prod) => {
+    // let product = await Product.findById(prod.product);
+    let product = prod.product;
+    key = product.gameKeys[0];
+
+    key = product.gameKeys.shift();
+    product.stock = product.stock - prod.quantity;
+    await product.save({ validateBeforeSave: false });
+
+    prod.gameKey = key;
+    // await order.save();
+  });
+
+  await order.save();
+
+  order.orderItems.map((ele) => {
+    ele.product = ele.product._id;
   });
 
   res.status(200).json({

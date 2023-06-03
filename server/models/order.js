@@ -14,7 +14,7 @@ const orderSchema = new mongoose.Schema({
       },
       quantity: {
         type: Number,
-        required: true,
+        default: 1,
       },
       image: {
         type: String,
@@ -36,9 +36,7 @@ const orderSchema = new mongoose.Schema({
     },
   ],
   paymentInfo: {
-    id: {
-      type: String,
-    },
+    type: String,
   },
   taxAmount: {
     type: Number,
@@ -50,7 +48,6 @@ const orderSchema = new mongoose.Schema({
   },
   orderStatus: {
     type: String,
-    required: true,
     default: "processing",
   },
   deliveredAt: {

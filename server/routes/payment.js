@@ -9,6 +9,6 @@ const { isLoggedIn } = require("../middlewares/user");
 
 router.route("/razorpaykey").get(isLoggedIn, sendRazorpayKey);
 router.route("/capturerazorpay").post(isLoggedIn, captureRazorpayPayment);
-router.route("/paymentverification").post(paymentVerification);
+router.route("/paymentverification").post(isLoggedIn, paymentVerification);
 
 module.exports = router;
