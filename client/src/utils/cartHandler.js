@@ -45,6 +45,7 @@ const getAllFromCart = async () => {
   await axios
     .get(baseURL + "/cart/get", { withCredentials: true })
     .then((res) => {
+      console.log(res.data.data.cart);
       sessionStorage.setItem("userCart", JSON.stringify(res.data.data.cart));
       sessionStorage.setItem("isCartUpdated", "Yes");
     })

@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/react";
 import CartItems from "./CartItems";
 import { baseURL } from "../utils/constants";
+import { checkoutHandler } from "../utils/paymentHandler";
 
 function NavBar() {
   const [user, setUser] = useState(null);
@@ -28,10 +29,9 @@ function NavBar() {
     await axios
       .get(baseURL + "/cart/get", { withCredentials: true })
       .then((res) => {
-        console.log(res.data.data.cart);
         let total = 0;
         if (res.data.data.cart)
-          res.data.data.cart.forEach((ele) => (total += ele.productId.price));
+          res.data.data.cart.forEach((ele) => (total += ele.price));
         setTotalBill(total);
         setCart(res.data.data.cart);
       })
@@ -42,13 +42,13 @@ function NavBar() {
 
   const refreshCart = () => {
     let newCart = JSON.parse(sessionStorage.getItem("userCart"));
+    console.log(newCart);
     if (newCart && sessionStorage.getItem("isCartUpdated") == "Yes") {
       setCart(newCart);
       sessionStorage.removeItem("isCartUpdated");
       sessionStorage.setItem("isCartUpdated", "No");
-
       let total = 0;
-      newCart.forEach((ele) => (total += ele.productId.price));
+      newCart.forEach((ele) => (total += ele.price));
       setTotalBill(total);
     }
   };
@@ -58,8 +58,9 @@ function NavBar() {
       if (sessionStorage.getItem("user")) {
         let userObj = JSON.parse(sessionStorage.getItem("user"));
         setUser(userObj);
-        setCart(userObj.cart);
+        // setCart(userObj.cart);
         initializieCart();
+        console.log(userObj.cart);
       }
       setInterval(() => {
         refreshCart();
@@ -133,13 +134,13 @@ function NavBar() {
                   {cart &&
                     cart.map((item, index) => {
                       return (
-                        item.productId.cover && (
+                        item.cover && (
                           <CartItems
                             key={index}
-                            gameId={item.productId._id}
-                            coverURL={item.productId.cover.secure_url}
-                            title={item.productId.name}
-                            price={item.productId.price}
+                            gameId={item._id}
+                            coverURL={item.cover.secure_url}
+                            title={item.name}
+                            price={item.price}
                           />
                         )
                       );
@@ -157,6 +158,9 @@ function NavBar() {
                     textAlign={"center"}
                     fontWeight={700}
                     cursor={"pointer"}
+                    onClick={() => {
+                      checkoutHandler(totalBill, cart);
+                    }}
                   >
                     Checkout Rs. {totalBill}
                   </Button>

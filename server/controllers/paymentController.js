@@ -30,8 +30,13 @@ exports.captureRazorpayPayment = BigPromise(async (req, res, next) => {
 });
 
 exports.paymentVerification = BigPromise(async (req, res) => {
-  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
-    req.body;
+  const {
+    razorpay_order_id,
+    razorpay_payment_id,
+    razorpay_signature,
+    order,
+    products,
+  } = req.body;
 
   const body = razorpay_order_id + "|" + razorpay_payment_id;
 
@@ -43,17 +48,13 @@ exports.paymentVerification = BigPromise(async (req, res) => {
   const isAuthentic = expectedSignature === razorpay_signature;
 
   if (isAuthentic) {
-    // Database comes here
-
     await Payment.create({
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
     });
 
-    res.redirect(
-      `http://localhost:3000/paymentsuccess?reference=${razorpay_payment_id}`
-    );
+    res.status(200).json({ success: true, data: razorpay_order_id });
   } else {
     res.status(400).json({
       success: false,

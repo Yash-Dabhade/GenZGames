@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Profile from "../pages/Profile";
 import Orders from "../pages/Orders";
+import PaymentSuccess from "../pages/PaymentSuccess";
 
 export default function AppRouter() {
   return (
@@ -18,6 +19,7 @@ export default function AppRouter() {
         {/* TODO : protected routes */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/paymentsuccess" element={<PaymentSuccess />} />
       </Routes>
     </>
   );

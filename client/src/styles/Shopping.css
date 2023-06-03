@@ -127,8 +127,7 @@
   .blob1:hover {
     width: 320px;
     height: 220px;
-    -webkit-filter: blur(30px);
-            filter: blur(30px);
+    filter: blur(30px);
     box-shadow:
       inset 0 0 0 5px rgba(255,255,255, 0.6),
       inset 100px 100px 0 0px #ea70fa,
@@ -179,8 +178,7 @@
   .blob2:hover {
     width: 320px;
     height: 220px;
-    -webkit-filter: blur(30px);
-            filter: blur(30px);
+    filter: blur(30px);
     box-shadow:
       inset 0 0 0 5px rgba(255,255,255, 0.6),
       inset 100px 100px 0 0px #ea70fa,

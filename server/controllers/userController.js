@@ -139,10 +139,10 @@ exports.addToCart = BigPromise(async (req, res, next) => {
   }
 
   if (!user.cart) {
-    user.cart.push({ productId, quantity });
+    user.cart = new Array(productId);
     await user.save();
-  } else if (user.cart.findIndex((ele) => ele.productId == productId) == -1) {
-    user.cart.push({ productId, quantity });
+  } else if (user.cart.findIndex((ele) => ele == productId) == -1) {
+    user.cart.push(productId);
     await user.save();
   }
 
@@ -169,8 +169,7 @@ exports.updateCart = BigPromise(async (req, res, next) => {
 
   let found = false;
   user.cart.forEach((ele) => {
-    if (ele.productId == productId) {
-      ele.quantity = quantity;
+    if (ele == productId) {
       found = true;
     }
   });
@@ -189,7 +188,7 @@ exports.getAllFromCart = BigPromise(async (req, res, next) => {
     return res.json({ code: 400, message: "Invalid User" });
   }
 
-  const data = await User.findById(user.id).populate("cart.productId");
+  const data = await User.findById(user.id).populate("cart");
 
   res.status(200).json({ success: true, data });
 });
@@ -213,7 +212,7 @@ exports.deleteFromCart = BigPromise(async (req, res, next) => {
   console.log(user.cart);
 
   user.cart = user.cart.filter((ele) => {
-    return ele.productId != productId;
+    return ele != productId;
   });
 
   // user.cart = newCart;

@@ -41,13 +41,8 @@ const userSchema = new mongoose.Schema({
   forgotPasswordExpiry: Date,
   cart: [
     {
-      productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
-      },
-      quantity: {
-        type: Number,
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
     },
   ],
   createdAt: {
