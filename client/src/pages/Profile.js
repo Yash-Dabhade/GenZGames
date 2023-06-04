@@ -1,10 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Profile.css";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { baseURL } from "../utils/constants";
 
 function Profile() {
+  const [user, setUser] = useState(null);
+  const [name, setName] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [newPassword, setNewPassword] = useState(null);
+  const [file, setFile] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(baseURL + "/userdashboard", { withCredentials: true })
+      .then((res) => {
+        console.log(res);
+        setUser(res.data.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append("file", file);
+    axios
+      .post(
+        baseURL + "/userdashboard/update",
+        {
+          name,
+          email,
+          password: newPassword,
+        },
+
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div id="profileContainer">
       <NavBar />
@@ -27,18 +72,55 @@ function Profile() {
         <div id="profileRightContentContainer">
           <h3 className="profileTitle">Update Profile</h3>
           <div id="profileFormContainer">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div id="profileLeftGrid">
-                <img src="./res/user.jpg" id="profilePic" />
-                <input type="file" name="photo" id="profilePhoto" />
+                <img
+                  src={
+                    user && user.photo && user.photo.secure_url
+                      ? user.photo.secure_url
+                      : "https://res.cloudinary.com/dtrq1phi9/image/upload/v1666959517/users/hitudfvisk1fkvx9boj7.jpg"
+                  }
+                  id="profilePic"
+                />
+                <input
+                  type="file"
+                  onChange={(e) => {
+                    setFile(e.target.files[0]);
+                  }}
+                  name="photo"
+                  id="profilePhoto"
+                />
               </div>
               <div id="profileRightGrid">
                 <label for="profileName">Name </label>
-                <input type="text" name="name" id="profileName" />
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                  defaultValue={user && user.name}
+                  name="name"
+                  id="profileName"
+                />
                 <label for="profileEmail">Email </label>
-                <input type="email" name="email" id="profileEmail" />
+                <input
+                  type="email"
+                  defaultValue={user && user.email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                  name="email"
+                  id="profileEmail"
+                />
                 <label for="profilePassward">New Password </label>
-                <input type="password" name="password" id="profilePassword" />
+                <input
+                  type="password"
+                  onChange={(e) => {
+                    setNewPassword(e.target.value);
+                  }}
+                  name="password"
+                  id="profilePassword"
+                />
                 <input type="submit" value="Update Now" id="submitProfile" />
               </div>
             </form>

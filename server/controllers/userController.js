@@ -370,7 +370,7 @@ exports.changePassword = BigPromise(async (req, res, next) => {
 
 exports.updateUserDetails = BigPromise(async (req, res, next) => {
   //checking the data
-  if (!(req.body.name && req.body.email)) {
+  if (!(req.body.name && req.body.email && req.body.password)) {
     return next(
       new customError("Please provide all the data while updating !", 400)
     );
@@ -380,6 +380,7 @@ exports.updateUserDetails = BigPromise(async (req, res, next) => {
   const newData = {
     name: req.body.name,
     email: req.body.email,
+    password: req.body.password,
   };
 
   //if photo is also update
@@ -409,7 +410,7 @@ exports.updateUserDetails = BigPromise(async (req, res, next) => {
   }
 
   //update the data in user
-  const user = await user.findByIdAndUpdate(req.user.id, newData, {
+  const user = await User.findByIdAndUpdate(req.user.id, newData, {
     new: true,
     runValidators: true,
     useFindAndModify: false,
@@ -417,6 +418,8 @@ exports.updateUserDetails = BigPromise(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
+    user,
+    newData,
   });
 });
 

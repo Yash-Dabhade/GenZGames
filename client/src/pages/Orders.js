@@ -16,7 +16,6 @@ function Orders() {
     axios
       .get(baseURL + "/myorder", { withCredentials: true })
       .then((res) => {
-        console.log(res);
         setOrder(res.data.order);
       })
       .catch((err) => {
