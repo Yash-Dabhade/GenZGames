@@ -4,13 +4,13 @@
     align-items: flex-start;
     min-height: 100vh;
     overflow: hidden;
-    width: 100vw;
+    width: 100%;
     gap:30px;
     background: linear-gradient(315deg, #101217 20%, #181a21 100%);
 }
 
 #profileInnerContainer{
-    width: 99%;
+    width: 96%;
     min-height:80vh;
     color:white;
     font-family: Play;

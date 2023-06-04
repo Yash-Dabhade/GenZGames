@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Order.css";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { NavLink } from "react-router-dom";
 import OrderItems from "../components/OrderItems";
+import axios from "axios";
+import { baseURL } from "../utils/constants";
 
 function Orders() {
+  const [order, setOrder] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(baseURL + "/myorder", { withCredentials: true })
+      .then((res) => {
+        console.log(res);
+        setOrder(res.data.order);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div id="orderContainer">
       <NavBar />
@@ -26,26 +42,29 @@ function Orders() {
           </NavLink>
         </div>
         <div id="orderRightContentContainer">
-          <OrderItems
-            coverURL={
-              "https://res.cloudinary.com/dspk9w7mc/image/upload/v1685630149/covers/g6fmkoja7uurdznyj9nq.png"
-            }
-            title={"Assassinc Creed Odyssey"}
-            productId={10839182102}
-            date={"29/05/23"}
-            price={"2500"}
-            gameKey={"91F3-2398-FJ30"}
-          />
-          <OrderItems
-            coverURL={
-              "https://res.cloudinary.com/dspk9w7mc/image/upload/v1685629517/covers/cvf8jfrwnm6sj6gvvzzb.jpg"
-            }
-            title={"Call of Duty: Cold War"}
-            productId={10839182102}
-            date={"29/05/23"}
-            price={"2500"}
-            gameKey={"91F3-2398-FJ30"}
-          />
+          {order &&
+            order.map((orderEle) =>
+              orderEle.orderItems.map((orderItem) => {
+                return (
+                  <OrderItems
+                    key={orderItem._id}
+                    coverURL={orderItem.image}
+                    title={orderItem.name}
+                    productId={orderEle.paymentInfo}
+                    date={
+                      new Date(orderEle.createdAt).getDate() +
+                      1 +
+                      "/" +
+                      new Date(orderEle.createdAt).getMonth() +
+                      "/" +
+                      new Date(orderEle.createdAt).getFullYear()
+                    }
+                    price={orderItem.price}
+                    gameKey={orderItem.gameKey}
+                  />
+                );
+              })
+            )}
         </div>
       </div>
       <Footer />

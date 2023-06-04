@@ -39,8 +39,10 @@ exports.createOrder = BigPromise(async (req, res, next) => {
     let product = prod.product;
     key = product.gameKeys[0];
 
-    key = product.gameKeys.shift();
-    product.stock = product.stock - prod.quantity;
+    TODO: "UNCOMMENT BEFORE DEPLOYING";
+    // key = product.gameKeys.shift();
+    // product.stock = product.stock - prod.quantity;
+
     await product.save({ validateBeforeSave: false });
 
     prod.gameKey = key;

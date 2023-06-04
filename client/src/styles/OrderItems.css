@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     height: fit-content;
+    width: 80%;
     padding:20px;
     /* border: 1px solid gainsboro; */
     border-radius: 12px;
@@ -11,7 +12,8 @@
 
 #orderCover{
     width: 250px;
-    border: 1px solid green;
+    border: 5px solid whitesmoke;
+    border-radius: 15px;
 }
 
 #orderDetailsContainer{
@@ -94,7 +96,7 @@
         #112 50%,
         #213
       ),
-      conic-gradient(from var(--border-angle), transparent 20%, #08f, rgb(255, 247, 0));
+      conic-gradient(from var(--border-angle), transparent 20%, rgb(2, 103, 192), rgb(255, 217, 0));
     background-size: calc(100% - (var(--border-size) * 2))
         calc(100% - (var(--border-size) * 2)),
       cover;

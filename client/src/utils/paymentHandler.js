@@ -33,7 +33,7 @@ const checkoutHandler = async (amount, orderItems) => {
             name: "GenZGames",
             description: "Experience True Gaming Exclusive",
             image:
-              "https://res.cloudinary.com/dspk9w7mc/image/upload/v1685777987/logo_uhkqzc.png",
+              "https://res.cloudinary.com/dspk9w7mc/image/upload/v1685856749/logoOnly_gujwlk.png",
             order_id: order.id,
             // callback_url: "http://localhost:4000/api/v1/paymentverification",
             handler: function (response) {
@@ -69,11 +69,14 @@ const checkoutHandler = async (amount, orderItems) => {
               address: "Razorpay Corporate Office",
             },
             theme: {
-              color: "#121212",
+              color: "#181a21",
             },
           };
           const razor = new window.Razorpay(options);
           razor.open();
+          razor.on("payment.failed", function (response) {
+            window.location.href = "/paymentfailed";
+          });
         })
         .catch((err) => {
           console.log(err);
