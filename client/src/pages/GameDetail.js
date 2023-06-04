@@ -81,22 +81,40 @@ function GameDetail() {
             </div>
           </div>
           <div id="buyContainerDetails">
-            <div
-              id="buyButtonDetails"
-              onClick={() => {
-                checkoutHandler(selectedGame.price, new Array(selectedGame));
-              }}
-            >
-              Buy Now
-            </div>
-            <div
-              id="cartButtonDetails"
-              onClick={() => {
-                addToCart(selectedGame._id, 1);
-              }}
-            >
-              Add to Cart
-            </div>
+            {selectedGame && selectedGame.stock > 0 ? (
+              <>
+                <div
+                  id="buyButtonDetails"
+                  onClick={() => {
+                    checkoutHandler(
+                      selectedGame.price,
+                      new Array(selectedGame)
+                    );
+                  }}
+                >
+                  Buy Now
+                </div>
+                <div
+                  id="cartButtonDetails"
+                  onClick={() => {
+                    addToCart(selectedGame._id, 1);
+                  }}
+                >
+                  Add to Cart
+                </div>
+              </>
+            ) : (
+              <h4
+                style={{
+                  textAlign: "center",
+                  width: "100%",
+                  color: "red",
+                  fontSize: "20px",
+                }}
+              >
+                Game Not Available in stock
+              </h4>
+            )}
           </div>
         </div>
       </div>

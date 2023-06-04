@@ -12,7 +12,7 @@ function CartItems({ gameId, coverURL, title, price, deleteItem }) {
       <div className="cartItem">
         <h4>Rs. {price}</h4>
         <img
-          style={{ cursor: "pointer" }}
+          id="deleteCartItemBtn"
           onClick={() => {
             deleteFromCart(gameId);
           }}

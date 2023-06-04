@@ -22,3 +22,18 @@
     width: 80px;
     height: 80px;
 }
+
+#deleteCartItemBtn{
+    padding: 10px;
+    border: 1px solid transparent;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    transition: 150ms all ease-in-out;
+}
+
+#deleteCartItemBtn:hover{
+    cursor: pointer;
+    border: 1px solid gray;
+    background-color: gainsboro;
+    border-radius: 50%;
+}

@@ -2,6 +2,10 @@ import axios from "axios";
 const { baseURL } = require("./constants");
 
 const addToCart = async (productId, quantity) => {
+  if (!sessionStorage.getItem("user")) {
+    window.location.href = "/login";
+    return;
+  }
   let userId = JSON.parse(sessionStorage.getItem("user"))._id;
   await axios
     .post(

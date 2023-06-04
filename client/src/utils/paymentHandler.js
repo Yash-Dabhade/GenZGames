@@ -2,7 +2,11 @@ import { baseURL } from "./constants";
 import axios from "axios";
 
 const checkoutHandler = async (amount, orderItems) => {
-  //get razorpay key
+  if (!sessionStorage.getItem("user")) {
+    window.location.href = "/login";
+    return;
+  }
+
   let key, order;
   axios
     .get(baseURL + "/razorpaykey", { withCredentials: true })

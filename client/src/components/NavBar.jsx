@@ -156,6 +156,7 @@ function NavBar() {
                     textAlign={"center"}
                     fontWeight={700}
                     cursor={"pointer"}
+                    _hover={{ bg: "gold" }}
                     onClick={() => {
                       checkoutHandler(totalBill, cart);
                     }}

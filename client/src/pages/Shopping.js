@@ -85,6 +85,7 @@ function Shopping() {
                       cover={game.cover.secure_url}
                       title={game.name}
                       price={game.price}
+                      stock={game.stock}
                     />
                   </div>
                 );

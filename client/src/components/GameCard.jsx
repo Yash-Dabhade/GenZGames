@@ -3,7 +3,7 @@ import "../styles/GameCard.css";
 import { NavLink } from "react-router-dom";
 import { addToCart } from "../utils/cartHandler";
 
-function GameCard({ gameId, cover, title, price, refreshCart }) {
+function GameCard({ gameId, cover, title, price, stock }) {
   return (
     <div id="GameContainer">
       <NavLink
@@ -22,14 +22,27 @@ function GameCard({ gameId, cover, title, price, refreshCart }) {
       </div>
       <div id="buyContainer">
         <div id="price">Rs. {price}</div>
-        <button
-          id="buy"
-          onClick={() => {
-            addToCart(gameId, 1);
-          }}
-        >
-          Add to Cart
-        </button>
+        {stock > 0 ? (
+          <button
+            id="buy"
+            onClick={() => {
+              addToCart(gameId, 1);
+            }}
+          >
+            Add to Cart
+          </button>
+        ) : (
+          <h4
+            style={{
+              textAlign: "center",
+              width: "100%",
+              color: "red",
+              fontSize: "11px",
+            }}
+          >
+            Game Not Available in stock
+          </h4>
+        )}
       </div>
     </div>
   );

@@ -131,6 +131,8 @@
    align-items: center;
    justify-content: center;
    border-radius: 20px;
+   transition: 150ms all ease-in-out;
+   border:2px solid transparent;
 
     
 }
@@ -148,7 +150,21 @@
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    
+    transition: 150ms all ease-in-out;
+    border:2px solid transparent;
+}
+
+
+#buyButtonDetails:hover{
+    background-color: rgb(229, 200, 12);  
+    color:rgb(1, 1, 1); 
+    border:2px solid rgb(192, 192, 192);
+}
+
+#cartButtonDetails:hover{
+    background-color: rgb(250, 141, 51);
+    color:rgb(1, 1, 1); 
+    border:2px solid rgb(192, 192, 192);
 }
 
 #platformContainerDetails{
