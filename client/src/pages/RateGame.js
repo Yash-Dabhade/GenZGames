@@ -59,7 +59,7 @@ function RateGame() {
     } else {
       axios
         .post(
-          baseURL + "/reviews",
+          baseURL + "/review",
           {
             comment,
             rating: currentValue,

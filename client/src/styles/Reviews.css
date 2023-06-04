@@ -51,6 +51,8 @@ a{
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 1rem;
     z-index: 10;
+    height: 130px;
+    overflow: hidden;
 }
 .profile-img{
     width:50px;

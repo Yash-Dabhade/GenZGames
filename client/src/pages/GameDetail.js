@@ -19,6 +19,7 @@ function GameDetail() {
       .get(baseURL + "/product/" + sessionStorage.getItem("selectedGame"))
       .then((res) => {
         setSelectedGame(res.data.product);
+        console.log(res.data.product);
       })
       .catch((err) => {
         console.log(err);
@@ -84,8 +85,8 @@ function GameDetail() {
             <div className="customInfoDetails">
               <img src="/res/review.png" />
               <h4>
-                {selectedGame && selectedGame.rating
-                  ? selectedGame.rating / 5
+                {selectedGame && selectedGame.ratings
+                  ? selectedGame.ratings + " / 5"
                   : "Not yet rated"}{" "}
               </h4>
             </div>
@@ -138,7 +139,7 @@ function GameDetail() {
       </div>
       <div id="reviewsContainer">
         <h2 id="titleReviewsDetail">Game Reviews</h2>
-        <Reviews />
+        <Reviews data={selectedGame && selectedGame.reviews} />
       </div>
       <Footer />
     </div>

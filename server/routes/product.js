@@ -19,8 +19,8 @@ const { isLoggedIn, customRole } = require("../middlewares/user");
 router.route("/products").get(getAllProduct);
 router.route("/product/:id").get(getOneProduct);
 router.route("/review").post(isLoggedIn, addReview);
-router.route("/review").delete(isLoggedIn, deleteReview);
 router.route("/reviews").post(isLoggedIn, getOnlyReviewsForOneProduct);
+router.route("/review").delete(isLoggedIn, deleteReview);
 
 //admin routes
 router

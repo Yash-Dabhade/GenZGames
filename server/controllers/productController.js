@@ -119,6 +119,8 @@ exports.addReview = BigPromise(async (req, res, next) => {
     comment,
   };
 
+  console.log(review);
+
   const product = await Product.findById(productId);
 
   const AlreadyReview = product.reviews.find(
@@ -147,6 +149,8 @@ exports.addReview = BigPromise(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
+    product,
+    review,
   });
 });
 
