@@ -18,9 +18,6 @@ function Shopping() {
   const [banner, setBanner] = useState("To be done");
   const [games, setGames] = useState([]);
 
-  //fetch cart
-  const fetchCartItems = async () => {};
-
   const fetchLoggedInUserDetails = async () => {
     //user details
     await axios
@@ -45,10 +42,60 @@ function Shopping() {
       });
   };
 
+  //filter
+  const filterByCategory = (categories, lowerRange, upperRange) => {
+    axios
+      .get(baseURL + "/products", { withCredentials: true })
+      .then((res) => {
+        setGames(res.data.products);
+        if (categories && categories.length > 0) {
+          let filteredGames = games;
+          let result = filteredGames.filter((game) => {
+            return categories.includes(game.category);
+          });
+          if (!result || result.length == 0) {
+            toast.warning("No Games with such categories !", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+            setGames(res.data.products);
+          } else {
+            setGames(result);
+          }
+        }
+
+        let updatedByRange = games.filter((game) => {
+          return game.price >= lowerRange && game.price <= upperRange;
+        });
+        if (updatedByRange.length > 0) {
+          setGames(updatedByRange);
+        } else {
+          toast.error("No Games between the specified range!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     fetchLoggedInUserDetails();
     fetchAllGames();
-    fetchCartItems();
   }, []);
 
   return (
@@ -69,7 +116,7 @@ function Shopping() {
       />
       <div id="innerContainer">
         <div id="leftContainer">
-          <FilterOptions />
+          <FilterOptions filterByCategory={filterByCategory} />
         </div>
         <div id="rightContainer">
           <div id="bannerContainer">

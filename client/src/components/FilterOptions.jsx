@@ -1,66 +1,101 @@
-import React from "react";
-import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import { Checkbox, CheckboxGroup, filter } from "@chakra-ui/react";
 import "../styles/FilterOptions.css";
 
-function FilterOptions() {
+function FilterOptions({ filterByCategory }) {
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [allValue, setAllValue] = useState("checked");
+  const [lowerRange, setLowerRange] = useState(0);
+  const [upperRange, setUpperRange] = useState(999999999);
+
+  const handleApplyFilters = () => {
+    filterByCategory(selectedCategories, lowerRange, upperRange);
+  };
+
+  const handleOnChange = (e) => {
+    let category = e.target.value;
+    if (category == "all") {
+      if (selectedCategories.length != 0) setAllValue("");
+      else {
+        setAllValue("checked");
+        setSelectedCategories([]);
+      }
+    }
+    if (new Array(...selectedCategories).indexOf(category) == -1)
+      setSelectedCategories(new Array(...selectedCategories, category));
+    else
+      setSelectedCategories(
+        new Array(...selectedCategories).filter((ele) => ele != category)
+      );
+
+    if (selectedCategories.length == 0) {
+      setAllValue("checked");
+    } else {
+      setAllValue("");
+    }
+  };
+
   return (
     <div id="mainContainer">
       <div id="categories">
-        <h3 class="title">Categories</h3>
-        <label class="container">
+        <h3 className="title">Categories</h3>
+        <label className="container">
           All
-          <input value="all" type="checkbox" checked="checked" />
-          <span class="checkmark"></span>
+          <input
+            value="all"
+            onChange={handleOnChange}
+            type="checkbox"
+            defaultChecked={allValue}
+            checked={allValue}
+          />
+          <span className="checkmark"></span>
         </label>
 
-        <label class="container">
+        <label className="container">
           Action
-          <input value="action" type="checkbox" />
-          <span class="checkmark"></span>
+          <input onChange={handleOnChange} value="action" type="checkbox" />
+          <span className="checkmark"></span>
         </label>
 
-        <label class="container">
+        <label className="container">
           Adventure
-          <input value="adventure" type="checkbox" />
-          <span class="checkmark"></span>
+          <input onChange={handleOnChange} value="adventure" type="checkbox" />
+          <span className="checkmark"></span>
         </label>
 
-        <label class="container">
+        <label className="container">
           Open World
-          <input value="open world" type="checkbox" />
-          <span class="checkmark"></span>
+          <input onChange={handleOnChange} value="openworld" type="checkbox" />
+          <span className="checkmark"></span>
         </label>
 
-        <label class="container">
+        <label className="container">
           Arcade
-          <input value="arcade" type="checkbox" />
-          <span class="checkmark"></span>
+          <input onChange={handleOnChange} value="arcade" type="checkbox" />
+          <span className="checkmark"></span>
         </label>
 
-        <label class="container">
-          Arcade
-          <input value="arcade" type="checkbox" />
-          <span class="checkmark"></span>
-        </label>
-
-        <label class="container">
+        <label className="container">
           Simulation
-          <input value="simulation" type="checkbox" />
-          <span class="checkmark"></span>
+          <input onChange={handleOnChange} value="simulation" type="checkbox" />
+          <span className="checkmark"></span>
         </label>
 
-        <label class="container">
+        <label className="container">
           Strategy
-          <input value="strategy" type="checkbox" />
-          <span class="checkmark"></span>
+          <input onChange={handleOnChange} value="strategy" type="checkbox" />
+          <span className="checkmark"></span>
         </label>
       </div>
 
       <div id="priceTitle">
-        <h3 class="title">Price Range</h3>
+        <h3 className="title">Price Range</h3>
         <div id="innerPriceContainer">
-          <div class="input">
+          <div className="input">
             <input
+              onChange={(e) => {
+                setLowerRange(e.target.value);
+              }}
               type="number"
               placeholder="Min-Price"
               id="minprice"
@@ -68,8 +103,11 @@ function FilterOptions() {
             />
           </div>
 
-          <div class="input">
+          <div className="input">
             <input
+              onChange={(e) => {
+                setUpperRange(e.target.value);
+              }}
               type="number"
               placeholder="Max-Price"
               id="minprice"
@@ -78,7 +116,9 @@ function FilterOptions() {
           </div>
         </div>
       </div>
-      <button id="apply">Apply Filters</button>
+      <button id="apply" onClick={handleApplyFilters}>
+        Apply Filters
+      </button>
     </div>
   );
 }
