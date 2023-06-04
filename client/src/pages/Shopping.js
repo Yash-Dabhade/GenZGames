@@ -43,7 +43,7 @@ function Shopping() {
   };
 
   //filter
-  const filterByCategory = (categories, lowerRange, upperRange) => {
+  const filterByCategory = (categories, sortBy) => {
     axios
       .get(baseURL + "/products", { withCredentials: true })
       .then((res) => {
@@ -54,7 +54,7 @@ function Shopping() {
             return categories.includes(game.category);
           });
           if (!result || result.length == 0) {
-            toast.warning("No Games with such categories !", {
+            toast.warning("No Games satifsy the filter conditions !", {
               position: "top-right",
               autoClose: 3000,
               hideProgressBar: false,
@@ -69,28 +69,11 @@ function Shopping() {
             setGames(result);
           }
         }
-
-        // let updatedByRange = games.filter((game) => {
-        //   return game.price >= lowerRange && game.price <= upperRange;
-        // });
-        // if (updatedByRange.length > 0) {
-        //   setGames(updatedByRange);
-        // } else {
-        //   toast.error("No Games between the specified range!", {
-        //     position: "top-right",
-        //     autoClose: 3000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        //     theme: "colored",
-        //   });
-        // }
       })
       .catch((error) => {
         console.log(error);
       });
+    console.log(sortBy);
   };
 
   useEffect(() => {

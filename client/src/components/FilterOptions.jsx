@@ -5,11 +5,10 @@ import "../styles/FilterOptions.css";
 function FilterOptions({ filterByCategory }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [allValue, setAllValue] = useState("checked");
-  const [lowerRange, setLowerRange] = useState(0);
-  const [upperRange, setUpperRange] = useState(999999999);
+  const [sortBy, setSortBy] = useState("");
 
   const handleApplyFilters = () => {
-    filterByCategory(selectedCategories, lowerRange, upperRange);
+    filterByCategory(selectedCategories, sortBy);
   };
 
   const handleOnChange = (e) => {
@@ -89,31 +88,38 @@ function FilterOptions({ filterByCategory }) {
       </div>
 
       <div id="priceTitle">
-        <h3 className="title">Price Range</h3>
+        <h3 className="title">Sort By</h3>
         <div id="innerPriceContainer">
-          <div className="input">
-            <input
-              onChange={(e) => {
-                setLowerRange(e.target.value);
-              }}
-              type="number"
-              placeholder="Min-Price"
-              id="minprice"
-              autocomplete="false"
-            />
-          </div>
-
-          <div className="input">
-            <input
-              onChange={(e) => {
-                setUpperRange(e.target.value);
-              }}
-              type="number"
-              placeholder="Max-Price"
-              id="minprice"
-              autocomplete="false"
-            />
-          </div>
+          <form id="sortHolder">
+            <div>
+              <label className="sortLabel">High to Low Price</label>
+              <input
+                onChange={(e) => {
+                  setSortBy(e.target.value);
+                }}
+                value="high"
+                type="radio"
+                name="sort"
+                placeholder="Min-Price"
+                className="sortBtn"
+                autocomplete="false"
+              />
+            </div>
+            <div>
+              <label className="sortLabel">Low to High Price</label>
+              <input
+                onChange={(e) => {
+                  setSortBy(e.target.value);
+                }}
+                type="radio"
+                value="low"
+                placeholder="Min-Price"
+                className="sortBtn"
+                name="sort"
+                autocomplete="false"
+              />
+            </div>
+          </form>
         </div>
       </div>
       <button id="apply" onClick={handleApplyFilters}>

@@ -19,7 +19,7 @@ function GameDetail() {
       .get(baseURL + "/product/" + sessionStorage.getItem("selectedGame"))
       .then((res) => {
         setSelectedGame(res.data.product);
-        console.log(res.data.product);
+        // console.log(res.data.product);
       })
       .catch((err) => {
         console.log(err);

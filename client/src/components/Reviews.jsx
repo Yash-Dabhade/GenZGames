@@ -26,9 +26,10 @@ function Reviews({ data }) {
                 </div>
 
                 <div class="reviews">
-                  {new Array(review.rating).fill("1").map((ele) => {
+                  {new Array(review.rating).fill("1").map((ele, indexEle) => {
                     return (
                       <img
+                        key={indexEle}
                         height={"24px"}
                         width={"24px"}
                         src="/res/review.png"
