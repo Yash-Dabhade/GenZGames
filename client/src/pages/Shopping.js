@@ -7,12 +7,12 @@ import game1Model from "../gamesMedia/asscree2.png";
 import GameCard from "../components/GameCard";
 import FilterOptions from "../components/FilterOptions";
 import Footer from "../components/Footer";
-
 import axios from "axios";
 import { baseURL } from "../utils/constants";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { addToCart } from "../utils/cartHandler";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Shopping() {
   const [banner, setBanner] = useState("To be done");
@@ -56,6 +56,17 @@ function Shopping() {
       <NavBar />
       <div class="blob1"></div>
       <div class="blob2"></div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div id="innerContainer">
         <div id="leftContainer">
           <FilterOptions />

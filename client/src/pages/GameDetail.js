@@ -8,6 +8,8 @@ import axios from "axios";
 import { baseURL } from "../utils/constants";
 import { addToCart } from "../utils/cartHandler";
 import { checkoutHandler } from "../utils/paymentHandler";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function GameDetail() {
   const [selectedGame, setSelectedGame] = useState(null);
@@ -32,6 +34,18 @@ function GameDetail() {
   return (
     <div id="containerDetail">
       <NavBar />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       {selectedGame && selectedGame.background && (
         <div
           id="bannerDetail"

@@ -1,4 +1,6 @@
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const { baseURL } = require("./constants");
 
 const addToCart = async (productId, quantity) => {
@@ -18,11 +20,30 @@ const addToCart = async (productId, quantity) => {
       { withCredentials: true }
     )
     .then((res) => {
-      // console.log(res);
+      toast.success("Gamed added to Cart !", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       getAllFromCart();
     })
     .catch((err) => {
       console.log(err);
+      toast.error("Unable to add to Cart !", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     });
 };
 
@@ -38,10 +59,30 @@ const deleteFromCart = (productId) => {
       }
     )
     .then((res) => {
+      toast.success("Game removed from cart !", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       getAllFromCart();
     })
     .catch((err) => {
       console.log(err);
+      toast.error("Unable to remove from cart !", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     });
 };
 
