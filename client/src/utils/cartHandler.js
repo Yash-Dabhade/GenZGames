@@ -30,7 +30,8 @@ const addToCart = async (productId, quantity) => {
         progress: undefined,
         theme: "colored",
       });
-      getAllFromCart();
+      // getAllFromCart();
+      sessionStorage.setItem("isCartUpdated", "Yes");
     })
     .catch((err) => {
       console.log(err);
@@ -69,7 +70,8 @@ const deleteFromCart = (productId) => {
         progress: undefined,
         theme: "colored",
       });
-      getAllFromCart();
+      // getAllFromCart();
+      sessionStorage.setItem("isCartUpdated", "Yes");
     })
     .catch((err) => {
       console.log(err);

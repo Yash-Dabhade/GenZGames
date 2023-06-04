@@ -41,15 +41,22 @@ function NavBar() {
   };
 
   const refreshCart = () => {
-    let newCart = JSON.parse(sessionStorage.getItem("userCart"));
     if (sessionStorage.getItem("isCartUpdated") == "Yes") {
       console.log("Cart Refresh");
-      setCart(newCart);
-      sessionStorage.removeItem("isCartUpdated");
       sessionStorage.setItem("isCartUpdated", "No");
-      let total = 0;
-      newCart.forEach((ele) => (total += ele.price));
-      setTotalBill(total);
+      axios
+        .get(baseURL + "/cart/get", { withCredentials: true })
+        .then((res) => {
+          console.log(res.data.data.cart);
+          setCart(res.data.data.cart);
+          let total = 0;
+          res.data.data.cart.forEach((ele) => (total += ele.price));
+          setTotalBill(total);
+          console.log(total);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -146,7 +153,7 @@ function NavBar() {
                 </div>
               </PopoverBody>
               <PopoverFooter marginTop={"12px"}>
-                {totalBill > 0 ? (
+                {cart && cart.length > 0 ? (
                   <Button
                     width="100%"
                     height={"40px"}
