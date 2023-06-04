@@ -188,7 +188,7 @@ exports.deleteReview = BigPromise(async (req, res, next) => {
 
 //get single product reviews
 exports.getOnlyReviewsForOneProduct = BigPromise(async (req, res, next) => {
-  const product = await Product.findById(req.query.id);
+  const product = await Product.findById(req.body.productId);
 
   res.status(200).json({
     success: true,

@@ -20,7 +20,7 @@ const addToCart = async (productId, quantity) => {
       { withCredentials: true }
     )
     .then((res) => {
-      toast.success("Gamed added to Cart !", {
+      toast.success("Game added to Cart !", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

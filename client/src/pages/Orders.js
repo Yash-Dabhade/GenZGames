@@ -6,6 +6,8 @@ import { NavLink } from "react-router-dom";
 import OrderItems from "../components/OrderItems";
 import axios from "axios";
 import { baseURL } from "../utils/constants";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Orders() {
   const [order, setOrder] = useState(null);
@@ -25,6 +27,17 @@ function Orders() {
   return (
     <div id="orderContainer">
       <NavBar />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div id="orderInnerContainer">
         <div id="orderLeftMenuContainer">
           <NavLink className="profileMenuItems" to="/profile">
@@ -50,7 +63,8 @@ function Orders() {
                     key={orderItem._id}
                     coverURL={orderItem.image}
                     title={orderItem.name}
-                    productId={orderEle.paymentInfo}
+                    productId={orderItem._id}
+                    paymentInfo={orderEle.paymentInfo}
                     date={
                       new Date(orderEle.createdAt).getDate() +
                       1 +

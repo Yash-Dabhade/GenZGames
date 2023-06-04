@@ -87,6 +87,15 @@
     border-radius: 5px;
 }
 
+#gameKeyInput{
+  padding:5px;
+  width: fit-content;
+  border:1px solid white;
+  border-radius: 5px;
+  font-weight: 700;
+  font-family: 'Play', sans-serif;
+}
+
 .box {
     --border-size: 3px;
     --border-angle: 0turn;
