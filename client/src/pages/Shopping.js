@@ -69,11 +69,26 @@ function Shopping() {
             setGames(result);
           }
         }
+
+        //sorting
+        let sortedProducts = [];
+        if (sortBy == "high") {
+          sortedProducts = games.sort((a, b) => {
+            return a.price < b.price ? 1 : a.price > b.price ? -1 : 0;
+          });
+          setGames(sortedProducts);
+        } else {
+          sortedProducts = games.sort((a, b) => {
+            return a.price > b.price ? 1 : a.price > b.price ? -1 : 0;
+          });
+          setGames(sortedProducts);
+        }
+        console.log(sortedProducts);
+        console.log(games);
       })
       .catch((error) => {
         console.log(error);
       });
-    console.log(sortBy);
   };
 
   useEffect(() => {

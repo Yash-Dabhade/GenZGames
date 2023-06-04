@@ -5,7 +5,7 @@ import "../styles/FilterOptions.css";
 function FilterOptions({ filterByCategory }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [allValue, setAllValue] = useState("checked");
-  const [sortBy, setSortBy] = useState("");
+  const [sortBy, setSortBy] = useState("high");
 
   const handleApplyFilters = () => {
     filterByCategory(selectedCategories, sortBy);

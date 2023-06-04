@@ -26,17 +26,7 @@ function Orders() {
   return (
     <div id="orderContainer">
       <NavBar />
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+
       <div id="orderInnerContainer">
         <div id="orderLeftMenuContainer">
           <NavLink className="profileMenuItems" to="/profile">
@@ -80,6 +70,17 @@ function Orders() {
             )}
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Footer />
     </div>
   );
