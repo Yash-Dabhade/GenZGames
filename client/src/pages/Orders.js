@@ -62,7 +62,7 @@ function Orders() {
                     key={orderItem._id}
                     coverURL={orderItem.image}
                     title={orderItem.name}
-                    productId={orderItem._id}
+                    productId={orderItem.product}
                     paymentInfo={orderEle.paymentInfo}
                     date={
                       new Date(orderEle.createdAt).getDate() +

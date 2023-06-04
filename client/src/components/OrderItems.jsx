@@ -12,11 +12,11 @@ function OrderItems({
   price,
   gameKey,
   paymentInfo,
-  isOpen,
-  onOpen,
-  onClose,
 }) {
-  const addReview = (productId, onOpen) => {};
+  const addReview = (productId) => {
+    sessionStorage.setItem("reviewProductId", productId);
+    window.location.href = "/rategame";
+  };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(gameKey);

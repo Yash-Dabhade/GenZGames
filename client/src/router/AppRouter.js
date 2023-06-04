@@ -7,6 +7,7 @@ import Profile from "../pages/Profile";
 import Orders from "../pages/Orders";
 import PaymentSuccess from "../pages/PaymentSuccess";
 import PaymentFailed from "../pages/PaymentFailed";
+import RateGame from "../pages/RateGame";
 
 export default function AppRouter() {
   return (
@@ -22,6 +23,7 @@ export default function AppRouter() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/paymentsuccess" element={<PaymentSuccess />} />
         <Route path="/paymentfailed" element={<PaymentFailed />} />
+        <Route path="/rategame" element={<RateGame />} />
       </Routes>
     </>
   );

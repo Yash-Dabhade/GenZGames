@@ -36,6 +36,7 @@ function Profile() {
           name,
           email,
           password: newPassword,
+          formData,
         },
 
         {

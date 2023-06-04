@@ -70,23 +70,23 @@ function Shopping() {
           }
         }
 
-        let updatedByRange = games.filter((game) => {
-          return game.price >= lowerRange && game.price <= upperRange;
-        });
-        if (updatedByRange.length > 0) {
-          setGames(updatedByRange);
-        } else {
-          toast.error("No Games between the specified range!", {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-        }
+        // let updatedByRange = games.filter((game) => {
+        //   return game.price >= lowerRange && game.price <= upperRange;
+        // });
+        // if (updatedByRange.length > 0) {
+        //   setGames(updatedByRange);
+        // } else {
+        //   toast.error("No Games between the specified range!", {
+        //     position: "top-right",
+        //     autoClose: 3000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     progress: undefined,
+        //     theme: "colored",
+        //   });
+        // }
       })
       .catch((error) => {
         console.log(error);
