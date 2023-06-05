@@ -16,7 +16,9 @@ function Orders() {
     axios
       .get(baseURL + "/myorder", { withCredentials: true })
       .then((res) => {
-        setOrder(res.data.order);
+        let data = res.data.order.reverse();
+        console.log(data);
+        setOrder(data);
       })
       .catch((err) => {
         console.log(err);

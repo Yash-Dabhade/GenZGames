@@ -10,6 +10,7 @@ const {
   addReview,
   deleteReview,
   getOnlyReviewsForOneProduct,
+  getFilteredProducts,
 } = require("../controllers/productController");
 
 //importing all the middlewares
@@ -17,6 +18,7 @@ const { isLoggedIn, customRole } = require("../middlewares/user");
 
 // user routes
 router.route("/products").get(getAllProduct);
+router.route("/filteredproducts").post(getFilteredProducts);
 router.route("/product/:id").get(getOneProduct);
 router.route("/review").post(isLoggedIn, addReview);
 router.route("/reviews").post(isLoggedIn, getOnlyReviewsForOneProduct);

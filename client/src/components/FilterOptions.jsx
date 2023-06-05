@@ -38,17 +38,6 @@ function FilterOptions({ filterByCategory }) {
     <div id="mainContainer">
       <div id="categories">
         <h3 className="title">Categories</h3>
-        <label className="container">
-          All
-          <input
-            value="all"
-            onChange={handleOnChange}
-            type="checkbox"
-            defaultChecked={allValue}
-            checked={allValue}
-          />
-          <span className="checkmark"></span>
-        </label>
 
         <label className="container">
           Action

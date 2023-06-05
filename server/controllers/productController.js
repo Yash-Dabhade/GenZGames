@@ -95,6 +95,28 @@ exports.getAllProduct = BigPromise(async (req, res, next) => {
   });
 });
 
+//filtered and sorted products
+exports.getFilteredProducts = BigPromise(async (req, res, next) => {
+  const { categories } = req.body;
+  let categorizedProducts = [];
+
+  if (categories.length > 0) {
+    for (let index = 0; index < categories.length; index++) {
+      const category = categories[index];
+      let result = await Product.find({ category });
+      categorizedProducts.push(...result);
+    }
+  } else {
+    let result = await Product.find();
+    categorizedProducts.push(...result);
+  }
+
+  res.status(200).json({
+    success: true,
+    categorizedProducts,
+  });
+});
+
 //get one product
 exports.getOneProduct = BigPromise(async (req, res, next) => {
   const product = await Product.findById(req.params.id);

@@ -44,19 +44,34 @@ function Shopping() {
 
   //filter
   const filterByCategory = (categories, sortBy) => {
-    axios
-      .get(baseURL + "/products", { withCredentials: true })
-      .then((res) => {
-        setGames(res.data.products);
-        if (categories && categories.length > 0) {
-          let filteredGames = games;
-          let result = filteredGames.filter((game) => {
-            return categories.includes(game.category);
-          });
-          if (!result || result.length == 0) {
-            toast.warning("No Games satifsy the filter conditions !", {
+    if (categories && categories.length > 0) {
+      console.log("Length of cateogires is : ", categories.length);
+      console.log(categories);
+      axios
+        .post(
+          baseURL + "/filteredproducts",
+          { categories, sortBy },
+          { withCredentials: true }
+        )
+        .then((res) => {
+          console.log(res);
+          let categorizedProducts = res.data.categorizedProducts;
+          let sortedProducts = [];
+          if (categorizedProducts && categorizedProducts.length > 0) {
+            if (sortBy == "low") {
+              sortedProducts = categorizedProducts.sort(
+                (a, b) => a.price - b.price
+              );
+            } else {
+              sortedProducts = categorizedProducts.sort(
+                (a, b) => b.price - a.price
+              );
+            }
+            setGames(sortedProducts);
+          } else {
+            toast.warning("Unable to find games with given categories !", {
               position: "top-right",
-              autoClose: 3000,
+              autoClose: 5000,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,
@@ -64,31 +79,15 @@ function Shopping() {
               progress: undefined,
               theme: "colored",
             });
-            setGames(res.data.products);
-          } else {
-            setGames(result);
+            fetchAllGames();
           }
-        }
-
-        //sorting
-        let sortedProducts = [];
-        if (sortBy == "high") {
-          sortedProducts = games.sort((a, b) => {
-            return a.price < b.price ? 1 : a.price > b.price ? -1 : 0;
-          });
-          setGames(sortedProducts);
-        } else {
-          sortedProducts = games.sort((a, b) => {
-            return a.price > b.price ? 1 : a.price > b.price ? -1 : 0;
-          });
-          setGames(sortedProducts);
-        }
-        console.log(sortedProducts);
-        console.log(games);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      fetchAllGames();
+    }
   };
 
   useEffect(() => {
