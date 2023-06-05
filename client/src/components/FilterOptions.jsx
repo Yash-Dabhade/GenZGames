@@ -81,6 +81,21 @@ function FilterOptions({ filterByCategory }) {
         <div id="innerPriceContainer">
           <form id="sortHolder">
             <div>
+              <label className="sortLabel">Low to High Price</label>
+              <input
+                onChange={(e) => {
+                  setSortBy(e.target.value);
+                }}
+                defaultChecked
+                type="radio"
+                value="low"
+                placeholder="Min-Price"
+                className="sortBtn"
+                name="sort"
+                autocomplete="false"
+              />
+            </div>
+            <div>
               <label className="sortLabel">High to Low Price</label>
               <input
                 onChange={(e) => {
@@ -91,20 +106,6 @@ function FilterOptions({ filterByCategory }) {
                 name="sort"
                 placeholder="Min-Price"
                 className="sortBtn"
-                autocomplete="false"
-              />
-            </div>
-            <div>
-              <label className="sortLabel">Low to High Price</label>
-              <input
-                onChange={(e) => {
-                  setSortBy(e.target.value);
-                }}
-                type="radio"
-                value="low"
-                placeholder="Min-Price"
-                className="sortBtn"
-                name="sort"
                 autocomplete="false"
               />
             </div>

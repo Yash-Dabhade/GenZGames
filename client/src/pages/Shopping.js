@@ -31,11 +31,17 @@ function Shopping() {
       });
   };
 
-  const fetchAllGames = async () => {
+  const fetchAllGames = async (sortBy = "low") => {
     await axios
       .get(baseURL + "/products", { withCredentials: true })
       .then((res) => {
-        setGames(res.data.products);
+        let sortedProducts = [];
+        if (sortBy == "low") {
+          sortedProducts = res.data.products.sort((a, b) => a.price - b.price);
+        } else {
+          sortedProducts = res.data.products.sort((a, b) => b.price - a.price);
+        }
+        setGames(sortedProducts);
       })
       .catch((error) => {
         console.log(error);
@@ -45,8 +51,6 @@ function Shopping() {
   //filter
   const filterByCategory = (categories, sortBy) => {
     if (categories && categories.length > 0) {
-      console.log("Length of cateogires is : ", categories.length);
-      console.log(categories);
       axios
         .post(
           baseURL + "/filteredproducts",
@@ -54,7 +58,6 @@ function Shopping() {
           { withCredentials: true }
         )
         .then((res) => {
-          console.log(res);
           let categorizedProducts = res.data.categorizedProducts;
           let sortedProducts = [];
           if (categorizedProducts && categorizedProducts.length > 0) {
@@ -79,14 +82,14 @@ function Shopping() {
               progress: undefined,
               theme: "colored",
             });
-            fetchAllGames();
+            fetchAllGames(sortBy);
           }
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
-      fetchAllGames();
+      fetchAllGames(sortBy);
     }
   };
 
