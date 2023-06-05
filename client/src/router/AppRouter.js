@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Shopping from "../pages/Shopping";
 import GameDetail from "../pages/GameDetail";
 import Login from "../pages/Login";
@@ -8,6 +13,7 @@ import Orders from "../pages/Orders";
 import PaymentSuccess from "../pages/PaymentSuccess";
 import PaymentFailed from "../pages/PaymentFailed";
 import RateGame from "../pages/RateGame";
+import Page404 from "../pages/Page404";
 
 export default function AppRouter() {
   return (
@@ -24,6 +30,7 @@ export default function AppRouter() {
         <Route path="/paymentsuccess" element={<PaymentSuccess />} />
         <Route path="/paymentfailed" element={<PaymentFailed />} />
         <Route path="/rategame" element={<RateGame />} />
+        <Route path="/*" element={<Page404 />} />
       </Routes>
     </>
   );
