@@ -48,7 +48,7 @@ const addToCart = async (productId, quantity) => {
     });
 };
 
-const deleteFromCart = (productId) => {
+const deleteFromCart = (productId, initializeCart) => {
   axios
     .post(
       baseURL + "/cart/remove",
@@ -71,7 +71,8 @@ const deleteFromCart = (productId) => {
         theme: "colored",
       });
       // getAllFromCart();
-      sessionStorage.setItem("isCartUpdated", "Yes");
+      initializeCart();
+      // sessionStorage.setItem("isCartUpdated", "Yes");
     })
     .catch((err) => {
       console.log(err);

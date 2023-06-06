@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/CartItems.css";
 import { deleteFromCart } from "../utils/cartHandler";
 
-function CartItems({ gameId, coverURL, title, price, deleteItem }) {
+function CartItems({ gameId, coverURL, title, price, initializeCart }) {
   return (
     <div id="cartItemBody">
       <div className="cartItem">
@@ -14,7 +14,7 @@ function CartItems({ gameId, coverURL, title, price, deleteItem }) {
         <img
           id="deleteCartItemBtn"
           onClick={() => {
-            deleteFromCart(gameId);
+            deleteFromCart(gameId, initializeCart);
           }}
           height="24px"
           src="/res/trash.png"

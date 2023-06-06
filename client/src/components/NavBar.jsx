@@ -25,7 +25,7 @@ function NavBar() {
   const [cart, setCart] = useState([]);
   const [totalBill, setTotalBill] = useState(0);
 
-  const initializieCart = async () => {
+  const initializeCart = async () => {
     await axios
       .get(baseURL + "/cart/get", { withCredentials: true })
       .then((res) => {
@@ -47,12 +47,10 @@ function NavBar() {
       axios
         .get(baseURL + "/cart/get", { withCredentials: true })
         .then((res) => {
-          console.log(res.data.data.cart);
           setCart(res.data.data.cart);
           let total = 0;
           res.data.data.cart.forEach((ele) => (total += ele.price));
           setTotalBill(total);
-          console.log(total);
         })
         .catch((err) => {
           console.log(err);
@@ -65,7 +63,7 @@ function NavBar() {
       if (sessionStorage.getItem("user")) {
         let userObj = JSON.parse(sessionStorage.getItem("user"));
         setUser(userObj);
-        initializieCart();
+        initializeCart();
       }
       setInterval(() => {
         refreshCart();
@@ -103,7 +101,7 @@ function NavBar() {
           />
         </div>
       </div>
-      <div id="userUtil">
+      <div id="userUtil" onMouseEnter={initializeCart}>
         <Popover>
           {user && (
             <PopoverTrigger>
@@ -146,6 +144,7 @@ function NavBar() {
                             coverURL={item.cover.secure_url}
                             title={item.name}
                             price={item.price}
+                            initializeCart={initializeCart}
                           />
                         )
                       );
