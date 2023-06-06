@@ -19,7 +19,6 @@ function GameDetail() {
       .get(baseURL + "/product/" + sessionStorage.getItem("selectedGame"))
       .then((res) => {
         setSelectedGame(res.data.product);
-        // console.log(res.data.product);
       })
       .catch((err) => {
         console.log(err);
@@ -86,7 +85,7 @@ function GameDetail() {
               <img src="/res/review.png" />
               <h4>
                 {selectedGame && selectedGame.ratings
-                  ? selectedGame.ratings + " / 5"
+                  ? new Number(selectedGame.ratings).toFixed(1) + " / 5"
                   : "Not yet rated"}{" "}
               </h4>
             </div>

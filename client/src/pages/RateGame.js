@@ -24,7 +24,6 @@ function RateGame() {
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data.product);
         setGame(res.data.product);
       })
       .catch((err) => {
@@ -68,7 +67,6 @@ function RateGame() {
           { withCredentials: true }
         )
         .then((res) => {
-          console.log(res);
           toast.success("Review posted successfully !", {
             position: "top-right",
             autoClose: 5000,

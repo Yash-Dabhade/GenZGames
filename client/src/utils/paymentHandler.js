@@ -12,7 +12,6 @@ const checkoutHandler = async (amount, orderItems) => {
     .get(baseURL + "/razorpaykey", { withCredentials: true })
     .then((res) => {
       key = res.data.razorpaykey;
-      console.log(res.data.razorpaykey);
       axios
         .post(
           baseURL + "/capturerazorpay",

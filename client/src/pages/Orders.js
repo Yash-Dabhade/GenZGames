@@ -17,7 +17,6 @@ function Orders() {
       .get(baseURL + "/myorder", { withCredentials: true })
       .then((res) => {
         let data = res.data.order.reverse();
-        console.log(data);
         setOrder(data);
       })
       .catch((err) => {

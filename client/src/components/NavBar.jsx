@@ -42,7 +42,6 @@ function NavBar() {
 
   const refreshCart = () => {
     if (sessionStorage.getItem("isCartUpdated") == "Yes") {
-      console.log("Cart Refresh");
       sessionStorage.setItem("isCartUpdated", "No");
       axios
         .get(baseURL + "/cart/get", { withCredentials: true })

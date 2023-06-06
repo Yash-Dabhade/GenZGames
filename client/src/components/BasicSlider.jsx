@@ -7,11 +7,6 @@ function BasicSlider({ photos }) {
       slidingAnimation="left_to_right"
       orientation="horizontal"
       initialSlide={1}
-      onBeforeChange={(previousSlide, nextSlide) =>
-        console.log("onBeforeChange", previousSlide, nextSlide)
-      }
-      onChange={(nextslide) => console.log("onChange", nextslide)}
-      onAfterChange={(nextSlide) => console.log("onAfterchange", nextSlide)}
       style={{
         borderRadius: "12px",
         backgroundColor: "rgba(0,0,0,0.33)",

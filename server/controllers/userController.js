@@ -126,9 +126,6 @@ exports.addToCart = BigPromise(async (req, res, next) => {
 
   // data validation
   if (!userId || !productId || !quantity) {
-    console.log(userId);
-    console.log(productId);
-    console.log(quantity);
     return next(new customError("All values are are mandatory !"));
   }
 
@@ -208,8 +205,6 @@ exports.deleteFromCart = BigPromise(async (req, res, next) => {
   if (!user) {
     return res.json({ code: 400, message: "Invalid User" });
   }
-
-  console.log(user.cart);
 
   user.cart = user.cart.filter((ele) => {
     return ele != productId;

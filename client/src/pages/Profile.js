@@ -17,7 +17,6 @@ function Profile() {
     axios
       .get(baseURL + "/userdashboard", { withCredentials: true })
       .then((res) => {
-        console.log(res);
         setUser(res.data.user);
       })
       .catch((err) => {
@@ -28,7 +27,7 @@ function Profile() {
   const handleSubmit = (e) => {
     e.preventDefault();
     let formData = new FormData();
-    formData.append("file", file);
+    formData.append("photo", file);
     axios
       .post(
         baseURL + "/userdashboard/update",
@@ -43,9 +42,7 @@ function Profile() {
           withCredentials: true,
         }
       )
-      .then((res) => {
-        console.log(res);
-      })
+      .then((res) => {})
       .catch((err) => {
         console.log(err);
       });
