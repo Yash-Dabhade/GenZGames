@@ -30,8 +30,6 @@ const addToCart = async (productId, quantity) => {
         progress: undefined,
         theme: "colored",
       });
-      // getAllFromCart();
-      sessionStorage.setItem("isCartUpdated", "Yes");
     })
     .catch((err) => {
       console.log(err);
@@ -70,9 +68,7 @@ const deleteFromCart = (productId, initializeCart) => {
         progress: undefined,
         theme: "colored",
       });
-      // getAllFromCart();
       initializeCart();
-      // sessionStorage.setItem("isCartUpdated", "Yes");
     })
     .catch((err) => {
       console.log(err);
@@ -89,17 +85,4 @@ const deleteFromCart = (productId, initializeCart) => {
     });
 };
 
-const getAllFromCart = async () => {
-  await axios
-    .get(baseURL + "/cart/get", { withCredentials: true })
-    .then((res) => {
-      console.log(res.data.data.cart);
-      sessionStorage.setItem("userCart", JSON.stringify(res.data.data.cart));
-      sessionStorage.setItem("isCartUpdated", "Yes");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
-export { addToCart, getAllFromCart, deleteFromCart };
+export { addToCart, deleteFromCart };

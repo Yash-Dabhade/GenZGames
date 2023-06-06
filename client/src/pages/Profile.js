@@ -18,6 +18,8 @@ function Profile() {
       .get(baseURL + "/userdashboard", { withCredentials: true })
       .then((res) => {
         setUser(res.data.user);
+        setName(res.data.user.name);
+        setEmail(res.data.user.email);
       })
       .catch((err) => {
         console.log(err);
@@ -28,21 +30,20 @@ function Profile() {
     e.preventDefault();
     let formData = new FormData();
     formData.append("photo", file);
-    axios
-      .post(
-        baseURL + "/userdashboard/update",
-        {
-          name,
-          email,
-          password: newPassword,
-          formData,
-        },
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", newPassword);
+    formData.append("userId", JSON.parse(sessionStorage.getItem("user"))._id);
 
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {})
+    axios
+      .post(baseURL + "/userdashboard/update", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((res) => {
+        setUser(res.data.user);
+        sessionStorage.setItem("user", JSON.stringify(res.data.user));
+        window.location.href = "/profile";
+      })
       .catch((err) => {
         console.log(err);
       });

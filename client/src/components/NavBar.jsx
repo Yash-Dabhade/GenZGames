@@ -40,23 +40,6 @@ function NavBar() {
       });
   };
 
-  const refreshCart = () => {
-    if (sessionStorage.getItem("isCartUpdated") == "Yes") {
-      sessionStorage.setItem("isCartUpdated", "No");
-      axios
-        .get(baseURL + "/cart/get", { withCredentials: true })
-        .then((res) => {
-          setCart(res.data.data.cart);
-          let total = 0;
-          res.data.data.cart.forEach((ele) => (total += ele.price));
-          setTotalBill(total);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  };
-
   useEffect(() => {
     setTimeout(() => {
       if (sessionStorage.getItem("user")) {
@@ -64,9 +47,6 @@ function NavBar() {
         setUser(userObj);
         initializeCart();
       }
-      setInterval(() => {
-        refreshCart();
-      }, 1000);
     }, 500);
   }, []);
 

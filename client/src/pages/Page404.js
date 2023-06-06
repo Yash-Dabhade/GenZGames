@@ -4,34 +4,18 @@ import { NavLink } from "react-router-dom";
 
 function Page404() {
   return (
-    <div
-      style={{
-        backgroundColor: "whitesmoke",
-        height: "100vh",
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-      }}
-    >
+    <div id="pageNotFoundContainer">
       <title>Page Not Found</title>
       <img src="https://i.ibb.co/W6tgcKQ/softcodeon.gif" />
-      <h1 className="error-text">
-        Whoops, We can't seem to find the resource you're looking for.
-      </h1>
-      <p className="text">
-        Please check that the Web site address is spelled correctly.Or,
-      </p>
-      <div className="btn1">
-        <NavLink
-          to="/"
-          className="error"
-          href="https://softcodeon.com/tutorials/create-custom-404-error-page.htm"
-        >
-          Go to Homepage
-        </NavLink>
-      </div>
+      <h1 className="error-text">It Looks Like You Are Lost ...</h1>
+
+      <NavLink
+        to="/"
+        className="error"
+        href="https://softcodeon.com/tutorials/create-custom-404-error-page.htm"
+      >
+        <div className="btn1">Go Home</div>
+      </NavLink>
     </div>
   );
 }

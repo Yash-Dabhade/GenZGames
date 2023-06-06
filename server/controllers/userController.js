@@ -365,12 +365,16 @@ exports.changePassword = BigPromise(async (req, res, next) => {
 
 exports.updateUserDetails = BigPromise(async (req, res, next) => {
   //checking the data
-  if (!(req.body.name && req.body.email && req.body.password)) {
+  // console.log(req.body.formData.get("name"));
+
+  if (
+    !(req.body.name && req.body.email && req.body.password && req.body.userId)
+  ) {
     return next(
       new customError("Please provide all the data while updating !", 400)
     );
   }
-
+  // console.log(req.body);
   //collect data from the body
   const newData = {
     name: req.body.name,
@@ -380,13 +384,15 @@ exports.updateUserDetails = BigPromise(async (req, res, next) => {
 
   //if photo is also update
   if (req.files && req.files.photo) {
-    const user = await User.findById(req.user.id);
+    // console.log(req.files.photo);
 
-    const imageId = user.photo.id;
+    const user = await User.findById(req.body.userId);
 
-    //delet photo on cloudinary
-    await cloudinary.uploader.destroy(imageId);
-
+    if (user.photo && user.photo.id) {
+      const imageId = user.photo.id;
+      //delet photo on cloudinary
+      if (imageId) await cloudinary.uploader.destroy(imageId);
+    }
     //upload the new photo
     const result = await cloudinary.uploader.upload(
       req.files.photo.tempFilePath,
@@ -396,7 +402,6 @@ exports.updateUserDetails = BigPromise(async (req, res, next) => {
         crop: "scale",
       }
     );
-
     //add photo data in new data object
     newData.photo = {
       id: result.public_id,
@@ -404,10 +409,10 @@ exports.updateUserDetails = BigPromise(async (req, res, next) => {
     };
   }
 
+  console.log(req.body.userId);
   //update the data in user
-  const user = await User.findByIdAndUpdate(req.user.id, newData, {
+  const user = await User.findByIdAndUpdate(req.body.userId, newData, {
     new: true,
-    runValidators: true,
     useFindAndModify: false,
   });
 
