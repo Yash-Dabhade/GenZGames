@@ -3,15 +3,15 @@ import "../styles/Login.css";
 import { NavLink, redirect } from "react-router-dom";
 import { baseURL } from "../utils/constants";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Register() {
-  const [user, setUser] = useState();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
   const handleSignInWithGoogle = () => {
     window.open(baseURL + "/auth/google", "_self");
@@ -19,6 +19,18 @@ function Register() {
 
   const handleSignUp = () => {
     // alert("sing");
+    if (!regex.test(email)) {
+      toast.error("Email is not in valid format or already used!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
     if (!email.length == 0 && !name.length == 0 && password.length >= 6) {
       axios
         .post(

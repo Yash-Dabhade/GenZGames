@@ -1,5 +1,7 @@
 import { baseURL } from "./constants";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const checkoutHandler = async (amount, orderItems) => {
   if (!sessionStorage.getItem("user")) {
@@ -54,7 +56,22 @@ const checkoutHandler = async (amount, orderItems) => {
                   { withCredentials: true }
                 )
                 .then((res) => {
-                  window.location.href = "/orders";
+                  toast.success(
+                    "Payment successfull ! Getting your game ready ",
+                    {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "colored",
+                    }
+                  );
+                  setTimeout(() => {
+                    window.location.href = "/orders";
+                  }, 3000);
                 })
                 .catch((err) => {
                   console.log(err);
@@ -74,7 +91,16 @@ const checkoutHandler = async (amount, orderItems) => {
           const razor = new window.Razorpay(options);
           razor.open();
           razor.on("payment.failed", function (response) {
-            window.location.href = "/paymentfailed";
+            toast.error("Payment Failed ! Please try again later", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
           });
         })
         .catch((err) => {
