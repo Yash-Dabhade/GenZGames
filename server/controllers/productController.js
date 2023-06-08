@@ -8,63 +8,80 @@ const cloudinary = require("cloudinary").v2;
 exports.addProduct = BigPromise(async (req, res, next) => {
   //images
   let imageArray = [];
+  // console.log(req.body);
   //check if images present
   if (!req.files) {
     return next(new customError("Images are required", 401));
   }
   //upload all images
   if (req.files) {
-    const resultCover = await cloudinary.uploader.upload(
-      req.files.cover.tempFilePath,
-      {
+    cloudinary.uploader
+      .upload(req.files.cover.tempFilePath, {
         folder: "covers",
-      }
-    );
+      })
+      .then((resultCover) => {
+        req.body.cover = {
+          id: resultCover.public_id,
+          secure_url: resultCover.secure_url,
+        };
 
-    req.body.cover = {
-      id: resultCover.public_id,
-      secure_url: resultCover.secure_url,
-    };
+        cloudinary.uploader
+          .upload(req.files.background.tempFilePath, {
+            folder: "background",
+          })
+          .then((resultBackground) => {
+            req.body.background = {
+              id: resultBackground.public_id,
+              secure_url: resultBackground.secure_url,
+            };
+            // for (let index = 0; index < req.files.photos.length; index++) {
+            //   cloudinary.uploader
+            //     .upload(req.files.photos[index].tempFilePath, {
+            //       folder: "products",
+            //     })
+            //     .then((result) => {
+            //       imageArray.push({
+            //         id: result.public_id,
+            //         secure_url: result.secure_url,
+            //       });
+            //     })
+            //     .catch((err) => {
+            //       console.log(err);
+            //       res.status(400).json({ success: false, error: err });
+            //     });
+            // }
+            // console.log(imageArray);
 
-    const resultBackground = await cloudinary.uploader.upload(
-      req.files.background.tempFilePath,
-      {
-        folder: "background",
-      }
-    );
+            //add photos and user to body
+            req.body.photos = imageArray;
+            req.body.user = req.user.id;
+            req.body.gameKeys = req.body.gameKeys.split(",");
 
-    req.body.background = {
-      id: resultBackground.public_id,
-      secure_url: resultBackground.secure_url,
-    };
+            //create product instance
+            Product.create(req.body)
+              .then((product) => {
+                //send response
+                res.status(200).json({
+                  success: true,
+                  product,
+                });
+              })
+              .catch((err) => {
+                console.log(err);
+                res.status(400).json({ success: false, error: err });
+              });
+          })
+          .catch((err) => {
+            res.status(400).json({ success: false, error: err });
 
-    for (let index = 0; index < req.files.photos.length; index++) {
-      const result = await cloudinary.uploader.upload(
-        req.files.photos[index].tempFilePath,
-        {
-          folder: "products",
-        }
-      );
-      imageArray.push({
-        id: result.public_id,
-        secure_url: result.secure_url,
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(400).json({ success: false, error: err });
       });
-    }
   }
-
-  //add photos and user to body
-  req.body.photos = imageArray;
-  req.body.user = req.user.id;
-  req.body.gameKeys = req.body.gameKeys.split(",");
-
-  //create product instance
-  const product = await Product.create(req.body);
-
-  //send response
-  res.status(200).json({
-    success: true,
-    product,
-  });
 });
 
 //get all products
@@ -234,35 +251,30 @@ exports.adminGetAllProduct = BigPromise(async (req, res, next) => {
 
 exports.adminUpdateOneProduct = BigPromise(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
+  const { screenshots, gameKeys } = req.body;
 
   if (!product) {
     return next(new customError("No product found with the givven ID", 404));
   }
 
   let imagesArray = [];
-  if (req.files) {
-    //destroy the existing image
-    for (let index = 0; index < product.photos.length; index++) {
-      const res = await cloudinary.uploader.destroy(product.photos[index].id);
-    }
 
-    //add new photos
-    for (let index = 0; index < req.files.photos.length; index++) {
-      let result = await cloudinary.uploader.upload(
-        req.files.photos[index].tempFilePath,
-        {
-          folder: "products", //folder name -> .env
-        }
-      );
-
-      imagesArray.push({
-        id: result.public_id,
-        secure_url: result.secure_url,
-      });
-    }
-  }
+  let screenShotArray = screenshots.split(",");
+  screenShotArray.forEach((url) => {
+    imagesArray.push({
+      id: Date.now(),
+      secure_url: url,
+    });
+  });
 
   req.body.photos = imagesArray;
+
+  if (gameKeys) {
+    let newGameKeys = gameKeys.split(",");
+    product.gameKeys.push(...newGameKeys);
+    req.body.gameKeys = product.gameKeys;
+    req.body.stock = new Number(product.stock + newGameKeys.length);
+  }
 
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,

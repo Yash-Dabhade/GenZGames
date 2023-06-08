@@ -57,7 +57,7 @@ const productSchema = new mongoose.Schema({
         "adventure",
         "simulation",
         "arcade",
-        "open world",
+        "openworld",
         "strategy",
       ],
       message: "please select category only from given list",
