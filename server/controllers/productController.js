@@ -90,6 +90,8 @@ exports.getAllProduct = BigPromise(async (req, res, next) => {
   const resultPerPage = 9;
   const totalCountProduct = await Product.countDocuments();
 
+  console.log(totalCountProduct);
+
   const productsObj = new WhereClause(Product.find(), req.query)
     .search()
     .filter();
@@ -103,6 +105,8 @@ exports.getAllProduct = BigPromise(async (req, res, next) => {
   // products.forEach((ele) => {
   //   ele.gameKeys = null;
   // });
+
+  console.log(products);
 
   res.status(200).json({
     success: true,
