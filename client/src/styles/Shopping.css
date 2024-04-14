@@ -75,7 +75,7 @@
     display: grid;
     width: auto;
     overflow-y: scroll;
-    height: 1200px;
+    height: 1550px;
     /* grid-template-rows: repeat(3,1fr); */
     grid-template-columns: repeat(3,1fr);
     column-gap: 25px;
