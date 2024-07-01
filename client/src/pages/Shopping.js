@@ -23,8 +23,10 @@ function Shopping() {
     await axios
       .get(baseURL + "/userdashboard", { withCredentials: true })
       .then((res) => {
-        sessionStorage.setItem("user", JSON.stringify(res.data.user));
-        sessionStorage.setItem("cart", res.data.user.cart);
+        if (res?.data?.user) {
+          sessionStorage.setItem("user", JSON.stringify(res.data.user));
+          sessionStorage.setItem("cart", res.data.user.cart);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -94,8 +96,10 @@ function Shopping() {
   };
 
   useEffect(() => {
-    fetchLoggedInUserDetails();
     fetchAllGames();
+    if (sessionStorage.getItem("isLoggedIn") != null) {
+      fetchLoggedInUserDetails();
+    }
   }, []);
 
   return (

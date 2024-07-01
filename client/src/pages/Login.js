@@ -31,12 +31,13 @@ function Login() {
         .then((res) => {
           console.log("Success Login !");
           console.log(res);
-          Cookies.set("token", res.data.token, {
-            expires: 7,
-            secure: true,
-            domain: "genzgames-production.up.railway.app",
-          });
-          // window.location.href = "/";
+          sessionStorage.setItem("isLoggedIn", true);
+          // Cookies.set("token", res.data.token, {
+          //   expires: 7,
+          //   secure: true,
+          //   domain: "genzgames-production.up.railway.app",
+          // });
+          window.location.href = "/";
         })
         .catch((err) => {
           toast.error("Unable to Login In with given credentials !", {

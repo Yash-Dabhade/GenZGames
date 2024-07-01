@@ -90,7 +90,7 @@ exports.getAllProduct = BigPromise(async (req, res, next) => {
   const resultPerPage = 9;
   const totalCountProduct = await Product.countDocuments();
 
-  console.log(totalCountProduct);
+  // console.log(totalCountProduct);
 
   const productsObj = new WhereClause(Product.find(), req.query)
     .search()
@@ -106,7 +106,7 @@ exports.getAllProduct = BigPromise(async (req, res, next) => {
   //   ele.gameKeys = null;
   // });
 
-  console.log(products);
+  // console.log(products);
 
   res.status(200).json({
     success: true,
@@ -162,7 +162,7 @@ exports.addReview = BigPromise(async (req, res, next) => {
     comment,
   };
 
-  console.log(review);
+  // console.log(review);
 
   const product = await Product.findById(productId);
 

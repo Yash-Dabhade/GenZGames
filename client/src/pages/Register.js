@@ -45,6 +45,7 @@ function Register() {
           }
         )
         .then((res) => {
+          sessionStorage.setItem("isLoggedIn", true);
           window.location.href = "/";
         })
         .catch((err) => {
