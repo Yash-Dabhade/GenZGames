@@ -37,7 +37,7 @@ function Login() {
           //   secure: true,
           //   domain: "genzgames-production.up.railway.app",
           // });
-          window.location.href = "/";
+          // window.location.href = "/";
         })
         .catch((err) => {
           toast.error("Unable to Login In with given credentials !", {
