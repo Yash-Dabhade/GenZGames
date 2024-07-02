@@ -7,6 +7,7 @@ exports.isLoggedIn = BigPromise(async (req, res, next) => {
   //extract token
   const token = req.cookies.token;
 
+  conosole.log("token : ", token);
   //validate token
   if (!token) {
     return next(
