@@ -23,6 +23,7 @@ function Shopping() {
     await axios
       .get(baseURL + "/userdashboard", { withCredentials: true })
       .then((res) => {
+        console.log("Inside Fetch Dashboad", res);
         if (res?.data?.user) {
           sessionStorage.setItem("user", JSON.stringify(res.data.user));
           sessionStorage.setItem("cart", res.data.user.cart);
@@ -97,7 +98,7 @@ function Shopping() {
 
   useEffect(() => {
     fetchAllGames();
-    if (sessionStorage.getItem("isLoggedIn") == true) {
+    if (sessionStorage.getItem("isLoggedIn")) {
       fetchLoggedInUserDetails();
     }
   }, []);

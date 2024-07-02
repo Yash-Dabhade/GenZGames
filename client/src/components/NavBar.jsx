@@ -42,10 +42,14 @@ function NavBar() {
 
   useEffect(() => {
     setTimeout(() => {
-      if (sessionStorage.getItem("isLoggedIn") == true) {
-        let userObj = JSON.parse(sessionStorage.getItem("user"));
-        setUser(userObj);
-        initializeCart();
+      console.log(sessionStorage.getItem("isLoggedIn"));
+      if (sessionStorage.getItem("isLoggedIn")) {
+        console.log("Inside : ");
+        if (sessionStorage.getItem("user")) {
+          let userObj = JSON.parse(sessionStorage.getItem("user"));
+          setUser(userObj);
+          initializeCart();
+        }
       }
     }, 500);
   }, []);

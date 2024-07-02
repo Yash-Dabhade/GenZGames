@@ -37,6 +37,7 @@ function Login() {
           //   secure: true,
           //   domain: "genzgames-production.up.railway.app",
           // });
+          sessionStorage.setItem("user", JSON.stringify(res.data.user));
           window.location.href = "/";
         })
         .catch((err) => {

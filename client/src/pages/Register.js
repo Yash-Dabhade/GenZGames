@@ -46,6 +46,7 @@ function Register() {
         )
         .then((res) => {
           sessionStorage.setItem("isLoggedIn", true);
+          sessionStorage.setItem("user", JSON.stringify(res.data.user));
           console.log(res);
           window.location.href = "/";
         })
