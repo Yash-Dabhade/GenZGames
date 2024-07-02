@@ -97,7 +97,7 @@ function Shopping() {
 
   useEffect(() => {
     fetchAllGames();
-    if (sessionStorage.getItem("isLoggedIn") != null) {
+    if (sessionStorage.getItem("isLoggedIn") == true) {
       fetchLoggedInUserDetails();
     }
   }, []);

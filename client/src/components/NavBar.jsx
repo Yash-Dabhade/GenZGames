@@ -42,7 +42,7 @@ function NavBar() {
 
   useEffect(() => {
     setTimeout(() => {
-      if (sessionStorage.getItem("user") != null) {
+      if (sessionStorage.getItem("isLoggedIn") == true) {
         let userObj = JSON.parse(sessionStorage.getItem("user"));
         setUser(userObj);
         initializeCart();

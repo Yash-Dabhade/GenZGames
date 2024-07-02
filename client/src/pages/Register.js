@@ -47,7 +47,7 @@ function Register() {
         .then((res) => {
           sessionStorage.setItem("isLoggedIn", true);
           console.log(res);
-          // window.location.href = "/";
+          window.location.href = "/";
         })
         .catch((err) => {
           toast.error("Unable to register, Please try again later !", {
