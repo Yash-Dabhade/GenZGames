@@ -12,7 +12,7 @@ exports.isLoggedIn = BigPromise(async (req, res, next) => {
   if (!token) {
     return next(
       // new customError("Please Log In first to access this page", 401)
-      res.status(500).json({"Please log in to access this page !"});
+      res.status(500).json({message:"Please log in to access this page !"});
     );
   }
 
