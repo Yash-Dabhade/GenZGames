@@ -15,15 +15,13 @@ const app = express();
 //setting up cors
 // app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
-//deployment
-app.use(
-  cors({
-    credentials: true,
-    origin: "https://gen-z-games.vercel.app",
-    allowedHeaders: true,
-  })
-);
-// app.use(cors({ credentials: true, origin: "https://gen-z-games.vercel.app" }));
+const cors = require("cors");
+const corsOptions = {
+  origin: "https://gen-z-games.vercel.app",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 app.use(session({ resave: false, saveUninitialized: true, secret: "SECRET" }));
 
