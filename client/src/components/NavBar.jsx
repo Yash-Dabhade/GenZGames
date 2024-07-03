@@ -47,15 +47,17 @@ function NavBar() {
   };
 
   useEffect(() => {
-    setTimeout(() => {
+    const currInterval = setInterval(() => {
       if (sessionStorage.getItem("isLoggedIn")) {
         if (sessionStorage.getItem("user")) {
           let userObj = JSON.parse(sessionStorage.getItem("user"));
           setUser(userObj);
           initializeCart();
+          console.log("interval");
+          clearInterval(currInterval);
         }
       }
-    }, 800);
+    }, 500);
   }, []);
 
   const handleLogOut = async () => {
