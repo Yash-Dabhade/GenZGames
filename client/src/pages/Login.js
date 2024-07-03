@@ -80,7 +80,7 @@ function Login() {
         <div className="form-container sign-in-container">
           <div className="authForm">
             <h1 id="title1">Sign in</h1>
-            {/* <div className="social-container">
+            <div className="social-container">
               <div className="social-container">
                 <button
                   className="signInWithGoogle"
@@ -90,8 +90,8 @@ function Login() {
                   Sign In With Google
                 </button>
               </div>
-            </div> */}
-            {/* <span id="authSpan">or use your account</span> */}
+            </div>
+            <span id="authSpan">or use your account</span>
             <input
               className="authInput"
               type="email"

@@ -109,13 +109,10 @@ exports.signInWithGoogleSuccess = BigPromise(async (req, res, next) => {
   };
 
   //set password undefined for security
-  user.password = undefined;
+  myUser.password = undefined;
 
   //send response
-  res
-    .status(200)
-    .json("token", token, options)
-    .redirect(process.env.REDIRECT_URL);
+  res.status(200).redirect(process.env.REDIRECT_URL + "/" + token);
   // cookieToken(req.user, res);
 });
 
@@ -367,9 +364,7 @@ exports.updateUserDetails = BigPromise(async (req, res, next) => {
   //checking the data
   // console.log(req.body.formData.get("name"));
 
-  if (
-    !(req.body.name && req.body.email && req.body.password && req.body.userId)
-  ) {
+  if (!(req.body.name && req.body.email && req.body.userId)) {
     return next(
       new customError("Please provide all the data while updating !", 400)
     );
@@ -379,7 +374,6 @@ exports.updateUserDetails = BigPromise(async (req, res, next) => {
   const newData = {
     name: req.body.name,
     email: req.body.email,
-    password: req.body.password,
   };
 
   //if photo is also update

@@ -99,7 +99,7 @@ function Register() {
         <div className="form-container sign-in-container">
           <div className="authForm">
             <h1 id="title1">Create Account</h1>
-            {/* <div className="social-container">
+            <div className="social-container">
               <button
                 className="signInWithGoogle"
                 onClick={handleSignInWithGoogle}
@@ -107,8 +107,8 @@ function Register() {
                 <img src="./res/google.png" height={"25px"} />
                 Sign In With Google
               </button>
-            </div> */}
-            <span id="authSpan">Use your email for registration</span>
+            </div>
+            <span id="authSpan">or Use your email for registration</span>
             <input
               className="authInput"
               type="text"

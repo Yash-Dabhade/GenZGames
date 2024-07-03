@@ -65,7 +65,7 @@ export default function Footer() {
                 <li>
                   <a
                     className="footer__self_bio__container__social_link"
-                    href="https://github.com/Yash-Dabhade"
+                    href="https://www.linkedin.com/in/yashdabhade283/"
                   >
                     <UseAnimations
                       animation={linkedin}

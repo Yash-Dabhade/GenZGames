@@ -11,7 +11,6 @@ function Profile() {
   const [user, setUser] = useState(null);
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
-  const [newPassword, setNewPassword] = useState(null);
   const [file, setFile] = useState(null);
 
   useEffect(() => {
@@ -38,7 +37,6 @@ function Profile() {
     formData.append("photo", file);
     formData.append("name", name);
     formData.append("email", email);
-    formData.append("password", newPassword);
     formData.append("userId", JSON.parse(sessionStorage.getItem("user"))._id);
     const token = sessionStorage.getItem("jwtToken");
     axios
@@ -120,15 +118,9 @@ function Profile() {
                   name="email"
                   id="profileEmail"
                 />
-                <label for="profilePassward">New Password </label>
-                <input
-                  type="password"
-                  onChange={(e) => {
-                    setNewPassword(e.target.value);
-                  }}
-                  name="password"
-                  id="profilePassword"
-                />
+                <label for="profilePassward">
+                  You cannot undo this action !
+                </label>
                 <input type="submit" value="Update Now" id="submitProfile" />
               </div>
             </form>

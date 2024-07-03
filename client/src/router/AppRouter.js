@@ -12,6 +12,7 @@ import Profile from "../pages/Profile";
 import Orders from "../pages/Orders";
 import RateGame from "../pages/RateGame";
 import Page404 from "../pages/Page404";
+import GoogleSignInPage from "../pages/GoogleSignInPage";
 
 export default function AppRouter() {
   return (
@@ -21,8 +22,8 @@ export default function AppRouter() {
         <Route path="/details" element={<GameDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/google/:token" element={<GoogleSignInPage />} />
 
-        {/* TODO : protected routes */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/rategame" element={<RateGame />} />
