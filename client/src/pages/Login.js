@@ -5,18 +5,19 @@ import { baseURL } from "../utils/constants";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Cookies from "js-cookie";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignInWithGoogle = () => {
+    sessionStorage.setItem("isLoggedIn", true);
     window.open(baseURL + "/auth/google", "_self");
   };
 
   const handleSignIn = () => {
     if (email.length != 0 && password.length != 0) {
+      axios.defaults.withCredentials = true;
       axios
         .post(
           baseURL + "/login",
@@ -32,12 +33,7 @@ function Login() {
           console.log("Success Login !");
           console.log(res);
           sessionStorage.setItem("isLoggedIn", true);
-          // Cookies.set("token", res.data.token, {
-          //   expires: 7,
-          //   secure: true,
-          //   domain: "genzgames-production.up.railway.app",
-          // });
-          sessionStorage.setItem("user", JSON.stringify(res.data.user));
+          sessionStorage.setItem("jwtToken", res.data.token);
           window.location.href = "/";
         })
         .catch((err) => {
@@ -84,7 +80,7 @@ function Login() {
         <div className="form-container sign-in-container">
           <div className="authForm">
             <h1 id="title1">Sign in</h1>
-            <div className="social-container">
+            {/* <div className="social-container">
               <div className="social-container">
                 <button
                   className="signInWithGoogle"
@@ -94,8 +90,8 @@ function Login() {
                   Sign In With Google
                 </button>
               </div>
-            </div>
-            <span id="authSpan">or use your account</span>
+            </div> */}
+            {/* <span id="authSpan">or use your account</span> */}
             <input
               className="authInput"
               type="email"
@@ -108,9 +104,9 @@ function Login() {
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <a id="autha" href="#">
+            {/* <a id="autha" href="#">
               Forgot your password?
-            </a>
+            </a> */}
             <button className="authButton" onClick={handleSignIn}>
               Sign In
             </button>

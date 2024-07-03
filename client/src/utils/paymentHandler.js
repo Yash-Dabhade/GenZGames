@@ -8,10 +8,14 @@ const checkoutHandler = async (amount, orderItems) => {
     window.location.href = "/login";
     return;
   }
-
+  const token = sessionStorage.getItem("jwtToken");
   let key, order;
   axios
-    .get(baseURL + "/razorpaykey", { withCredentials: true })
+    .get(baseURL + "/razorpaykey", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
     .then((res) => {
       key = res.data.razorpaykey;
       axios
@@ -20,7 +24,11 @@ const checkoutHandler = async (amount, orderItems) => {
           {
             amount,
           },
-          { withCredentials: true }
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
         )
         .then((res) => {
           order = res.data.order;
@@ -53,7 +61,11 @@ const checkoutHandler = async (amount, orderItems) => {
                     taxAmount: 0,
                     totalAmount: order.amount,
                   },
-                  { withCredentials: true }
+                  {
+                    headers: {
+                      Authorization: "Bearer " + token,
+                    },
+                  }
                 )
                 .then((res) => {
                   toast.success(

@@ -114,7 +114,7 @@ exports.signInWithGoogleSuccess = BigPromise(async (req, res, next) => {
   //send response
   res
     .status(200)
-    .cookie("token", token, options)
+    .json("token", token, options)
     .redirect(process.env.REDIRECT_URL);
   // cookieToken(req.user, res);
 });

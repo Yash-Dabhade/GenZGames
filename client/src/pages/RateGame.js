@@ -5,6 +5,7 @@ import axios from "axios";
 import { baseURL } from "../utils/constants";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getJWTToken } from "../utils/getToken";
 
 function RateGame() {
   const colors = {
@@ -56,6 +57,7 @@ function RateGame() {
         theme: "colored",
       });
     } else {
+      const token = sessionStorage.getItem("jwtToken");
       axios
         .post(
           baseURL + "/review",
@@ -64,7 +66,11 @@ function RateGame() {
             rating: currentValue,
             productId: sessionStorage.getItem("reviewProductId"),
           },
-          { withCredentials: true }
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
         )
         .then((res) => {
           toast.success("Review posted successfully !", {

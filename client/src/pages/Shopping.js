@@ -13,6 +13,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getJWTToken } from "../utils/getToken";
 
 function Shopping() {
   const [banner, setBanner] = useState("To be done");
@@ -20,11 +21,15 @@ function Shopping() {
 
   const fetchLoggedInUserDetails = async () => {
     //user details
+    const token = sessionStorage.getItem("jwtToken");
     await axios
-      .get(baseURL + "/userdashboard", { withCredentials: true })
+      .get(baseURL + "/userdashboard", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
-        console.log("Inside Fetch Dashboad", res);
-        if (res?.data?.user) {
+        if (res.data.user) {
           sessionStorage.setItem("user", JSON.stringify(res.data.user));
           sessionStorage.setItem("cart", res.data.user.cart);
         }
@@ -35,8 +40,13 @@ function Shopping() {
   };
 
   const fetchAllGames = async (sortBy = "low") => {
+    const token = sessionStorage.getItem("jwtToken");
     await axios
-      .get(baseURL + "/products", { withCredentials: true })
+      .get(baseURL + "/products", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         let sortedProducts = [];
         if (sortBy == "low") {
@@ -53,12 +63,17 @@ function Shopping() {
 
   //filter
   const filterByCategory = (categories, sortBy) => {
+    const token = sessionStorage.getItem("jwtToken");
     if (categories && categories.length > 0) {
       axios
         .post(
           baseURL + "/filteredproducts",
           { categories, sortBy },
-          { withCredentials: true }
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
         )
         .then((res) => {
           let categorizedProducts = res.data.categorizedProducts;
@@ -98,8 +113,10 @@ function Shopping() {
 
   useEffect(() => {
     fetchAllGames();
-    if (sessionStorage.getItem("isLoggedIn")) {
+    if (sessionStorage.getItem("jwtToken")) {
       fetchLoggedInUserDetails();
+    } else {
+      window.location.href = "/login";
     }
   }, []);
 

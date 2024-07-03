@@ -4,8 +4,18 @@ const customError = require("../utils/customError");
 const User = require("../models/user");
 
 exports.isLoggedIn = BigPromise(async (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    return next(
+      // new customError("Please Log In first to access this page", 401)
+      res.status(500).json({ message: "Please log in to access this page !" })
+    );
+  }
+
   //extract token
-  const token = req.cookies.token;
+  // const token = req.cookies.token;
+  const token = authHeader.split(" ")[1];
 
   console.log("token : ", token);
   //validate token

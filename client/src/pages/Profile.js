@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../utils/constants";
+import { getJWTToken } from "../utils/getToken";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -14,8 +15,13 @@ function Profile() {
   const [file, setFile] = useState(null);
 
   useEffect(() => {
+    const token = sessionStorage.getItem("jwtToken");
     axios
-      .get(baseURL + "/userdashboard", { withCredentials: true })
+      .get(baseURL + "/userdashboard", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         setUser(res.data.user);
         setName(res.data.user.name);
@@ -34,10 +40,13 @@ function Profile() {
     formData.append("email", email);
     formData.append("password", newPassword);
     formData.append("userId", JSON.parse(sessionStorage.getItem("user"))._id);
-
+    const token = sessionStorage.getItem("jwtToken");
     axios
       .post(baseURL + "/userdashboard/update", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "multipart/form-data",
+        },
       })
       .then((res) => {
         setUser(res.data.user);

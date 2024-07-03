@@ -14,6 +14,7 @@ function Register() {
   const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
   const handleSignInWithGoogle = () => {
+    sessionStorage.setItem("isLoggedIn", true);
     window.open(baseURL + "/auth/google", "_self");
   };
 
@@ -32,6 +33,7 @@ function Register() {
       });
     }
     if (!email.length == 0 && !name.length == 0 && password.length >= 6) {
+      axios.defaults.withCredentials = true;
       axios
         .post(
           baseURL + "/signup",
@@ -47,7 +49,7 @@ function Register() {
         .then((res) => {
           sessionStorage.setItem("isLoggedIn", true);
           sessionStorage.setItem("user", JSON.stringify(res.data.user));
-          console.log(res);
+          sessionStorage.setItem("jwtToken", res.data.token);
           window.location.href = "/";
         })
         .catch((err) => {
@@ -97,7 +99,7 @@ function Register() {
         <div className="form-container sign-in-container">
           <div className="authForm">
             <h1 id="title1">Create Account</h1>
-            <div className="social-container">
+            {/* <div className="social-container">
               <button
                 className="signInWithGoogle"
                 onClick={handleSignInWithGoogle}
@@ -105,8 +107,8 @@ function Register() {
                 <img src="./res/google.png" height={"25px"} />
                 Sign In With Google
               </button>
-            </div>
-            <span id="authSpan">or use your email for registration</span>
+            </div> */}
+            <span id="authSpan">Use your email for registration</span>
             <input
               className="authInput"
               type="text"

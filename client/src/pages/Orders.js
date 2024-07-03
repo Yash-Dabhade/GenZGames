@@ -8,13 +8,19 @@ import axios from "axios";
 import { baseURL } from "../utils/constants";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getJWTToken } from "../utils/getToken";
 
 function Orders() {
   const [order, setOrder] = useState(null);
 
   useEffect(() => {
+    const token = sessionStorage.getItem("jwtToken");
     axios
-      .get(baseURL + "/myorder", { withCredentials: true })
+      .get(baseURL + "/myorder", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         let data = res.data.order.reverse();
         setOrder(data);

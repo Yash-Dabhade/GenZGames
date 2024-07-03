@@ -19,6 +19,7 @@ import {
 import CartItems from "./CartItems";
 import { baseURL } from "../utils/constants";
 import { checkoutHandler } from "../utils/paymentHandler";
+import { getJWTToken } from "../utils/getToken";
 
 function NavBar() {
   const [user, setUser] = useState(null);
@@ -26,8 +27,13 @@ function NavBar() {
   const [totalBill, setTotalBill] = useState(0);
 
   const initializeCart = async () => {
+    const token = sessionStorage.getItem("jwtToken");
     await axios
-      .get(baseURL + "/cart/get", { withCredentials: true })
+      .get(baseURL + "/cart/get", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         let total = 0;
         if (res.data.data.cart)
@@ -42,21 +48,21 @@ function NavBar() {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log(sessionStorage.getItem("isLoggedIn"));
       if (sessionStorage.getItem("isLoggedIn")) {
-        console.log("Inside : ");
         if (sessionStorage.getItem("user")) {
           let userObj = JSON.parse(sessionStorage.getItem("user"));
           setUser(userObj);
           initializeCart();
         }
       }
-    }, 500);
+    }, 800);
   }, []);
 
   const handleLogOut = async () => {
     await axios
-      .get(baseURL + "/logout", { withCredentials: true })
+      .get(baseURL + "/logout", {
+        withCredentials: true,
+      })
       .then((res) => {
         sessionStorage.clear();
         window.location.href = "/login";
@@ -75,14 +81,14 @@ function NavBar() {
             <img src="/res/logo.png" alt="" id="logoImg" />
           </NavLink>
         </div>
-        <div id="searchbox" className="input">
+        {/* <div id="searchbox" className="input">
           <input
             type="text"
             name="search"
             id="search"
             placeholder={"Search Games "}
           />
-        </div>
+        </div> */}
       </div>
       <div id="userUtil" onMouseEnter={initializeCart}>
         <Popover>
