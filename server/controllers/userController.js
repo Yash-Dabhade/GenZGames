@@ -112,7 +112,7 @@ exports.signInWithGoogleSuccess = BigPromise(async (req, res, next) => {
   myUser.password = undefined;
 
   //send response
-  res.status(200).redirect(process.env.REDIRECT_URL + "/" + token);
+  res.status(200).redirect(process.env.REDIRECT_URL + "/google/" + token);
   // cookieToken(req.user, res);
 });
 
