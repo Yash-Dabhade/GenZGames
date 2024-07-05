@@ -12,6 +12,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    @media (max-width: 480px) {
+        width: 100dvw;
+        height: fit-content;
+    }
 }
 
 #bannerDetail{
@@ -25,6 +29,9 @@
     justify-content: flex-end;
     height: 500px;
     width: 100%;
+    @media (max-width: 480px) {
+        width: 100dvw;
+    }
 }
 
 #overlayDetailContainer{
@@ -47,6 +54,13 @@
     column-gap: 12px;
     padding: 12px;
     font-family: 'Play', sans-serif;
+
+    @media (max-width: 480px) {
+        display: flex;
+        flex-direction: column;
+        height:fit-content;
+        width: 80dvw;
+      }
 }
 
 
@@ -58,12 +72,18 @@
     align-items: center;
     justify-content: center;
     /* border:1px solid red; */
+    @media (max-width: 480px) {
+        
+      }
 }
 
 #coverDetail > img{
     border-radius: 12px;
     height: 370px;
     width: auto;
+    @media (max-width: 480px) {
+        height: 220px;
+      }
 }
 
 #infoDetail{
@@ -74,6 +94,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    @media (max-width: 480px) {
+        
+
+      }
 }
 
 #actionsDetail{
@@ -92,6 +116,10 @@
     font-size:50px;
     padding:0px;
     text-align: center;
+    @media (max-width: 480px) {
+        font-size:20px;
+        
+      }
 }
 
 #descDetails{
@@ -100,6 +128,10 @@
     height: fit-content;
     font-size:15px;
     overflow-y: scroll;
+    @media (max-width: 480px) {
+        font-size:13px;
+        text-align: justify;
+      }
 }
 
 
@@ -111,11 +143,18 @@
     align-items: center;
     justify-content: space-between;
     gap:5px;
+    @media (max-width: 480px) {
+       width: 80dvw;
+    }
 }
 
 #priceTitleDetails{
     margin:10px 10px;
     font-size: x-large;
+    @media (max-width: 480px) {
+        margin:0px;
+        font-size: 20px;
+      }
 }
 
 #buyButtonDetails{
@@ -189,6 +228,10 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    @media (max-width: 480px) {
+        margin:0px;
+        font-size: 12px;
+      }
 }
 
 .customInfoDetails{
@@ -197,11 +240,18 @@
     height: fit-content;
     align-items: center;
     justify-content: center;
+    @media (max-width: 480px) {
+        gap:12px;
+      }
 }
 
 .customInfoDetails > img{
     height: 32px;
     width: 32px;
+    @media (max-width: 480px) {
+       height: 26px;
+       width: 26px;
+    }
 }
 
 #titleScreenshotsDetail{
@@ -210,6 +260,10 @@
     font-size:40px;
     padding:0px;
     text-align: center;
+
+    @media (max-width: 480px) {
+        font-size:30px;
+    }
 }
 
 #screenshotsContainer{
@@ -222,7 +276,13 @@
    
     border-radius: 1rem;
     z-index: 0;
+
+    @media (max-width: 480px) {
+        width: 90dvw;
+        margin: 20px 0px;
+    }
 }
+
 
 #reviewsContainer{
     width: 90%;
