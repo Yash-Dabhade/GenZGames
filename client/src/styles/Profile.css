@@ -7,6 +7,9 @@
     width: 100%;
     gap:30px;
     background: linear-gradient(315deg, #101217 20%, #181a21 100%);
+    @media (max-width: 480px) {
+        width: 100dvw;
+    }
 }
 
 #profileInnerContainer{
@@ -20,6 +23,13 @@
     column-gap: 12px;
     padding:0px 15px;
     border-radius: 20px;
+    @media (max-width: 480px) {
+        display: flex;
+        width: 100dvw;
+        flex-direction: column;
+        align-items: center;
+        gap:20px;
+     }
 }
 
 #profileLeftMenuContainer{
@@ -32,6 +42,12 @@
     border: 1px solid rgba(255, 255, 255, 0);
     border-radius: 1rem;
     box-shadow: rgba(30, 24, 24, 0.25) 0px 50px 100px -20px, rgba(132, 127, 127, 0.3) 0px 30px 60px -30px, rgba(247, 238, 238, 0.35) 0px -2px 6px 0px inset;
+    @media (max-width: 480px) {
+        display: flex;
+        flex-direction: row;
+        width:fit-content;
+        gap:2px;
+    }
 }
 
 #profileRightContentContainer{
@@ -42,7 +58,13 @@
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 1rem;
     box-shadow: rgba(30, 24, 24, 0.25) 0px 50px 100px -20px, rgba(132, 127, 127, 0.3) 0px 30px 60px -30px, rgba(247, 238, 238, 0.35) 0px -2px 6px 0px inset;
-  
+
+    @media (max-width: 480px) {
+        display: flex;
+        flex-direction: column;
+        width:90dvw;
+        gap:2px;
+    }
 }
 
 .profileMenuItems{
@@ -55,6 +77,17 @@
     font-size: 18px;
     color:white;
     border-bottom:1px solid gray;
+    @media (max-width: 480px) {
+        display: flex;
+        flex-direction: row;
+        gap:5px;
+    }
+}
+
+.mobileOnlyDiv2{
+    @media (max-width: 480px) {
+        display: none;
+    }
 }
 
 .profileMenuItems > img{
@@ -62,8 +95,12 @@
 }
 
 .profileTitle{
+    text-align: center;
     margin-left: 50px;
     color:whitesmoke;
+    @media (max-width: 480px) {
+        margin-left: 0px;
+    }
 }
 
 #profileFormContainer{
@@ -71,20 +108,35 @@
     display: flex;
     width: 100%;
     justify-content: center;
+
+    @media (max-width: 480px) {
+        display: flex;
+        flex-direction: column;
+        width:90dvw;
+        gap:2px;
+    }
 }
 
 #profileFormContainer > form{
     display: grid;
     grid-template-columns: repeat(2,1fr);
+    @media (max-width: 480px) {
+        display: flex;
+        flex-direction: column;
+        width:90dvw;
+        align-items: center;
+        height: fit-content;
+        padding-bottom: 20px;
+        gap:2px;
+    }
 }
-
-
 
 #profileLeftGrid{
     grid-column: 1 / span 1;
     display: flex;
     flex-direction: column;
     gap:45px;
+
 }
 
 #profileLeftGrid > input::file-selector-button{
@@ -102,6 +154,12 @@
     display: flex;
     flex-direction: column;
     gap:15px;
+    @media (max-width: 480px) {
+        display: flex;
+        /* flex-direction: row; */
+        width:90%;
+        gap:2px;
+    }
 }
 
 #profileRightGrid>label{
@@ -114,6 +172,10 @@
     /* width: 90px; */
     border-radius: 5px;
     border:1px solid rgb(81, 81, 81);
+    @media (max-width: 480px) {
+        max-width: 95%;
+        paddinng:0px 80px;
+    }
 }
 
 #profilePic{
@@ -121,6 +183,10 @@
     height: 194px;
     width: 188px;
     border-radius: 50%;
+    @media (max-width: 480px) {
+        height: 194px;
+        width: 198px;
+    }
 }
 
 #submitProfile{
@@ -134,4 +200,10 @@
     background-color: #fdb44b;
     color: black;
     border-radius: 35px;
+    @media (max-width: 480px) {
+      width:100dvw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 }

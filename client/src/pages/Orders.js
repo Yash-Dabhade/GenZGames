@@ -45,7 +45,7 @@ function Orders() {
             <h3>Orders</h3>
           </NavLink>
 
-          <NavLink to="/login" className="profileMenuItems">
+          <NavLink to="/login" className="mobileOnlyDiv2 profileMenuItems">
             <img src="./res/logout.png" height={"34px"} />
             <h3>Logout</h3>
           </NavLink>

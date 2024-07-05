@@ -70,11 +70,16 @@ function Profile() {
             <h3>Orders</h3>
           </NavLink>
 
-          <NavLink to="/login" className="profileMenuItems">
-            <img src="./res/logout.png" height={"34px"} />
-            <h3>Logout</h3>
+          <NavLink to="/login" className=" mobileOnlyDiv2 profileMenuItems">
+            <img
+              className="mobileOnlyDiv2"
+              src="./res/logout.png"
+              height={"34px"}
+            />
+            <h3 className="mobileOnlyDiv2">Logout</h3>
           </NavLink>
         </div>
+
         <div id="profileRightContentContainer">
           <h3 className="profileTitle">Update Profile</h3>
           <div id="profileFormContainer">
