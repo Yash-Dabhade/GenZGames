@@ -7,6 +7,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: overlay;
+  @media (max-width: 480px) {
+		overflow: scroll;
+	}
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
   background-color:rgba(25, 25, 25, 0.877);

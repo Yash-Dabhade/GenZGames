@@ -110,6 +110,9 @@ function Login() {
             <button className="authButton" onClick={handleSignIn}>
               Sign In
             </button>
+            <div className="mobileOnlyDiv">
+              <NavLink to="/register">Register New User</NavLink>
+            </div>
           </div>
         </div>
         <div className="overlay-container">

@@ -17,11 +17,30 @@
 	font-family: 'Montserrat', sans-serif;
 	height: 100vh;
     overflow: hidden;
+
+	 /* Media Query for Mobile Devices */
+	@media (max-width: 480px) {
+		padding-top: 20px;
+		justify-content: flex-start;
+		height: 100dvh;
+		overflow: auto;
+	}
+}
+
+.mobileOnlyDiv{
+	display: none;
+	@media (max-width: 480px) {
+		display: block;
+		font-size: 12px;
+	}
 }
 
 #title1 {
 	font-weight: bold;
 	margin: 0;
+	@media (max-width: 480px) {
+		font-size: 18px;
+	}
 }
 
 #title2 {
@@ -34,6 +53,11 @@
 	line-height: 20px;
 	letter-spacing: 0.5px;
 	margin: 20px 0 30px;
+	@media (max-width: 480px) {
+		font-size: 12px;
+		line-height: 8px;
+		margin: 5px 0 12px;
+	}
 }
 
 #authSpan {
@@ -60,6 +84,9 @@
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
+	@media (max-width: 480px) {
+		width:100%;
+	}
 }
 
 .authButton:active {
@@ -105,6 +132,11 @@
 	width: 768px;
 	max-width: 100%;
 	min-height: 480px;
+	@media (max-width: 480px) {
+		width: 80%;
+		margin: 10px;
+		overflow-y: scroll;
+	}
 }
 
 .form-container {
@@ -112,12 +144,17 @@
 	top: 0;
 	height: 100%;
 	transition: all 0.6s ease-in-out;
+	
 }
 
 .sign-in-container {
 	left: 0;
 	width: 50%;
 	z-index: 2;
+	@media (max-width: 480px) {
+		width: 100%;
+	}
+
 }
 
 .container.right-panel-active .sign-in-container {
@@ -129,6 +166,7 @@
 	width: 50%;
 	opacity: 0;
 	z-index: 1;
+	
 }
 
 .container.right-panel-active .sign-up-container {
@@ -157,9 +195,12 @@
 	width: 50%;
 	height: 100%;
 	overflow: hidden;
-
+	
 	transition: transform 0.6s ease-in-out;
 	z-index: 100;
+	@media (max-width: 480px) {
+		display: none;
+	}
 }
 
 .container.right-panel-active .overlay-container{
@@ -220,6 +261,7 @@
 
 .social-container {
 	margin: 20px 0;
+
 }
 
 .signInWithGoogle{
@@ -239,5 +281,13 @@
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
+
+	@media (max-width: 480px) {
+		height: 30px;
+		font-size: 8px;
+		gap: 10px;
+		width: 60dvw;
+		padding: 20px 45px;
+	}
 }
 

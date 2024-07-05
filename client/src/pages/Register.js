@@ -133,6 +133,9 @@ function Register() {
             <button className="authButton" onClick={handleSignUp}>
               Sign Up
             </button>
+            <div className="mobileOnlyDiv">
+              <NavLink to="/login">Login Now</NavLink>
+            </div>
           </div>
         </div>
         <div className="overlay-container">

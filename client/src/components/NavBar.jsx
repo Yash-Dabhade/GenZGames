@@ -53,7 +53,6 @@ function NavBar() {
           let userObj = JSON.parse(sessionStorage.getItem("user"));
           setUser(userObj);
           initializeCart();
-          console.log("interval");
           clearInterval(currInterval);
         }
       }
