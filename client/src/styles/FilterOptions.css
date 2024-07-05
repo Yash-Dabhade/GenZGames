@@ -10,6 +10,10 @@
     font-family: 'Play', sans-serif;
     padding: 12px 20px;
     gap:30px;
+
+    @media (max-width: 480px) {
+      gap:10px;
+    }
 }
 
 .title{
@@ -28,6 +32,10 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    @media (max-width: 480px) {
+      padding-left: 35px;
+      margin-bottom: 10px;
+    }
   }
   
   /* Hide the browser's default checkbox */
@@ -153,6 +161,11 @@
   gap:20px;
   width: 100%;
   margin: 20px 5px;
+  @media (max-width: 480px) {
+    gap:5px;
+    margin:0px 0px;
+    padding-bottom:20px;
+  }
 }
 
 #sortHolder > div{
@@ -173,4 +186,16 @@
   cursor: pointer;
   width: 25px;
   height: 25px;
+}
+
+
+.categoriesContainer{
+  @media (max-width: 480px) {
+    width: 100dvw;
+    display: grid;
+
+    grid-template-columns: 150px 2fr;
+    /* padding-left: 35px;
+    margin-bottom: 10px; */
+  }
 }

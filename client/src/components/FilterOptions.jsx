@@ -38,42 +38,55 @@ function FilterOptions({ filterByCategory }) {
     <div id="mainContainer">
       <div id="categories">
         <h3 className="title">Categories</h3>
+        <div className="categoriesContainer">
+          <label className="container">
+            Action
+            <input onChange={handleOnChange} value="action" type="checkbox" />
+            <span className="checkmark"></span>
+          </label>
 
-        <label className="container">
-          Action
-          <input onChange={handleOnChange} value="action" type="checkbox" />
-          <span className="checkmark"></span>
-        </label>
+          <label className="container">
+            Adventure
+            <input
+              onChange={handleOnChange}
+              value="adventure"
+              type="checkbox"
+            />
+            <span className="checkmark"></span>
+          </label>
 
-        <label className="container">
-          Adventure
-          <input onChange={handleOnChange} value="adventure" type="checkbox" />
-          <span className="checkmark"></span>
-        </label>
+          <label className="container">
+            Open World
+            <input
+              onChange={handleOnChange}
+              value="openworld"
+              type="checkbox"
+            />
+            <span className="checkmark"></span>
+          </label>
 
-        <label className="container">
-          Open World
-          <input onChange={handleOnChange} value="openworld" type="checkbox" />
-          <span className="checkmark"></span>
-        </label>
+          <label className="container">
+            Arcade
+            <input onChange={handleOnChange} value="arcade" type="checkbox" />
+            <span className="checkmark"></span>
+          </label>
 
-        <label className="container">
-          Arcade
-          <input onChange={handleOnChange} value="arcade" type="checkbox" />
-          <span className="checkmark"></span>
-        </label>
+          <label className="container">
+            Simulation
+            <input
+              onChange={handleOnChange}
+              value="simulation"
+              type="checkbox"
+            />
+            <span className="checkmark"></span>
+          </label>
 
-        <label className="container">
-          Simulation
-          <input onChange={handleOnChange} value="simulation" type="checkbox" />
-          <span className="checkmark"></span>
-        </label>
-
-        <label className="container">
-          Strategy
-          <input onChange={handleOnChange} value="strategy" type="checkbox" />
-          <span className="checkmark"></span>
-        </label>
+          <label className="container">
+            Strategy
+            <input onChange={handleOnChange} value="strategy" type="checkbox" />
+            <span className="checkmark"></span>
+          </label>
+        </div>
       </div>
 
       <div id="priceTitle">
