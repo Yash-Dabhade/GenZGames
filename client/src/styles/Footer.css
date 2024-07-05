@@ -9,6 +9,16 @@
     padding:0px 10px;
     /* padding-bottom: 10px; */
     font-family: "Signika Negative", sans-serif;
+
+    @media (max-width: 480px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 80dvw;
+      height: fit-content;
+    }
+   
   }
   
   .footer__self_bio__wrapper {
@@ -21,12 +31,20 @@
     /* border:1px solid white; */
     align-items: center;
     gap: 40px;
+    @media (max-width: 480px) {
+      gap:20px;
+      
+    }
   }
   .footer__self_bio__container__img {
     width: 200px;
     height: 340px;
     border-right: 2px solid rgb(80, 135, 253);
     border-radius: 50%;
+    @media (max-width: 480px) {
+     width: 120px;
+     height: 240px;
+    }
     /* border:2px solid white; */
   }
   .footer__self_bio__container__title {
@@ -48,6 +66,9 @@
     color: #fff;
     gap: 20px;
     list-style: none;
+    @media (max-width: 480px) {
+     margin-left: 0px;
+    }
   }
   .footer__self_bio__container__social_link {
     color: white;
@@ -59,6 +80,10 @@
     gap: 10px;
     font-size: 2.3rem;
     margin-bottom: -25px;
+    @media (max-width: 480px) {
+     font-size: 1.5rem;
+      margin-bottom: 0px;
+    }
   }
   
   @media only screen and (max-width: 900px) {

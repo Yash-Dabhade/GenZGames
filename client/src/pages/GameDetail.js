@@ -26,6 +26,7 @@ function GameDetail() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setTimeout(() => {
       fetchSelectedGame();
     }, 400);
