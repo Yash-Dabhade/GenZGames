@@ -134,7 +134,7 @@ export default function Footer() {
               </a>
             </div>
             <div>
-              <h4>Call Us</h4>
+              <h4>Customer Support</h4>
               <a
                 style={{
                   color: "#fff",
@@ -168,7 +168,7 @@ export default function Footer() {
             display: "block",
           }}
         >
-          Made with ❤️ By Yash Dabhade in 2023
+          Made with ❤️ in India | All rights reversed 2024
         </p>
       </div>
     </footer>

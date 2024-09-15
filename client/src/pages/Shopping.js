@@ -54,6 +54,7 @@ function Shopping() {
         } else {
           sortedProducts = res.data.products.sort((a, b) => b.price - a.price);
         }
+        console.log(sortedProducts);
         setGames(sortedProducts);
       })
       .catch((error) => {

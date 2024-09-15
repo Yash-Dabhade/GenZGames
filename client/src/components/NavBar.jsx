@@ -21,7 +21,7 @@ import { baseURL } from "../utils/constants";
 import { checkoutHandler } from "../utils/paymentHandler";
 import { getJWTToken } from "../utils/getToken";
 
-function NavBar() {
+function NavBar({ isAdmin }) {
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState([]);
   const [totalBill, setTotalBill] = useState(0);

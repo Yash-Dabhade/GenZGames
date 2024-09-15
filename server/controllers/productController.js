@@ -6,88 +6,77 @@ const cloudinary = require("cloudinary").v2;
 
 //add product
 exports.addProduct = BigPromise(async (req, res, next) => {
-  //images
+  // Array to store image details
   let imageArray = [];
-  // console.log(req.body);
-  //check if images present
+
+  // Check if images are present
   if (!req.files) {
     return next(new customError("Images are required", 401));
   }
-  //upload all images
-  if (req.files) {
-    cloudinary.uploader
-      .upload(req.files.cover.tempFilePath, {
+
+  try {
+    // Upload cover image
+    const resultCover = await cloudinary.uploader.upload(
+      req.files.cover.tempFilePath,
+      {
         folder: "covers",
-      })
-      .then((resultCover) => {
-        req.body.cover = {
-          id: resultCover.public_id,
-          secure_url: resultCover.secure_url,
-        };
+      }
+    );
+    req.body.cover = {
+      id: resultCover.public_id,
+      secure_url: resultCover.secure_url,
+    };
 
-        cloudinary.uploader
-          .upload(req.files.background.tempFilePath, {
-            folder: "background",
-          })
-          .then((resultBackground) => {
-            req.body.background = {
-              id: resultBackground.public_id,
-              secure_url: resultBackground.secure_url,
-            };
-            // for (let index = 0; index < req.files.photos.length; index++) {
-            //   cloudinary.uploader
-            //     .upload(req.files.photos[index].tempFilePath, {
-            //       folder: "products",
-            //     })
-            //     .then((result) => {
-            //       imageArray.push({
-            //         id: result.public_id,
-            //         secure_url: result.secure_url,
-            //       });
-            //     })
-            //     .catch((err) => {
-            //       console.log(err);
-            //       res.status(400).json({ success: false, error: err });
-            //     });
-            // }
-            // console.log(imageArray);
+    // Upload background image
+    const resultBackground = await cloudinary.uploader.upload(
+      req.files.background.tempFilePath,
+      {
+        folder: "background",
+      }
+    );
+    req.body.background = {
+      id: resultBackground.public_id,
+      secure_url: resultBackground.secure_url,
+    };
 
-            //add photos and user to body
-            req.body.photos = imageArray;
-            req.body.user = req.user.id;
-            req.body.gameKeys = req.body.gameKeys.split(",");
-
-            //create product instance
-            Product.create(req.body)
-              .then((product) => {
-                //send response
-                res.status(200).json({
-                  success: true,
-                  product,
-                });
-              })
-              .catch((err) => {
-                console.log(err);
-                res.status(400).json({ success: false, error: err });
-              });
-          })
-          .catch((err) => {
-            res.status(400).json({ success: false, error: err });
-
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(400).json({ success: false, error: err });
+    // Upload photos (use Promise.all to wait for all uploads)
+    const photoUploadPromises = req.files.photos.map((photo) => {
+      return cloudinary.uploader.upload(photo.tempFilePath, {
+        folder: "products",
       });
+    });
+
+    const photoResults = await Promise.all(photoUploadPromises);
+
+    // Store all uploaded photos in imageArray
+    imageArray = photoResults.map((result) => ({
+      id: result.public_id,
+      secure_url: result.secure_url,
+    }));
+
+    // Add photos and user to the request body
+    req.body.photos = imageArray;
+    req.body.user = req.user.id;
+    req.body.gameKeys = req.body.gameKeys.split(",");
+
+    // Create product instance
+    const product = await Product.create(req.body);
+
+    // Send success response
+    res.status(200).json({
+      success: true,
+      product,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ success: false, error: err });
   }
 });
 
 //get all products
 exports.getAllProduct = BigPromise(async (req, res, next) => {
   TODO: "Take data from the frontend developer for resultPerPage";
-  const resultPerPage = 9;
+  const resultPerPage = 12;
   const totalCountProduct = await Product.countDocuments();
 
   // console.log(totalCountProduct);

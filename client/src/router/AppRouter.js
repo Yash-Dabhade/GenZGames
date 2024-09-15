@@ -13,6 +13,7 @@ import Orders from "../pages/Orders";
 import RateGame from "../pages/RateGame";
 import Page404 from "../pages/Page404";
 import GoogleSignInPage from "../pages/GoogleSignInPage";
+import Admin from "../pages/Admin";
 
 export default function AppRouter() {
   return (
@@ -27,6 +28,7 @@ export default function AppRouter() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/rategame" element={<RateGame />} />
+        <Route path="/for/admin" element={<Admin />} />
         <Route path="/*" element={<Page404 />} />
       </Routes>
     </>
