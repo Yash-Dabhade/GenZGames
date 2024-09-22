@@ -14,10 +14,8 @@ exports.isLoggedIn = BigPromise(async (req, res, next) => {
   }
 
   //extract token
-  // const token = req.cookies.token;
   const token = authHeader.split(" ")[1];
 
-  console.log("token : ", token);
   //validate token
   if (!token) {
     return next(
