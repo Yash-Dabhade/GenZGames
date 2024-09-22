@@ -81,7 +81,8 @@
 
 #searchbox{
     display: flex;
-    width: 100%;
+    width: auto;
+    gap:12px;
     height: 100%;
     align-items: center;
     justify-content: center;

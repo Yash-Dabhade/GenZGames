@@ -104,6 +104,7 @@ function Admin() {
     <>
       <NavBar />
       <div style={styles.container}>
+        <h2 style={{ color: "white" }}>Admin Dashboard</h2>
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.field}>
             <label>Name</label>
@@ -225,7 +226,7 @@ function Admin() {
 
 const styles = {
   navbar: {
-    backgroundColor: "black",
+    backgroundColor: "#15171db7",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -241,10 +242,10 @@ const styles = {
     cursor: "pointer",
   },
   container: {
-    backgroundColor: "white",
+    backgroundColor: "#15171db7",
     height: "100vh",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "start",
     alignItems: "center",
     flexDirection: "column",
   },
@@ -253,8 +254,12 @@ const styles = {
     gridTemplateColumns: "repeat(2, 1fr)", // 2 columns
     gridTemplateRows: "repeat(3, auto)", // 3 rows
     gap: "10px",
-    width: "600px",
-    backgroundColor: "#f0f0f0",
+    width: "800px",
+    backgroundColor: "rgba( 255, 255, 255, 0.15 )",
+    backdropFilter: "blur( 8px )",
+    border: "1px solid rgba( 255, 255, 255, 0.18 )",
+    borderRadius: "1rem",
+    color: "white",
     padding: "20px",
     borderRadius: "8px",
     boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
@@ -271,8 +276,9 @@ const styles = {
   },
   button: {
     gridColumn: "span 2", // Button spans across both columns
-    padding: "10px",
+    padding: "10px 140px",
     borderRadius: "8px",
+    margin: "20px",
     backgroundColor: "#4CAF50",
     color: "white",
     border: "none",

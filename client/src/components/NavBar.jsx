@@ -25,6 +25,7 @@ function NavBar({ isAdmin }) {
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState([]);
   const [totalBill, setTotalBill] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const initializeCart = async () => {
     const token = sessionStorage.getItem("jwtToken");
@@ -74,6 +75,15 @@ function NavBar({ isAdmin }) {
       });
   };
 
+  function searchFunc() {
+    if (searchTerm) {
+      const found = window.find(searchTerm);
+      if (!found) {
+        alert("Game not found!");
+      }
+    }
+  }
+
   return (
     <div id="NavContainer">
       <div id="logoContainer">
@@ -82,14 +92,25 @@ function NavBar({ isAdmin }) {
             <img src="/res/logo.png" alt="" id="logoImg" />
           </NavLink>
         </div>
-        {/* <div id="searchbox" className="input">
-          <input
-            type="text"
-            name="search"
-            id="search"
-            placeholder={"Search Games "}
-          />
-        </div> */}
+        <div id="searchbox" className="input">
+          <div>
+            <input
+              type="text"
+              name="search"
+              id="search"
+              placeholder={"Search Games "}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+            />
+          </div>
+          <div onClick={searchFunc}>
+            <img
+              src="/res/magnifiying-glass.png"
+              style={{ height: "32px", width: "32px", cursor: "pointer" }}
+            />
+          </div>
+        </div>
       </div>
       <div id="userUtil" onMouseEnter={initializeCart}>
         <Popover>
