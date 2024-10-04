@@ -28,7 +28,7 @@ export default function AppRouter() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/rategame" element={<RateGame />} />
-        <Route path="/for/admin" element={<Admin />} />
+        {/* <Route path="/for/admin" element={<Admin />} /> */}
         <Route path="/*" element={<Page404 />} />
       </Routes>
     </>
